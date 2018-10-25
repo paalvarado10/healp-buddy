@@ -5,6 +5,15 @@
   margin-left: auto;
   margin-right: auto;
 }
+.carta {
+  border-radius: 25px;
+  border-color: black;
+
+}
+label {
+  color:#041527;
+  font-size:1.5vw;
+}
 table {
     width: 100%;
     text-align: center;

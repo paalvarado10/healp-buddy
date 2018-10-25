@@ -7,6 +7,7 @@ import AccountsUIWrapper from "./AccountsUIWrapper";
 import PropTypes from "prop-types";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import Registro from './Registro.js';
 
 // App component - represents the whole app
 class App extends Component {
@@ -14,10 +15,27 @@ class App extends Component {
     super(props);
 
     this.state = {
-      
-    };
+      registro: false,
 
+    };
+    this.registrarse = this.registrarse.bind(this);
   }
+registrarse(){
+  this.setState({registro:true});
+}
+renderRegister(){
+  let registro = this.state.registro;
+  if(registro){
+    return(
+      <Registro/>
+    );
+  }
+  else{
+    return(
+      <button type="button" className="btn btn-primary btn-lg" onClick={this.registrarse}>Registrarse</button>
+    );
+  }
+}
 
 showContent()
 {
@@ -49,16 +67,15 @@ showContent()
       </Carousel>
           </div>);
   }
-  
+
 }
 
   render() {
     return (
       <div>
-
-           <nav class="barra">
+           <nav className="barra">
                         <a> Help Buddy </a>
-                        <div class="useri">
+                        <div className="useri">
                           <AccountsUIWrapper/>
                         </div>
 
@@ -67,9 +84,11 @@ showContent()
            <br />
            <br />
 
-        <div class = "App">
+        <div className = "App">
 
           <div className="container">
+          <br/>
+          {this.renderRegister()}
 
           {this.showContent()}
 
