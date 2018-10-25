@@ -18,10 +18,16 @@ class App extends Component {
     this.state = {
       registro: false,
       login: false,
+      loggeado:false,
     };
     this.iniciarSesion = this.iniciarSesion.bind(this);
     this.registrarse = this.registrarse.bind(this);
+    this.loged = this.loged.bind(this);
+    this.cerrarSesion = this.cerrarSesion.bind(this);
   }
+cerrarSesion(){
+  this.setState({registro:false,login:false,loggeado:false});
+}
 registrarse()
 {
   this.setState({registro:true});
@@ -44,13 +50,18 @@ renderBtnSesion()
 
       );
   }
+  else if(this.state.loggeado) {
+    return (<button type="button" className="btnOut" onClick={this.cerrarSesion}>Cerrar Sesion</button>);
+  }
   else {
     return null;
   }
 }
 
 //
-
+loged(bol){
+  this.setState({loggeado:true});
+}
 showContent()
 {
   if(Meteor.user())
@@ -63,24 +74,24 @@ showContent()
   {
     let registro = this.state.registro;
     let login = this.state.login;
-    if(registro)
+    let loggeado = this.state.loggeado;
+    if(registro &&!loggeado)
     {
       return(
         <div>
         <br/>
         <br/>
-          <Registro/>
+          <Registro loged={this.loged}/>
           <br/>
           <br/>
         </div>);
-      //
     }
-    else if(login){
+    else if(login &&!loggeado){
       return(
         <div>
         <br/>
         <br/>
-        <IniciarSesion/>
+        <IniciarSesion loged={this.loged}/>
           <br/>
           <br/>
         </div>
@@ -145,7 +156,6 @@ showContent()
            <br />
 
         <div className = "App">
-
           <div className="container">
           <br/>
 

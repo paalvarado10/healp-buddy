@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import '../App.css';
 import { Meteor } from "meteor/meteor";
 import { withTracker } from 'meteor/react-meteor-data';
+import sha256 from 'crypto-js/sha256';
 import PropTypes from "prop-types";
+var CryptoJS = require("crypto-js");
 
 export default class IniciarSesion extends Component {
   constructor(props) {
@@ -35,7 +37,19 @@ listo(){
   else if(clave===""){
     alert("Se requiere clave");
   }
+  else {
+    let sk=Meteor.settings.public.stripe.p_key;
+    const ciphertext = CryptoJS.AES.encrypt(clave, sk).toString();
+    var bytes  = CryptoJS.AES.decrypt(ciphertext, sk);
+    const originalText = bytes.toString(CryptoJS.enc.Utf8);
+    console.log(ciphertext);
+    this.loged();
+  }
 }
+loged(){
+  this.props.loged(true);
+}
+
   render() {
     const divStyle = {
     width: "80%",

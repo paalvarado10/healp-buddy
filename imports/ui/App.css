@@ -149,6 +149,16 @@ th, td {
 .btnLis:hover {
     background-color: #00A0D8;
 }
+.btnOut{
+  border-radius: 10px;
+  background-color:#DF0101;
+  color: white;
+    height: 40px;
+    width: 120px;
+}
+.btnOut:hover {
+    background-color: #FA5858;
+}
 
 nav {
   float: center;

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import '../App.css';
 import { Meteor } from "meteor/meteor";
 import { withTracker } from 'meteor/react-meteor-data';
+import sha256 from 'crypto-js/sha256';
 import PropTypes from "prop-types";
 
 export default class Registro extends Component {
@@ -64,7 +65,14 @@ listo(){
   else if(clave!=repetirClave){
     alert("la clave debe coincidir");
   }
+  else {
+    //trata de iniciar sesion
+      this.loged();
+  }
 
+}
+loged(){
+  this.props.loged(true);
 }
   render() {
     const divStyle = {
