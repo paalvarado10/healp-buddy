@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-//import Task from './Task.js';
+import Task from './Task.js';
 
 // App component - represents the whole app
 export default class App extends Component {
@@ -14,8 +13,7 @@ export default class App extends Component {
 
   renderTasks() {
     return this.getTasks().map((task) => (
-//      <Task key={task._id} task={task} />
-<h1>hola</h1>
+      <Task key={task._id} task={task} />
     ));
   }
 
