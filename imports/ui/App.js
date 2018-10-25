@@ -1,69 +1,92 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Meteor } from 'meteor/meteor';
+import './App.css';
+import { Meteor } from "meteor/meteor";
 import { withTracker } from 'meteor/react-meteor-data';
-
-import { Tasks } from '../api/tasks.js';
-
-import Task from './Task.js';
-import AccountsUIWrapper from './AccountsUIWrapper.js';
+import AccountsUIWrapper from "./AccountsUIWrapper";
+import PropTypes from "prop-types";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 // App component - represents the whole app
 class App extends Component {
-  handleSubmit(event) {
-      event.preventDefault();
+  constructor(props) {
+    super(props);
 
-      // Find the text field via the React ref
-      const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
+    this.state = {
+      
+    };
 
-      Tasks.insert({
-        text,
-        createdAt: new Date(), // current time
-        owner: Meteor.userId(),           // _id of logged in user
-      username: Meteor.user().username,
-      });
-
-      // Clear form
-      ReactDOM.findDOMNode(this.refs.textInput).value = '';
-    }
-  // getTasks() {
-  //   return [
-  //     { _id: 1, text: 'This is task 1' },
-  //     { _id: 2, text: 'This is task 2' },
-  //     { _id: 3, text: 'This is task 3' },
-  //   ];
-  // }
-
-  renderTasks() {
-    return this.props.tasks.map((task) => (
-      <Task key={task._id} task={task} />
-    ));
   }
+
+showContent()
+{
+  if(Meteor.user())
+  {
+    return(<div>
+                <h3>Registrado</h3>
+          </div>);
+  }
+  else
+  {
+    return(<div>
+
+      <br/>
+      <Carousel>
+                <div>
+                    <img src="/1.jpg" />
+                    <p className="legend">La oportunidad de encontrar la ayuda
+                    que necesitas en un solo lugar</p>
+                </div>
+                <div>
+                    <img src="/2.jpg" />
+                    <p className="legend">En algunos casos podrás obtener una remuneración por brindar ayuda a alguien</p>
+                </div>
+                <div>
+                    <img src="/3.jpg" />
+                    <p className="legend">Nuestro trabajo es conectar gente para que se ayuden mutuamente</p>
+                </div>
+      </Carousel>
+          </div>);
+  }
+  
+}
 
   render() {
     return (
-      <div className="container">
-        <header>
-        <AccountsUIWrapper />
-          <h1>Todo List</h1>
-          <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-            <input
-              type="text"
-              ref="textInput"
-              placeholder="Type to add new tasks"
-            />
-          </form>
-        </header>
+      <div>
 
-        <ul>
-          {this.renderTasks()}
-        </ul>
+           <nav class="barra">
+                        <a> Help Buddy </a>
+                        <div class="useri">
+                          <AccountsUIWrapper/>
+                        </div>
+
+           </nav>
+           <br />
+           <br />
+           <br />
+
+        <div class = "App">
+
+          <div className="container">
+
+          {this.showContent()}
+
+          </div>
+        </div>
       </div>
     );
   }
 }
+
+
+App.propTypes = {
+
+};
+
 export default withTracker(() => {
+
   return {
-    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
   };
 })(App);
