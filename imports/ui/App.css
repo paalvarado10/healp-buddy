@@ -5,6 +5,15 @@
   margin-left: auto;
   margin-right: auto;
 }
+.carta {
+  border-radius: 25px;
+  border-color: black;
+
+}
+label {
+  color:#041527;
+  font-size:1.5vw;
+}
 table {
     width: 100%;
     text-align: center;
@@ -88,6 +97,9 @@ th, td {
 .useri{
   float: right;
   margin-right: 70px;
+  display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .izq{
   float: left;
@@ -105,6 +117,20 @@ th, td {
   height: 45px;
   margin-bottom: 3%;
 }
+.btnReg{
+
+  border-radius: 8px;
+  background-color: white;
+  color: #00A0D8;
+  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    height: 40px;
+    width: 120px;
+}
+.btnReg:hover {
+    background-color: #CFDBE5;
+}
+
 nav {
   float: center;
   text-align: center;

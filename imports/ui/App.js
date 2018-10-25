@@ -7,6 +7,7 @@ import AccountsUIWrapper from "./AccountsUIWrapper";
 import PropTypes from "prop-types";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import Registro from './Registro.js';
 
 // App component - represents the whole app
 class App extends Component {
@@ -14,14 +15,25 @@ class App extends Component {
     super(props);
 
     this.state = {
-      
+      registro: false,
     };
 
+    this.registrarse = this.registrarse.bind(this);
   }
+registrarse()
+{
+  this.setState({registro:true});
+}
+
+renderBtnRegister()
+{
+  return( <button type="button" class="btnReg" onClick={this.registrarse}>Registrarse</button>); 
+}
+
+//
 
 showContent()
 {
-  console.log(Meteor.user());
   if(Meteor.user())
   {
     return(<div>
@@ -30,21 +42,35 @@ showContent()
   }
   else
   {
-    return(<div class="carrusel">
+    let registro = this.state.registro; 
+
+    if(registro)
+    {
+      return(
+        <div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <Registro/>
+        </div>);
+      //
+    }
+    else{
+
+      return(<div class="carrusel">
 
       <br/>
       <br/>
       <br/>
       <table class="table">
-      <tr>
+        <tr>
           <td>
              <Carousel autoPlay={true} showThumbs={false} infiniteLoop={true} width={"800px"}>
                 <div>
                     <img src="/1.jpg" />
                 </div>
                 <div>
-                    <img src="/2.jpg"></img>
-                    
+                    <img src="/2.jpg"></img>  
                 </div>
                 <div>
                     <img src="/3.jpg"></img>
@@ -52,45 +78,44 @@ showContent()
             </Carousel>
           </td>
               <td>
-              <h3>
+                  <h3>
                   ¿Necesitas ayuda? <br/>Estás en el lugar indicado <br/><br/>
                   ¿Te gusta ayudar? <br/>También acá puedes hacerlo y hasta recibir una remuneración
                   por ello<br/><br/><br/>
                   Regístrate y únete al progreso porque todos necesitamos la ayuda de alguien
                   y todos podemos cooperar en algo
                   </h3>
-
              </td>
-      </tr>                        
+        </tr>                        
       </table>                  
-
-      
-      
-          </div>);
+    </div>);
           //
+    }
   }
-  
+
 }
 
   render() {
     return (
       <div>
-
            <nav class="barra">
-                        <a> <img class="q" src="/q.png" alt="help buddy icon"/> Help Buddy </a>
-                        <div class="useri">
-                          <AccountsUIWrapper/>
-                        </div>
-
+               <a> <img class="q" src="/q.png" alt="help buddy icon"/> Help Buddy </a>
+                 
+                 <div class="useri">
+                     {this.renderBtnRegister()}
+                     <AccountsUIWrapper/>
+                 </div>
            </nav>
+
            <br />
            <br />
            <br />
 
-        <div class = "App">
+        <div className = "App">
 
           <div className="container">
-
+          <br/>
+          
           {this.showContent()}
 
           </div>
