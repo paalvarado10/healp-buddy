@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import './App.css';
+import '../App.css';
 import { Meteor } from "meteor/meteor";
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from "prop-types";
@@ -21,9 +21,12 @@ export default class Registro extends Component {
     this.handleChangeNickName=this.handleChangeNickName.bind(this);
     this.handleChangeClave=this.handleChangeClave.bind(this);
     this.handleChangeRClave=this.handleChangeRClave.bind(this);
+    this.listo=this.listo.bind(this);
   }
 handleChangeName(event){
-  this.setState({nombre: event.target.value});
+  this.setState({nombre: event.target.value},()=>{
+    console.log(this.state.nombre)
+  });
 }
 handleChangeCorreo(event){
   this.setState({correo: event.target.value});
@@ -37,17 +40,41 @@ handleChangeClave(event){
 handleChangeRClave(event){
   this.setState({repetirClave: event.target.value});
 }
+listo(){
+  let {
+    nombre,
+    correo,
+    nickName,
+    clave,
+    repetirClave,
+  }=this.state;
+  console.log(nombre,correo,nickName,clave,repetirClave);
+  if(nombre===""){
+    alert("Se requiere el nombre");
+  }
+  else if(correo===""){
+    alert("Se requiere el correo");
+  }
+  else if(nickName===""){
+    alert("Se requiere asignara un nickname por defecto");
+  }
+  else if(clave===""){
+    alert("Se requiere clave");
+  }
+  else if(clave!=repetirClave){
+    alert("la clave debe coincidir");
+  }
+
+}
   render() {
     const divStyle = {
-    //  backgroundColor: "#c3def2",
     width: "80%",
     margin: "auto",
       borderStyle: "solid",
     borderWidth: "2px",
     borderRadius: "20px",
-    borderColor: "#00A0D8",
+    borderColor: "#041527",
      boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-    //boxShadow: "10px 10px grey",
 };
 const w = {
   width: "80%",
@@ -93,8 +120,9 @@ let {
           </div>
         </form>
         <br/>
-        <button type="button" className="btn btn-primary btn-lg">Listo</button>
+        <button type="button" className="btnLis" onClick={this.listo}>Listo</button>
       </div>
+      <br/>
       <br/>
       </div>
     );

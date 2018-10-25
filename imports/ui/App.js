@@ -7,7 +7,8 @@ import AccountsUIWrapper from "./AccountsUIWrapper";
 import PropTypes from "prop-types";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import Registro from './Registro.js';
+import Registro from './sesionusuario/Registro.js';
+import IniciarSesion from './sesionusuario/IniciarSesion.js';
 
 // App component - represents the whole app
 class App extends Component {
@@ -16,18 +17,36 @@ class App extends Component {
 
     this.state = {
       registro: false,
+      login: false,
     };
-
+    this.iniciarSesion = this.iniciarSesion.bind(this);
     this.registrarse = this.registrarse.bind(this);
   }
 registrarse()
 {
   this.setState({registro:true});
 }
-
-renderBtnRegister()
+iniciarSesion()
 {
-  return( <button type="button" class="btnReg" onClick={this.registrarse}>Registrarse</button>); 
+  this.setState({login:true});
+}
+
+renderBtnSesion()
+{
+  if(this.state.registro==false && this.state.login==false){
+      return(
+        <div>
+        <button type="button" className="btnReg" onClick={this.registrarse}>Registrarse</button>
+        <span> </span>
+        <button type="button" className="btnReg" onClick={this.iniciarSesion}>Iniciar Sesion</button>
+        <span> </span>
+        </div>
+
+      );
+  }
+  else {
+    return null;
+  }
 }
 
 //
@@ -42,27 +61,40 @@ showContent()
   }
   else
   {
-    let registro = this.state.registro; 
-
+    let registro = this.state.registro;
+    let login = this.state.login;
     if(registro)
     {
       return(
         <div>
-          <br></br>
-          <br></br>
-          <br></br>
+        <br/>
+        <br/>
           <Registro/>
+          <br/>
+          <br/>
         </div>);
       //
     }
+    else if(login){
+      return(
+        <div>
+        <br/>
+        <br/>
+        <IniciarSesion/>
+          <br/>
+          <br/>
+        </div>
+      );
+    }
     else{
 
-      return(<div class="carrusel">
+      return(<div className="carrusel">
 
       <br/>
       <br/>
       <br/>
-      <table class="table">
+      <table className="table">
+      <tbody>
         <tr>
           <td>
              <Carousel autoPlay={true} showThumbs={false} infiniteLoop={true} width={"800px"}>
@@ -70,7 +102,7 @@ showContent()
                     <img src="/1.jpg" />
                 </div>
                 <div>
-                    <img src="/2.jpg"></img>  
+                    <img src="/2.jpg"></img>
                 </div>
                 <div>
                     <img src="/3.jpg"></img>
@@ -86,8 +118,9 @@ showContent()
                   y todos podemos cooperar en algo
                   </h3>
              </td>
-        </tr>                        
-      </table>                  
+        </tr>
+        </tbody>
+      </table>
     </div>);
           //
     }
@@ -98,12 +131,12 @@ showContent()
   render() {
     return (
       <div>
-           <nav class="barra">
-               <a> <img class="q" src="/q.png" alt="help buddy icon"/> Help Buddy </a>
-                 
-                 <div class="useri">
-                     {this.renderBtnRegister()}
-                     <AccountsUIWrapper/>
+           <nav className="barra">
+               <a> <img className="q" src="/q.png" alt="help buddy icon"/> Help Buddy </a>
+
+                 <div className="useri">
+                     {this.renderBtnSesion()}
+                     {/* <AccountsUIWrapper/>*/}
                  </div>
            </nav>
 
@@ -115,7 +148,7 @@ showContent()
 
           <div className="container">
           <br/>
-          
+
           {this.showContent()}
 
           </div>
