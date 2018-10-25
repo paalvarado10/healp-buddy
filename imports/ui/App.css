@@ -82,18 +82,28 @@ th, td {
     width: 700px;
     font-size: 40px;
 }
-
+.table{
+  background-color: #00A0D8;
+}
 .useri{
   float: right;
   margin-right: 70px;
 }
 .izq{
   float: left;
-  margin-left: 5%;
+  margin-left: 120px;
+  font-size: 30px;
 }
 .der{
   margin-top:7%;
   float: right;
+}
+.tex{
+  font-size: 30px;
+}
+.q{
+  height: 45px;
+  margin-bottom: 3%;
 }
 nav {
   float: center;
@@ -122,9 +132,9 @@ a{
   color: #fff;
   text-decoration: none;
   float: left;
-  font-family: Arial, sans-serif;
-  font-size: 30px;
-  margin-left: 30px;
+  font-family: 'Concert One', cursive;
+  font-size: 40px;
+  margin-left: 60px;
   padding: 10px;
   list-style: none;
   position: -webkit-sticky; /* Safari */
@@ -142,4 +152,11 @@ h1{
 }
 h2{
   color: #fff;
+}
+h3{
+  font-size: 22px;
+  text-align: justify;
+  font-family: 'Kalam', cursive;
+  color: #fff;
+  padding: 25px;
 }

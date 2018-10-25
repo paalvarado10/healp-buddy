@@ -21,6 +21,7 @@ class App extends Component {
 
 showContent()
 {
+  console.log(Meteor.user());
   if(Meteor.user())
   {
     return(<div>
@@ -29,25 +30,44 @@ showContent()
   }
   else
   {
-    return(<div>
+    return(<div class="carrusel">
 
       <br/>
-      <Carousel>
+      <br/>
+      <br/>
+      <table class="table">
+      <tr>
+          <td>
+             <Carousel autoPlay={true} showThumbs={false} infiniteLoop={true} width={"800px"}>
                 <div>
                     <img src="/1.jpg" />
-                    <p className="legend">La oportunidad de encontrar la ayuda
-                    que necesitas en un solo lugar</p>
                 </div>
                 <div>
-                    <img src="/2.jpg" />
-                    <p className="legend">En algunos casos podrás obtener una remuneración por brindar ayuda a alguien</p>
+                    <img src="/2.jpg"></img>
+                    
                 </div>
                 <div>
-                    <img src="/3.jpg" />
-                    <p className="legend">Nuestro trabajo es conectar gente para que se ayuden mutuamente</p>
+                    <img src="/3.jpg"></img>
                 </div>
-      </Carousel>
+            </Carousel>
+          </td>
+              <td>
+              <h3>
+                  ¿Necesitas ayuda? <br/>Estás en el lugar indicado <br/><br/>
+                  ¿Te gusta ayudar? <br/>También acá puedes hacerlo y hasta recibir una remuneración
+                  por ello<br/><br/><br/>
+                  Regístrate y únete al progreso porque todos necesitamos la ayuda de alguien
+                  y todos podemos cooperar en algo
+                  </h3>
+
+             </td>
+      </tr>                        
+      </table>                  
+
+      
+      
           </div>);
+          //
   }
   
 }
@@ -57,7 +77,7 @@ showContent()
       <div>
 
            <nav class="barra">
-                        <a> Help Buddy </a>
+                        <a> <img class="q" src="/q.png" alt="help buddy icon"/> Help Buddy </a>
                         <div class="useri">
                           <AccountsUIWrapper/>
                         </div>
