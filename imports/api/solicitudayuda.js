@@ -6,15 +6,15 @@ export const SolicitudAyuda = new Mongo.Collection('solicitudayuda');
 if(Meteor.isServer)
 {
 	Meteor.publish("solicitudayuda", ()=>{
-		return Usuarios.find({});
+		return SolicitudAyuda.find({});
 	});
 }
 
 Meteor.methods(
 {
-	"solicitudayuda.add":function(nickname, nombreSolicitud, descripcion, tipo, remunerada, fechaLimite, entidad){
+	"solicitudayuda.add":function(nickname, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad){
 	      SolicitudAyuda.insert({nickname:nickname, nombreSolicitud:nombreSolicitud, descripcion:descripcion,
-           tipo:tipo, remunerada:remunerada, fechaLimite:fechaLimite, entidad:entidad});
+           tipo:tipo, remunerada:remunerada, remunn:remunn, fechaLimite:fechaLimite, entidad:entidad});
 				return "success";
 	  },
 	"solicitudayuda.getAyudaNombre":function(nombreSolicitud){

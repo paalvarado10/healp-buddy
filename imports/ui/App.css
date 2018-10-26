@@ -88,6 +88,9 @@ th, td {
   z-index: 10;
   float: center;
 }
+.hIem {
+  color:#041527;
+}
 .carousel .thumb img {
     width: 100% !important;
     height: 100% !important;
@@ -113,6 +116,9 @@ th, td {
    align-items: center;
 
 }
+.fifty{
+  width: 50%;
+}
 .izq{
   float: left;
   margin-left: 120px;
@@ -129,7 +135,7 @@ th, td {
   height: 45px;
   margin-bottom: 3%;
 }
-.btnOferta{ 
+.btnOferta{
   border-radius: 8px;
   background-color: #00A0D8;
   color: white;

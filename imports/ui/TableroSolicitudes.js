@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import { Meteor } from "meteor/meteor";
 import SolicitudA from './ayuda/SolicitudA.js';
+import ListaAyuda from './ayuda/ListaAyuda.js';
 export default class TableroSolicitudes extends Component {
 	constructor(props) {
     super(props);
@@ -38,6 +39,15 @@ export default class TableroSolicitudes extends Component {
 				<div>
 					<button className="btnOferta" onClick={this.publicarOferta}>Publicar oferta de ayuda</button>
 					<button className="btnOferta" style={{width:"auto"}}onClick={this.publicarSolicitudAyuda}>Publicar Solicitud de ayuda</button>
+					<div className="row">
+  					<div className="col-md-6 col-md-push-6">
+							<h1 className="hIem">Listado de Ofertas de ayuda</h1>
+						</div>
+  					<div className="col-md-6 col-md-pull-6">
+							<h1 className="hIem">Listado de Solicitudes de ayuda</h1>
+							<ListaAyuda/>
+						</div>
+					</div>
 				</div>
 		);
 		}
