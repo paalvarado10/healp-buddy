@@ -9,6 +9,7 @@ export default class AyudaItemLista extends Component {
     this.state = {
       solicitud:this.props.solicitud
     };
+    this.verDetalle=this.verDetalle.bind(this);
   }
   renderSolicitud(solicitud){
     const divStyle = {
@@ -36,6 +37,10 @@ export default class AyudaItemLista extends Component {
     }
 
   }
+  verDetalle(){
+    let id = this.state.solicitud._id;
+   this.props.verDetalle(id);
+  }
     render() {
       let solicitud = this.state.solicitud;
       const center={
@@ -61,7 +66,7 @@ export default class AyudaItemLista extends Component {
       <br/>
             {this.renderSolicitud(solicitud)}
       <br/>
-      <button type="button" className="btnLis">Ver</button>
+      <button type="button" className="btnLis" onClick={this.verDetalle}>Ver</button>
       <br/>
       <br/>
       <br/>

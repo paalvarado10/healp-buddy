@@ -10,18 +10,18 @@ class ListaAyuda extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
     };
     this.renderList=this.renderList.bind(this);
+    this.verDetalle = this.verDetalle.bind(this);
+  }
+  verDetalle(id){
+    this.props.verDetalle(id);
   }
   renderList(solicitudes){
     let list =solicitudes;
-    console.log(list);
-    console.log(list.length);
     if(list.length>0){
       let render = list.map((item,i)=>{
-         console.log(item);
-         return(<AyudaItemLista solicitud={item} key={i}/>)
+         return(<AyudaItemLista verDetalle={this.verDetalle} solicitud={item} key={i}/>)
       });
       return(
         <div>

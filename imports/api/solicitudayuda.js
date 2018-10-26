@@ -17,6 +17,10 @@ Meteor.methods(
            tipo:tipo, remunerada:remunerada, remunn:remunn, fechaLimite:fechaLimite, entidad:entidad});
 				return "success";
 	  },
+		"solicitudayuda.getAyudaID":function(id){
+			const solicitud = SolicitudAyuda.findOne({ _id: id});
+		  return solicitud;
+		},
 	"solicitudayuda.getAyudaNombre":function(nombreSolicitud){
 		const solicitud = SolicitudAyuda.findOne({ nombreSolicitud: nombreSolicitud});
 	  return solicitud;
