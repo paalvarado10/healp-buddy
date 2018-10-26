@@ -6,14 +6,16 @@ import { withTracker } from 'meteor/react-meteor-data';
 import sha256 from 'crypto-js/sha256';
 import PropTypes from "prop-types";
 var CryptoJS = require("crypto-js");
+import {Usuarios} from '../../api/usuarios.js';
 
-export default class IniciarSesion extends Component {
+class IniciarSesion extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       correo: "",
       clave:"",
+      nickname:"",
     };
     this.handleChangeCorreo=this.handleChangeCorreo.bind(this);
     this.handleChangeClave=this.handleChangeClave.bind(this);
@@ -42,12 +44,26 @@ listo(){
     const ciphertext = CryptoJS.AES.encrypt(clave, sk).toString();
     var bytes  = CryptoJS.AES.decrypt(ciphertext, sk);
     const originalText = bytes.toString(CryptoJS.enc.Utf8);
-    console.log(ciphertext);
-    this.loged();
+    const uLoged = Meteor.call("usuarios.getUser",correo, (err, use)=>{
+      if(use){
+      var bytes  = CryptoJS.AES.decrypt(use.claveHash, sk);
+      const originalText = bytes.toString(CryptoJS.enc.Utf8);
+      if(originalText===clave){
+        this.loged(correo,use.nickname);
+      }
+      else{
+        alert("Credenciales Invalidas");
+      }
+      }
+      else{
+        alert("Credenciales Invalidas");
+      }
+    });
+
   }
 }
-loged(){
-  this.props.loged(true);
+loged(correo, nickname){
+  this.props.loged(true,correo,nickname);
 }
 
   render() {
@@ -93,3 +109,14 @@ let {
     );
   }
 }
+IniciarSesion.propTypes = {
+  usuario:PropTypes.object,
+};
+
+export default withTracker(() => {
+  Meteor.subscribe("usuarios");
+
+  return {
+    usuarios:Usuarios.find({}).fetch(),
+  };
+})(IniciarSesion);

@@ -9,8 +9,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Registro from './sesionusuario/Registro.js';
 import IniciarSesion from './sesionusuario/IniciarSesion.js';
-
-// App component - represents the whole app
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +17,8 @@ class App extends Component {
       registro: false,
       login: false,
       loggeado:false,
+      correo:"",
+      nickname:"",
     };
     this.iniciarSesion = this.iniciarSesion.bind(this);
     this.registrarse = this.registrarse.bind(this);
@@ -26,7 +26,7 @@ class App extends Component {
     this.cerrarSesion = this.cerrarSesion.bind(this);
   }
 cerrarSesion(){
-  this.setState({registro:false,login:false,loggeado:false});
+  this.setState({registro:false,login:false,loggeado:false,correo:"",nickname:""});
 }
 registrarse()
 {
@@ -51,7 +51,13 @@ renderBtnSesion()
       );
   }
   else if(this.state.loggeado) {
-    return (<button type="button" className="btnOut" onClick={this.cerrarSesion}>Cerrar Sesion</button>);
+    return (
+  <div>
+    <h3>{this.state.nickname}</h3>
+    <button type="button" className="btnOut" onClick={this.cerrarSesion}>Cerrar Sesion</button>
+  </div>
+
+    );
   }
   else {
     return null;
@@ -59,8 +65,8 @@ renderBtnSesion()
 }
 
 //
-loged(bol){
-  this.setState({loggeado:true});
+loged(bol,correo,nickname){
+  this.setState({loggeado:true, correo:correo, nickname:nickname});
 }
 showContent()
 {
@@ -133,7 +139,6 @@ showContent()
         </tbody>
       </table>
     </div>);
-          //
     }
   }
 
@@ -144,17 +149,13 @@ showContent()
       <div>
            <nav className="barra">
                <a> <img className="q" src="/q.png" alt="help buddy icon"/> Help Buddy </a>
-
                  <div className="useri">
                      {this.renderBtnSesion()}
-                     {/* <AccountsUIWrapper/>*/}
                  </div>
            </nav>
-
            <br />
            <br />
            <br />
-
         <div className = "App">
           <div className="container">
           <br/>

@@ -5,21 +5,24 @@ import { Meteor } from "meteor/meteor";
 import { withTracker } from 'meteor/react-meteor-data';
 import sha256 from 'crypto-js/sha256';
 import PropTypes from "prop-types";
-
-export default class Registro extends Component {
+import {Usuarios} from '../../api/usuarios.js';
+var CryptoJS = require("crypto-js");
+let animals =["tigre","leon","cocodrilo","serpiente","aguila","lobo", "buho", "perro", "conejo", "rana", "zorro","gato", "delfin","tiburon","pollo"];
+let numbers =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+let action = ["saltarin","sonriente","comelon","jugueton","dormilon","incognito","sisipeto","boxeador","futbolero","azul","rojo","astuto","aleatorio","feliz","estudioso"];
+class Registro extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       nombre: "",
       correo: "",
-      nickName:"",
       clave:"",
-      repetirClave:""
+      repetirClave:"",
+      nickname:""
     };
     this.handleChangeName=this.handleChangeName.bind(this);
     this.handleChangeCorreo=this.handleChangeCorreo.bind(this);
-    this.handleChangeNickName=this.handleChangeNickName.bind(this);
     this.handleChangeClave=this.handleChangeClave.bind(this);
     this.handleChangeRClave=this.handleChangeRClave.bind(this);
     this.listo=this.listo.bind(this);
@@ -32,9 +35,6 @@ handleChangeName(event){
 handleChangeCorreo(event){
   this.setState({correo: event.target.value});
 }
-handleChangeNickName(event){
-  this.setState({nickName: event.target.value});
-}
 handleChangeClave(event){
   this.setState({clave: event.target.value});
 }
@@ -45,19 +45,15 @@ listo(){
   let {
     nombre,
     correo,
-    nickName,
     clave,
     repetirClave,
   }=this.state;
-  console.log(nombre,correo,nickName,clave,repetirClave);
+  console.log(nombre,correo,clave,repetirClave);
   if(nombre===""){
     alert("Se requiere el nombre");
   }
   else if(correo===""){
     alert("Se requiere el correo");
-  }
-  else if(nickName===""){
-    alert("Se requiere asignara un nickname por defecto");
   }
   else if(clave===""){
     alert("Se requiere clave");
@@ -67,12 +63,28 @@ listo(){
   }
   else {
     //trata de iniciar sesion
-      this.loged();
+    var randomAnimal = Math.floor(Math.random() * 15);
+    var randomNumber = Math.floor(Math.random() * 15);
+    var randomAction = Math.floor(Math.random() * 15);
+    let nickname =animals[randomAnimal]+numbers[randomNumber]+action[randomAction];
+    let sk=Meteor.settings.public.stripe.p_key;
+    const ciphertext = CryptoJS.AES.encrypt(clave, sk).toString();
+    let search=Meteor.call("usuarios.getCorreo",correo,(err,user)=>{
+      if(!user){
+        Meteor.call("usuarios.add",nombre,correo,nickname,ciphertext,(err,res)=>{if(res==="success"){
+          this.loged(correo,nickname);
+        }else{
+          console.log("ERROR AL GUARDAR");
+        } });
+      }
+      console.log(user);
+      console.log("Ya se registro un usuario con ese correo, porfavor vuelva a intentarlo");
+      this.setState({correo:""});
+    });
   }
-
 }
-loged(){
-  this.props.loged(true);
+loged(correo,nickname){
+  this.props.loged(true,correo,nickname);
 }
   render() {
     const divStyle = {
@@ -87,12 +99,10 @@ loged(){
 const w = {
   width: "80%",
   margin: "auto",
-
 }
 let {
   nombre,
   correo,
-  nickName,
   clave,
   repetirClave,
 }=this.state;
@@ -110,11 +120,6 @@ let {
           <div className="form-group">
             <label htmlFor="formGroupExampleInput2">Correo: </label>
             <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="correo@correo.com"value={correo} onChange={this.handleChangeCorreo}/>
-          </div>
-          <br/>
-          <div className="form-group">
-            <label htmlFor="formGroupExampleInput3">Nick name: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput3" placeholder="Nombre con el que aprece en la pagina" value={nickName} onChange={this.handleChangeNickName}/>
           </div>
           <br/>
           <div className="form-group">
@@ -136,3 +141,14 @@ let {
     );
   }
 }
+Registro.propTypes = {
+  usuario:PropTypes.object,
+};
+
+export default withTracker(() => {
+  Meteor.subscribe("usuarios");
+
+  return {
+    usuarios:Usuarios.find({}).fetch(),
+  };
+})(Registro);

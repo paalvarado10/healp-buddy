@@ -101,13 +101,17 @@ th, td {
 .table{
   background-color: #00A0D8;
 }
+.userName{
+  color:  #fff;
+}
 .useri{
   float: right;
-  margin-right: 70px;
-  padding-top: 15px;
+  margin-right: 50px;
+  padding-top: 10px;
+  width: auto;
+  /* padding-bottom:  4px; */
   display: flex;
-   justify-content: center;
-   align-items: center;
+  justify-content: center;
 }
 .izq{
   float: left;
