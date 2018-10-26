@@ -26,6 +26,7 @@ class Registro extends Component {
     this.handleChangeClave=this.handleChangeClave.bind(this);
     this.handleChangeRClave=this.handleChangeRClave.bind(this);
     this.listo=this.listo.bind(this);
+    this.back=this.back.bind(this);
   }
 handleChangeName(event){
   this.setState({nombre: event.target.value},()=>{
@@ -41,6 +42,10 @@ handleChangeClave(event){
 handleChangeRClave(event){
   this.setState({repetirClave: event.target.value});
 }
+back(){
+  window.location.reload();
+}
+
 listo(){
   let {
     nombre,
@@ -133,7 +138,8 @@ let {
           </div>
         </form>
         <br/>
-        <button type="button" className="btnLis" onClick={this.listo}>Listo</button>
+        <button type="button" className="btnLis" onClick={this.listo}>Registrarme</button>
+        <button type="button" className="btnLis" onClick={this.back}>Atras</button>
       </div>
       <br/>
       <br/>

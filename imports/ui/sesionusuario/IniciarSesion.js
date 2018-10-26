@@ -28,6 +28,11 @@ handleChangeCorreo(event){
 handleChangeClave(event){
   this.setState({clave: event.target.value});
 }
+
+back(){
+  window.location.reload();
+}
+
 listo(){
   let {
     correo,
@@ -102,7 +107,8 @@ let {
           </div>
         </form>
         <br/>
-        <button type="button" className="btnLis" onClick={this.listo}>Listo</button>
+        <button type="button" className="btnLis" onClick={this.listo}>Entrar</button>
+        <button type="button" className="btnLis" onClick={this.back}>Atras</button>
       </div>
       <br/>
       </div>

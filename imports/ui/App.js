@@ -42,7 +42,7 @@ renderBtnSesion()
   if(this.state.registro==false && this.state.login==false){
       return(
         <div className="useri">
-        <button type="button" className="btnReg" onClick={this.registrarse}>Registrarse</button>
+        <button type="button" className="btnReg" onClick={this.registrarse}>Registrarme</button>
         <span> </span>
          <p></p>
         <button type="button" className="btnReg" onClick={this.iniciarSesion}>Iniciar Sesión</button>
