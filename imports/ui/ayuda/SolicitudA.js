@@ -5,6 +5,7 @@ import { Meteor } from "meteor/meteor";
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from "prop-types";
 import {SolicitudAyuda} from '../../api/solicitudayuda.js';
+
 class SolicitudA extends Component {
   constructor(props) {
     super(props);
@@ -63,7 +64,7 @@ class SolicitudA extends Component {
       return null;
     }
   }
-  
+
   handleInputChange(event) {
   const target = event.target;
   const value = target.type === 'checkbox' ? target.checked : target.value;

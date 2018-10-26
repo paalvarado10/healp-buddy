@@ -9,6 +9,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Registro from './sesionusuario/Registro.js';
 import SolicitudA from './ayuda/SolicitudA.js';
+import OfertaA from './ayuda/OfertaA.js';
 import IniciarSesion from './sesionusuario/IniciarSesion.js';
 import TableroSolicitudes from './TableroSolicitudes.js';
 
