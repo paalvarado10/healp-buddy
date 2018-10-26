@@ -77,7 +77,7 @@ listo(){
     this.setState({error:msg});
     }
   else {
-    //trata de iniciar sesion
+    //trata de registar al usuario
     var randomAnimal = Math.floor(Math.random() * 15);
     var randomNumber = Math.floor(Math.random() * 15);
     var randomAction = Math.floor(Math.random() * 15);
@@ -157,7 +157,7 @@ let {
           <br/>
           <div className="form-group">
             <label htmlFor="formGroupExampleInput2">Correo: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="correo@correo.com"value={correo} onChange={this.handleChangeCorreo}/>
+            <input type="email" className="form-control" id="formGroupExampleInput2" placeholder="correo@correo.com"value={correo} onChange={this.handleChangeCorreo}/>
           </div>
           <br/>
           <div className="form-group">

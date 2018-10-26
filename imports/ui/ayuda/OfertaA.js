@@ -45,6 +45,7 @@ class OfertaA extends Component {
         }
     });
 
+    this.atras();
   }
   atras(){
     this.props.atras(true);
@@ -131,22 +132,6 @@ class OfertaA extends Component {
       </div>
 
        );//
-    }
-    else
-    {
-      const o = null;
-      Meteor.call("ofertasAyuda.getAll", (err,ofertas)=>{
-        o=ofertas;
-        for (var i = 0; i < ofertas.length; i++) {
-          console.log(o[i].nombreOferta);
-        } 
-        
-      });
-
-      return(<div>
-        
-        </div>);
-      
     }
     
   }
