@@ -141,6 +141,18 @@ th, td {
 .btnReg:hover {
     background-color: #CFDBE5;
 }
+.btnNormal{
+  border-radius: 8px;
+  background-color: #00A0D8;
+  color: white;
+  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    height: 40px;
+    width: auto;
+}
+.btnNormal:hover {
+    background-color: #CFDBE5;
+}
 .btnLis{
   border-radius: 10px;
   background-color:#041527;
@@ -152,6 +164,9 @@ th, td {
 }
 .btnLis:hover {
     background-color: #00A0D8;
+}
+.errorMsg{
+  color:#FA5858;
 }
 .btnOut{
   border-radius: 10px;
@@ -201,7 +216,6 @@ a{
   top: 0;
   color:#fff;
 }
-
 a:hover {
   text-decoration: none;
   color: #fff;

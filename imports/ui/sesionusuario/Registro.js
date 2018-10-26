@@ -19,7 +19,8 @@ class Registro extends Component {
       correo: "",
       clave:"",
       repetirClave:"",
-      nickname:""
+      nickname:"",
+      error:""
     };
     this.handleChangeName=this.handleChangeName.bind(this);
     this.handleChangeCorreo=this.handleChangeCorreo.bind(this);
@@ -48,19 +49,28 @@ listo(){
     clave,
     repetirClave,
   }=this.state;
+  let msg="";
   console.log(nombre,correo,clave,repetirClave);
   if(nombre===""){
-    alert("Se requiere el nombre");
-  }
+    msg="Se requiere el nombre";
+    this.setState({error:msg});
+    }
   else if(correo===""){
-    alert("Se requiere el correo");
-  }
+    msg=("Se requiere el correo");
+    this.setState({error:msg});
+    }
   else if(clave===""){
-    alert("Se requiere clave");
-  }
+    msg=("Se requiere clave");
+    this.setState({error:msg});
+    }
   else if(clave!=repetirClave){
-    alert("la clave debe coincidir");
-  }
+    msg="la clave debe coincidir";
+    this.setState({error:msg});
+    }
+  else if(!correo.includes(".com") || (!correo.includes("@") &&!corre.includes(".co"))){
+    msg=("Ingrese un correo valido");
+    this.setState({error:msg});
+    }
   else {
     //trata de iniciar sesion
     var randomAnimal = Math.floor(Math.random() * 15);
@@ -74,7 +84,20 @@ listo(){
         Meteor.call("usuarios.add",nombre,correo,nickname,ciphertext,(err,res)=>{if(res==="success"){
           this.loged(correo,nickname);
         }else{
-          console.log("ERROR AL GUARDAR");
+          var randomAnimal = Math.floor(Math.random() * 15);
+          var randomNumber = Math.floor(Math.random() * 15);
+          var randomAction = Math.floor(Math.random() * 15);
+          let nickname =animals[randomAnimal]+numbers[randomNumber]+action[randomAction];
+          console.log("Ya existe nickname");
+          Meteor.call("usuarios.add",nombre,correo,nickname,ciphertext,(err,res)=>{if(res==="success"){
+            this.loged(correo,nickname);
+          }else{
+            var randomAnimal = Math.floor(Math.random() * 15);
+            var randomNumber = Math.floor(Math.random() * 15);
+            var randomAction = Math.floor(Math.random() * 15);
+            let nickname =animals[randomAnimal]+numbers[randomNumber]+action[randomAction];
+            console.log("Ya existe nickname");
+          } });
         } });
       }
       console.log(user);
@@ -85,6 +108,15 @@ listo(){
 }
 loged(correo,nickname){
   this.props.loged(true,correo,nickname);
+}
+renderError(error){
+  let err= error;
+  if(err){
+    return (<h2 className="errorMsg">{err}</h2>);
+  }
+  else{
+    return null;
+  }
 }
   render() {
     const divStyle = {
@@ -105,10 +137,11 @@ let {
   correo,
   clave,
   repetirClave,
+  error
 }=this.state;
     return (
       <div style={divStyle}>
-
+{this.renderError(error)}
 <div style={w}>
       <br/>
         <form>
