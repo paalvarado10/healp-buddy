@@ -4,13 +4,13 @@ import '../App.css';
 import { Meteor } from "meteor/meteor";
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from "prop-types";
-import {SolicitudAyuda} from '../../api/solicitudayuda.js';
-class SolicitudA extends Component {
+
+class OfertaA extends Component {
   constructor(props) {
     super(props);
     this.state = {
       nickname:this.props.nickname,
-      nombreSolicitud:"",
+      nombreOferta:"",
       descripcion:"",
       tipo:"",
       remunerada:"",
@@ -18,7 +18,8 @@ class SolicitudA extends Component {
       entidad:"",
       remunn:0,
     };
-    this.nombreSolicitudChange=this.nombreSolicitudChange.bind(this);
+
+    this.nombreOfertaChange=this.nombreOfertaChange.bind(this);
     this.descripcionChange = this.descripcionChange.bind(this);
     this.tipoChange = this.tipoChange.bind(this);
     this.fechaChange = this.fechaChange.bind(this);
@@ -34,7 +35,7 @@ class SolicitudA extends Component {
   remunnChange(event){
     this.setState({remunn:event.target.value});
   }
-  nombreSolicitudChange(event){
+  nombreOfertaChange(event){
     this.setState({nombreSolicitud:event.target.value});
   }
   descripcionChange(event){
@@ -57,13 +58,12 @@ class SolicitudA extends Component {
         <label htmlFor="formGroupExampleInputN">Remuneración </label>
         <input type="number" min="0" max="100000000" className="form-control" id="formGroupExampleInputN" placeholder="Titulo de la solicitud" value={remunn} onChange={this.remunnChange}/>
         </div>
-      );//
+      );
     }
     else {
       return null;
     }
   }
-  
   handleInputChange(event) {
   const target = event.target;
   const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -87,7 +87,7 @@ const w = {
   margin: "auto",
 }
 let {
-  nickname, nombreSolicitud, descripcion, tipo, remunerada, fechaLimite, entidad,remunn
+  nickname, nombreOferta, descripcion, tipo, remunerada, fechaLimite, entidad,remunn
 }=this.state;
     return (
     <div style={divStyle}>
@@ -95,8 +95,8 @@ let {
       <br/>
         <form>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput">Nombre de la Solicitud: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Titulo de la solicitud" value={nombreSolicitud} onChange={this.nombreSolicitudChange}/>
+            <label htmlFor="formGroupExampleInput">Nombre de la oferta: </label>
+            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Titulo de la oferta" value={nombreOferta} onChange={this.nombreOfertaChange}/>
           </div>
           <br/>
           <div className="form-group">
@@ -111,7 +111,7 @@ let {
           <br/>
           <div className="form-group">
           <label>
-          Remunerada:
+          Exige remuneración:
           <input
             name="isGoing"
             type="checkbox"
@@ -141,14 +141,11 @@ let {
     );
   }
 }
-SolicitudA.propTypes = {
-  solicitudesAyuda:PropTypes.array,
+OfertaA.propTypes = {
 };
 
 export default withTracker(() => {
-  Meteor.subscribe("solicitudayuda");
 
   return {
-    solicitudesAyuda:SolicitudAyuda.find({}).fetch(),
   };
-})(SolicitudA);
+})(OfertaA);

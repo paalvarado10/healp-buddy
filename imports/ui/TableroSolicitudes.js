@@ -3,41 +3,55 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import { Meteor } from "meteor/meteor";
 import SolicitudA from './ayuda/SolicitudA.js';
+import OfertaA from './ayuda/OfertaA.js';
+
 export default class TableroSolicitudes extends Component {
 	constructor(props) {
     super(props);
 
 	    this.state = {
-				nuevaOferaAyuda:false,
+				nuevaOfertaAyuda:false,
+				nuevaSolicitudAyuda:false,
 				nickname:this.props.nickname
 	    };
-	    this.publicarOferta = this.publicarOferta.bind(this);
+
+	    	this.publicarOfertaAyuda = this.publicarOfertaAyuda.bind(this);
 			this.publicarSolicitudAyuda = this.publicarSolicitudAyuda.bind(this);
 			this.renderAyuda = this.renderAyuda.bind(this);
 			this.atras= this.atras.bind(this);
 	}
+
 	atras(atras){
-		this.setState({nuevaOferaAyuda:false});
+		this.setState({nuevaSolicitudAyuda:false, nuevaOfertaAyuda:false});
 	}
 	publicarSolicitudAyuda()
 	{
-		this.setState({nuevaOferaAyuda:true});
+		this.setState({nuevaSolicitudAyuda:true});
 	}
-	publicarOferta()
+	publicarOfertaAyuda()
 	{
+		this.setState({nuevaOfertaAyuda:true});
 	}
+
 	renderAyuda(){
-		if(this.state.nuevaOferaAyuda)
+
+		if(this.state.nuevaSolicitudAyuda)
 		{
 			return (
 				<SolicitudA nickname={this.state.nickname} atras={this.atras}/>
 			);
 		}
+		else if(this.state.nuevaOfertaAyuda)
+		{
+			return (
+				<OfertaA nickname={this.state.nickname} atras={this.atras}/>
+			);
+		}
 		else {
 			return(
 				<div>
-					<button className="btnOferta" onClick={this.publicarOferta}>Publicar oferta de ayuda</button>
-					<button className="btnOferta" style={{width:"auto"}}onClick={this.publicarSolicitudAyuda}>Publicar Solicitud de ayuda</button>
+					<button className="btnOferta" onClick={this.publicarOfertaAyuda}>Publicar oferta de ayuda</button>
+					<button className="btnOferta" style={{width:"auto"}}onClick={this.publicarSolicitudAyuda}>Publicar solicitud de ayuda</button>
 				</div>
 		);
 		}

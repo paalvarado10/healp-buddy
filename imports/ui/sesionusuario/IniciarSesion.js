@@ -20,8 +20,12 @@ class IniciarSesion extends Component {
     this.handleChangeCorreo=this.handleChangeCorreo.bind(this);
     this.handleChangeClave=this.handleChangeClave.bind(this);
     this.listo=this.listo.bind(this);
+    this.atras=this.atras.bind(this);
   }
 
+ atras(){
+    this.props.atras(true);
+  }
 handleChangeCorreo(event){
   this.setState({correo: event.target.value});
 }
@@ -29,9 +33,6 @@ handleChangeClave(event){
   this.setState({clave: event.target.value});
 }
 
-back(){
-  window.location.reload();
-}
 
 listo(){
   let {
@@ -107,8 +108,12 @@ let {
           </div>
         </form>
         <br/>
+        <div className="btnFor">
         <button type="button" className="btnLis" onClick={this.listo}>Entrar</button>
-        <button type="button" className="btnOut" onClick={this.back}>Atras</button>
+         <span> </span>
+        <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
+        <span> </span>
+        </div>
       </div>
       <br/>
       </div>
