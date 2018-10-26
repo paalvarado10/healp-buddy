@@ -67,7 +67,7 @@ renderBtnSesion()
     <a>{this.state.nickname}</a>
     <p></p>
     <p></p>
-    <button type="button" className="btnReg" onClick={this.cerrarSesion}>Cerrar Sesión</button>
+    <button type="button" className="btnOut" onClick={this.cerrarSesion}>Cerrar Sesión</button>
   </div>
 
     );
@@ -83,13 +83,14 @@ loged(bol,correo,nickname){
 }
 showContent()
 {
+  let nickname = this.state.nickname;
   if(this.state.loggeado)
   {
     return(<div>
       <br/>
       <br/>
       <br/>
-                <TableroSolicitudes/>
+      <TableroSolicitudes nickname={nickname}/>
       </div>);
   }
   else
@@ -133,7 +134,6 @@ showContent()
     else{
       return(
         <div>
-          <button type="button" className="btnNormal" onClick={this.solicitarAyuda}>Nueva Solicitud de Ayuda</button>
           <div className="carrusel">
             <br/>
             <br/>

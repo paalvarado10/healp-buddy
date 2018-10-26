@@ -15,14 +15,24 @@ class SolicitudA extends Component {
       tipo:"",
       remunerada:"",
       fechaLimite:"",
-      entidad:""
+      entidad:"",
+      remunn:0,
     };
     this.nombreSolicitudChange=this.nombreSolicitudChange.bind(this);
     this.descripcionChange = this.descripcionChange.bind(this);
     this.tipoChange = this.tipoChange.bind(this);
-    this.remuneradaChange=this.remuneradaChange.bind(this);
-    this.fechaLimiteChange = this.fechaLimiteChange.bind(this);
+    this.fechaChange = this.fechaChange.bind(this);
     this.entidadChange=this.entidadChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.renderRemunerada = this.renderRemunerada.bind(this);
+    this.remunnChange = this.remunnChange.bind(this);
+    this.atras=this.atras.bind(this);
+  }
+  atras(){
+    this.props.atras(true);
+  }
+  remunnChange(event){
+    this.setState({remunn:event.target.value});
   }
   nombreSolicitudChange(event){
     this.setState({nombreSolicitud:event.target.value});
@@ -33,15 +43,34 @@ class SolicitudA extends Component {
   tipoChange(event){
     this.setState({tipo:event.target.value});
   }
-  remuneradaChange(event){
-    this.setState({remunerada:event.target.value});
-  }
-  fechaLimiteChange(event){
+  fechaChange(event){
     this.setState({fechaLimite:event.target.value});
   }
   entidadChange(event){
     this.setState({entidad:event.target.value});
   }
+  renderRemunerada(remunn){
+    let r = this.state.remunerada;
+    if(r){
+      return (
+        <div>
+        <label htmlFor="formGroupExampleInputN">Remuneración </label>
+        <input type="number" min="0" max="100000000" className="form-control" id="formGroupExampleInputN" placeholder="Titulo de la solicitud" value={remunn} onChange={this.remunnChange}/>
+        </div>
+      );
+    }
+    else {
+      return null;
+    }
+  }
+  handleInputChange(event) {
+  const target = event.target;
+  const value = target.type === 'checkbox' ? target.checked : target.value;
+
+  this.setState({
+    remunerada: value
+  });
+}
   render() {
     const divStyle = {
     width: "80%",
@@ -57,7 +86,7 @@ const w = {
   margin: "auto",
 }
 let {
-  nickname, nombreSolicitud, descripcion, tipo, remunerada, fechaLimite, entidad
+  nickname, nombreSolicitud, descripcion, tipo, remunerada, fechaLimite, entidad,remunn
 }=this.state;
     return (
     <div style={divStyle}>
@@ -71,30 +100,38 @@ let {
           <br/>
           <div className="form-group">
             <label htmlFor="formGroupExampleInput2">Descripción: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Descripcion de la solicitud"value={descripcion} onChange={this.descripcionChange}/>
+            <textarea className="form-control" rows="5" id="formGroupExampleInput2" placeholder="Descripcion de la solicitud"value={descripcion} onChange={this.descripcionChange}/>
           </div>
           <br/>
           <div className="form-group">
             <label htmlFor="formGroupExampleInput3">Tipo: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput3" placeholder="Clave" value={tipo} onChange={this.tipoChange}/>
+            <input type="text" className="form-control" id="formGroupExampleInput3" placeholder="Tipo" value={tipo} onChange={this.tipoChange}/>
           </div>
           <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput4">Remunerada: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput4" placeholder="Clave" value={remunerada} onChange={this.remuneradaChange}/>
+          <label>
+          Remunerada:
+          <input
+            name="isGoing"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
+        </label>
+        {this.renderRemunerada(remunn)}
           </div>
           <br/>
           <div className="form-group">
             <label htmlFor="formGroupExampleInput5">Fecha Limite: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput5" placeholder="Clave" value={fechaLimite} onChange={this.fechaChange}/>
+            <input type="date" className="form-control" id="formGroupExampleInput5" placeholder="Fecha Limite" value={fechaLimite} onChange={this.fechaChange}/>
           </div>
           <div className="form-group">
             <label htmlFor="formGroupExampleInput6">Entidad: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput6" placeholder="Clave" value={entidad} onChange={this.entidadChange}/>
+            <input type="text" className="form-control" id="formGroupExampleInput6" placeholder="Enitidad u Organización" value={entidad} onChange={this.entidadChange}/>
           </div>
         </form>
         <br/>
         <button type="button" className="btnLis" onClick={this.listo}>Listo</button>
+        <button type="button" className="btnOut" onClick={this.atras}>Atras</button>
       </div>
       <br/>
       <br/>

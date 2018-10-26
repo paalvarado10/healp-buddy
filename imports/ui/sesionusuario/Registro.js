@@ -172,7 +172,7 @@ let {
         </form>
         <br/>
         <button type="button" className="btnLis" onClick={this.listo}>Registrarme</button>
-        <button type="button" className="btnLis" onClick={this.back}>Atras</button>
+        <button type="button" className="btnOut" onClick={this.back}>Atras</button>
       </div>
       <br/>
       <br/>
