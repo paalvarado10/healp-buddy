@@ -29,6 +29,9 @@ table {
     margin-right: auto;
     font-size: 15px;
     background-color: #D9D9D9;
+      -webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #999;
+  filter: shadow(color=#999999, direction=135, strength=2);
 }
 th {
     color: #162238;
@@ -119,6 +122,11 @@ th, td {
 .fifty{
   width: 50%;
 }
+.btnFor{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
 .izq{
   float: left;
   margin-left: 120px;
@@ -147,8 +155,9 @@ th, td {
     font-size: 20px;
     margin-right: 8px;
 }
-.btnReg:hover {
-    background-color: #CFDBE5;
+.btnOferta:hover{
+  background-color: #28D160;
+    color: #fff;
 }
 .btnReg{
   border-radius: 8px;
@@ -163,7 +172,24 @@ th, td {
     margin-right: 8px;
 }
 .btnReg:hover {
-    background-color: #CFDBE5;
+    background-color: #28D160;
+    color: #fff;
+}
+.btnCerrarSesion{
+    border-radius: 8px;
+  background-color: white;
+  color: #00A0D8;
+  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    height: 40px;
+    width: 140px;
+    font-family: 'Concert One', cursive;
+    font-size: 20px;
+    margin-right: 8px;
+}
+.btnCerrarSesion:hover {
+    background-color: #FCAFB8;
+    color: #000;
 }
 .btnNormal{
   border-radius: 8px;
@@ -179,28 +205,35 @@ th, td {
 }
 .btnLis{
   border-radius: 10px;
-  background-color:#041527;
+  background-color:#28D160;
   color: white;
   -webkit-transition-duration: 0.4s; /* Safari */
+  font-family: 'Concert One', cursive;
     transition-duration: 0.4s;
     height: 40px;
-    width: 120px;
+    width: 140px;
+    font-size: 20px;
+    margin-right: 5px;
 }
 .btnLis:hover {
-    background-color: #00A0D8;
+    background-color: #A2FCBC;
+    color:#000;
 }
 .errorMsg{
   color:#FA5858;
 }
 .btnOut{
   border-radius: 10px;
-  background-color:#DF0101;
+  background-color:#CE7885;
+  font-family: 'Concert One', cursive;
   color: white;
     height: 40px;
     width: 120px;
+    font-size: 20px;
 }
 .btnOut:hover {
-    background-color: #FA5858;
+    background-color: #FCAFB8;
+    color:#000;
 }
 .alineado{
   display: inline;
@@ -214,6 +247,9 @@ th, td {
 nav {
   float: center;
   text-align: center;
+  -webkit-box-shadow: 2px 2px 5px #999;
+  -moz-box-shadow: 2px 2px 5px #999;
+  filter: shadow(color=#999999, direction=135, strength=2);
 }
 nav ul {
   list-style: none;

@@ -22,19 +22,21 @@ class App extends Component {
       loggeado:false,
       correo:"",
       nickname:"",
-      solicitarAyuda:false,
+      solicitarAyuda:false
     };
     this.iniciarSesion = this.iniciarSesion.bind(this);
     this.registrarse = this.registrarse.bind(this);
     this.loged = this.loged.bind(this);
     this.cerrarSesion = this.cerrarSesion.bind(this);
     this.solicitarAyuda = this.solicitarAyuda.bind(this);
+    this.atras= this.atras.bind(this);
   }
   solicitarAyuda(){
     this.setState({
       solicitarAyuda:true
     });
   }
+
 cerrarSesion(){
   this.setState({registro:false,login:false,loggeado:false,correo:"",nickname:""});
 }
@@ -46,6 +48,10 @@ iniciarSesion()
 {
   this.setState({login:true});
 }
+
+atras(atras){
+    this.setState({registro:false, login:false});
+  }
 
 renderBtnSesion()
 {
@@ -67,7 +73,7 @@ renderBtnSesion()
     <a>{this.state.nickname}</a>
     <p></p>
     <p></p>
-    <button type="button" className="btnOut" onClick={this.cerrarSesion}>Cerrar Sesión</button>
+    <button type="button" className="btnCerrarSesion" onClick={this.cerrarSesion}>Cerrar Sesión</button>
   </div>
 
     );
@@ -105,7 +111,7 @@ showContent()
         <div>
           <br/>
           <br/>
-          <Registro loged={this.loged}/>
+          <Registro loged={this.loged} atras={this.atras}/>
           <br/>
           <br/>
         </div>);
@@ -115,19 +121,9 @@ showContent()
         <div>
         <br/>
         <br/>
-        <IniciarSesion loged={this.loged}/>
+        <IniciarSesion loged={this.loged} atras={this.atras}/>
           <br/>
           <br/>
-        </div>
-      );
-    }
-    else if (loggeado){
-      return(
-        <div>
-        <br/>
-        <br/>
-        <SolicitudA nickname={nickname}/>
-        <br/>
         </div>
       );
     }
@@ -142,7 +138,7 @@ showContent()
               <tbody>
                 <tr>
                   <td>
-                  <Carousel autoPlay={true} showThumbs={false} infiniteLoop={true} width={"800px"}>
+                  <Carousel autoPlay={true} showThumbs={false} infiniteLoop={true} width={"800px"} transitionTime={1500} interval={7000}>
                     <div>
                       <img src="/1.jpg" />
                     </div>
