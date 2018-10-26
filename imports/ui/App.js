@@ -41,10 +41,11 @@ renderBtnSesion()
 {
   if(this.state.registro==false && this.state.login==false){
       return(
-        <div>
+        <div className="useri">
         <button type="button" className="btnReg" onClick={this.registrarse}>Registrarse</button>
         <span> </span>
-        <button type="button" className="btnReg" onClick={this.iniciarSesion}>Iniciar Sesion</button>
+         <p></p>
+        <button type="button" className="btnReg" onClick={this.iniciarSesion}>Iniciar Sesión</button>
         <span> </span>
         </div>
 
@@ -52,9 +53,11 @@ renderBtnSesion()
   }
   else if(this.state.loggeado) {
     return (
-  <div>
-    <h3>{this.state.nickname}</h3>
-    <button type="button" className="btnOut" onClick={this.cerrarSesion}>Cerrar Sesion</button>
+  <div className="useri">
+    <a>{this.state.nickname}</a>
+    <p></p>
+    <p></p>
+    <button type="button" className="btnReg" onClick={this.cerrarSesion}>Cerrar Sesión</button>
   </div>
 
     );
@@ -70,10 +73,13 @@ loged(bol,correo,nickname){
 }
 showContent()
 {
-  if(Meteor.user())
+  if(this.state.loggeado)
   {
     return(<div>
-                <h3>Registrado</h3>
+      <br/>
+      <br/>
+      <br/>
+                <p>Registrado</p>
           </div>);
   }
   else
@@ -149,9 +155,9 @@ showContent()
       <div>
            <nav className="barra">
                <a> <img className="q" src="/q.png" alt="help buddy icon"/> Help Buddy </a>
-                 <div className="useri">
+                 
                      {this.renderBtnSesion()}
-                 </div>
+                 
            </nav>
            <br />
            <br />

@@ -106,12 +106,12 @@ th, td {
 }
 .useri{
   float: right;
-  margin-right: 50px;
-  padding-top: 10px;
-  width: auto;
-  /* padding-bottom:  4px; */
+  margin-right: 70px;
+  padding-top: 15px;
   display: flex;
-  justify-content: center;
+   justify-content: center;
+   align-items: center;
+
 }
 .izq{
   float: left;
@@ -136,7 +136,10 @@ th, td {
   -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     height: 40px;
-    width: 120px;
+    width: 140px;
+    font-family: 'Concert One', cursive;
+    font-size: 20px;
+    margin-right: 8px;
 }
 .btnReg:hover {
     background-color: #CFDBE5;
@@ -162,6 +165,15 @@ th, td {
 }
 .btnOut:hover {
     background-color: #FA5858;
+}
+
+.alineado{
+  display: inline;
+}
+.cnt{
+    display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 nav {
