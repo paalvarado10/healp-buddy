@@ -46,8 +46,10 @@ export default class AyudaItemLista extends Component {
       const center={
         margin: "auto",
         textAlign: "center",
+        overflow: "hidden",
       }
       const divStyle = {
+      overflow: "hidden",
       width: "90%",
       margin: "auto",
       justifyContent: "center",
