@@ -129,6 +129,21 @@ th, td {
   height: 45px;
   margin-bottom: 3%;
 }
+.btnOferta{ 
+  border-radius: 8px;
+  background-color: #00A0D8;
+  color: white;
+  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    height: 40px;
+    width: 240px;
+    font-family: 'Concert One', cursive;
+    font-size: 20px;
+    margin-right: 8px;
+}
+.btnReg:hover {
+    background-color: #CFDBE5;
+}
 .btnReg{
   border-radius: 8px;
   background-color: white;

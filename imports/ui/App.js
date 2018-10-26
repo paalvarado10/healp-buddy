@@ -9,6 +9,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Registro from './sesionusuario/Registro.js';
 import IniciarSesion from './sesionusuario/IniciarSesion.js';
+import TableroSolicitudes from './TableroSolicitudes.js';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -79,8 +81,8 @@ showContent()
       <br/>
       <br/>
       <br/>
-                <p>Registrado</p>
-          </div>);
+                <TableroSolicitudes/>
+      </div>);
   }
   else
   {
@@ -120,7 +122,7 @@ showContent()
       <tbody>
         <tr>
           <td>
-             <Carousel autoPlay={true} showThumbs={false} infiniteLoop={true} width={"800px"}>
+             <Carousel autoPlay={true} showThumbs={false} infiniteLoop={true} width={"800px"} transitionTime={1500} interval={7000}>
                 <div>
                     <img src="/1.jpg" />
                 </div>
