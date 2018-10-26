@@ -4,11 +4,14 @@ import './App.css';
 import { Meteor } from "meteor/meteor";
 import SolicitudA from './ayuda/SolicitudA.js';
 import ListaAyuda from './ayuda/ListaAyuda.js';
+import ListaOfertas from './ayuda/ListaOfertas.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import OfertaA from './ayuda/OfertaA.js';
 import DetalleAyuda from './ayuda/DetalleAyuda.js';
 import {SolicitudAyuda} from '../api/solicitudayuda.js';
+import {OfertaAyuda} from '../api/ofertasAyuda.js';
 import PropTypes from "prop-types";
+
 class TableroSolicitudes extends Component {
 	constructor(props) {
     super(props);
@@ -26,6 +29,7 @@ class TableroSolicitudes extends Component {
 			this.renderAyuda = this.renderAyuda.bind(this);
 			this.atras= this.atras.bind(this);
 			this.verDetalle = this.verDetalle.bind(this);
+			this.verDetalleOfertas = this.verDetalleOfertas.bind(this);
 	}
 	atras(atras){
 		this.setState({nuevaOfertaAyuda:false,nuevaSolicitudAyuda:false,idSolAyuda:"",solAyuda:""});
@@ -35,11 +39,15 @@ class TableroSolicitudes extends Component {
 		Meteor.call("solicitudayuda.getAyudaID",id,(err,res)=>{if(res){
 			this.setState({solAyuda:res,nuevaSolicitudAyuda:false, nuevaOfertaAyuda:false},()=>{
 
-			});
-		}else{
-			alert("Error");
-		}
-	});
+				});
+			}else{
+				alert("Error");
+			}
+		});
+	}
+	verDetalleOfertas(id)
+	{
+
 	}
 	publicarSolicitudAyuda()
 	{
@@ -76,6 +84,7 @@ class TableroSolicitudes extends Component {
 					<div className="row">
   					<div className="col-md-6 col-md-push-6">
 							<h1 className="hIem">Listado de Ofertas de ayuda</h1>
+							<ListaOfertas verDetalleOfertas={this.verDetalleOfertas}/>
 						</div>
   					<div className="col-md-6 col-md-pull-6">
 							<h1 className="hIem">Listado de Solicitudes de ayuda</h1>
