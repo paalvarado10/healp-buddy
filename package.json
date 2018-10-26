@@ -21,8 +21,11 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-hot-loader": "^4.3.11",
     "react-meteor-data": "^0.2.11",
+    "react-rater": "^5.0.3",
     "react-responsive-carousel": "^3.1.43",
+    "react-star-rating": "^1.4.2",
     "reactstrap": "^6.4.0"
   },
   "meteor": {

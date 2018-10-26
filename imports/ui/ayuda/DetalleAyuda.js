@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../App.css';
 import { Meteor } from "meteor/meteor";
+import StarRating from 'react-star-rating'
 import { withTracker } from 'meteor/react-meteor-data';
 export default class DetalleAyuda extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      solicitud:this.props.solicitud
+      solicitud:this.props.solicitud,
+      cal:3,
     };
     this.atras = this.atras.bind(this);
+//    this.handleRatingClick = this.handleRatingClick.bind(this);
   }
   renderSolicitud(solicitud){
     const divStyle = {
@@ -29,7 +32,20 @@ export default class DetalleAyuda extends Component {
   atras(){
     this.props.atras(true);
   }
+  handleRatingClick(e, data) {
+    alert('You left a ' + data.rating + ' star rating for ' + data.caption);
+}
+increaseAnswerScore(){
+  console.log("AUMENTAR");
+}
+decreaseScore() {
+  console.log("DISMINUIR");
+}
+  handleRate(rate){
+    console.log(rate);
+  }
     render() {
+      let cal = this.state.cal;
       let solicitud = this.state.solicitud;
       const center={
         margin: "auto",
@@ -39,6 +55,9 @@ export default class DetalleAyuda extends Component {
         margin: "auto",
         textAlign: "center",
         color:"#00A0D8",
+      }
+      let src = {
+        backgroundImage: 'src("/like.svg")',
       }
       const divStyle = {
       width: "90%",
@@ -71,6 +90,11 @@ export default class DetalleAyuda extends Component {
       <h3 className="hIem" style={center}>{solicitud.fechaLimite}</h3>
       <h3 className="hIem" style={centerTitle}>Entidad: </h3>
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
+      <br/>
+      <br/>
+      <button className="btnImg" onClick={this.increaseAnswerScore.bind()}><img className="imgBtn" src="/like.svg" alt="like"/></button>
+      <span>   </span>
+        <button className="btnImg" onClick={this.decreaseScore.bind()}><img className="imgBtn" src="/dislike.svg" alt="like"/></button>
       <br/>
       <button type="button" className="btnLis">Ayudar</button>
       <button type="button" className="btnOut" onClick={this.atras}>Atras</button>

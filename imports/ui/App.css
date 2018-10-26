@@ -5,6 +5,19 @@
   margin-left: auto;
   margin-right: auto;
 }
+.btnImg {
+    display: inline-block;
+    height: 70px;
+    margin: auto;
+    border-radius: 15px;
+    width: 70px;
+    background-color: transparent;
+}
+.imgBtn {
+    display: block;
+    height: 55px;
+    width: 55px;
+}
 .carta {
   border-radius: 25px;
   border-color: black;
