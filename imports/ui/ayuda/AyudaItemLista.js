@@ -54,9 +54,12 @@ export default class AyudaItemLista extends Component {
     render() {
       let solicitud = this.state.solicitud;
       const center={
+        overflow: "auto",
+        width: "270px",
+        height: "280px",
         margin: "auto",
-        textAlign: "center",
-        overflow: "hidden",
+        justifyContent: "center",
+        alignItems: "center",
       }
       const divStyle = {
       overflow: "hidden",
@@ -72,18 +75,16 @@ export default class AyudaItemLista extends Component {
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   };
     return (
-      <div>
-      <br/>
       <div style={divStyle} key={solicitud._id}>
+      <div style={center}>
       <br/>
       <br/>
             {this.renderSolicitud(solicitud)}
       <br/>
+      </div>
       <button type="button" className="btnLis" onClick={this.verDetalle}>Ver</button>
       <br/>
       <br/>
-      <br/>
-      </div>
       </div>
     );
   }
