@@ -8,6 +8,7 @@ import ListaOfertas from './ayuda/ListaOfertas.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import OfertaA from './ayuda/OfertaA.js';
 import DetalleAyuda from './ayuda/DetalleAyuda.js';
+import DetalleOferta from './ayuda/DetalleOferta.js';
 import {SolicitudAyuda} from '../api/solicitudayuda.js';
 import {OfertaAyuda} from '../api/ofertasAyuda.js';
 import PropTypes from "prop-types";
@@ -21,7 +22,11 @@ class TableroSolicitudes extends Component {
 				nuevaSolicitudAyuda:false,
 				nickname:this.props.nickname,
 				idSolAyuda:"",
+				idOfertaAyuda:"",
 				solAyuda:"",
+				ofertaAyuda:"",
+				solicitudes:true,
+				ofertas:false
 	    };
 
 	    this.publicarOfertaAyuda = this.publicarOfertaAyuda.bind(this);
@@ -29,15 +34,17 @@ class TableroSolicitudes extends Component {
 			this.renderAyuda = this.renderAyuda.bind(this);
 			this.atras= this.atras.bind(this);
 			this.verDetalle = this.verDetalle.bind(this);
-			this.verDetalleOfertas = this.verDetalleOfertas.bind(this);
+			this.verDetalleOferta = this.verDetalleOferta.bind(this);
+			this.verSolicitudes = this.verSolicitudes.bind(this);
+			this.verOfertas = this.verOfertas.bind(this);
 	}
 	atras(atras){
-		this.setState({nuevaOfertaAyuda:false,nuevaSolicitudAyuda:false,idSolAyuda:"",solAyuda:""});
+		this.setState({nuevaOfertaAyuda:false,nuevaSolicitudAyuda:false,idSolAyuda:"",solAyuda:"", ofertaAyuda:"", idOfertaAyuda:""});
 	}
 	verDetalle(id){
 		this.setState({idSolAyuda:id});
 		Meteor.call("solicitudayuda.getAyudaID",id,(err,res)=>{if(res){
-			this.setState({solAyuda:res,nuevaSolicitudAyuda:false, nuevaOfertaAyuda:false},()=>{
+			this.setState({solAyuda:res,nuevaSolicitudAyuda:false, nuevaOfertaAyuda:false, ofertaAyuda:""},()=>{
 
 				});
 			}else{
@@ -45,9 +52,17 @@ class TableroSolicitudes extends Component {
 			}
 		});
 	}
-	verDetalleOfertas(id)
+	verDetalleOferta(id)
 	{
+		this.setState({idOfertaAyuda:id});
+		Meteor.call("ofertasAyuda.getOfertaID",id,(err,res)=>{if(res){
+			this.setState({ofertaAyuda:res,nuevaSolicitudAyuda:false, nuevaOfertaAyuda:false, solAyuda:""},()=>{
 
+				});
+			}else{
+				alert("Error");
+			}
+		});
 	}
 	publicarSolicitudAyuda()
 	{
@@ -56,6 +71,50 @@ class TableroSolicitudes extends Component {
 	publicarOfertaAyuda()
 	{
 		this.setState({nuevaOfertaAyuda:true});
+	}
+	verSolicitudes()
+	{
+		this.setState({solicitudes:true, ofertas:false});
+	}
+	verOfertas()
+	{
+		this.setState({ofertas:true, solicitudes:false});
+	}
+
+	renderLista()
+	{
+		if(this.state.solicitudes)
+		{
+			return(<div>
+				<div>
+					<button className="btnSelec" onClick={this.verSolicitudes}>Solicitudes de ayuda</button>
+					<button className="btnOferta" onClick={this.verOfertas}>Ofertas de ayuda</button>
+					<button className="btnNueva" onClick={this.publicarSolicitudAyuda}>Publicar</button>
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<ListaAyuda verDetalle={this.verDetalle}/>
+
+			   </div>);
+		}
+		else if(this.state.ofertas)
+		{
+			return(<div>
+				<div>
+					<button className="btnOferta" onClick={this.verSolicitudes}>Solicitudes de ayuda</button>
+					<button className="btnSelec" onClick={this.verOfertas}>Ofertas de ayuda</button>
+					<button className="btnNueva" onClick={this.publicarOfertaAyuda}>Publicar</button>
+				</div>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<ListaOfertas verDetalleOferta={this.verDetalleOferta}/>
+			   </div>);
+		}
+
 	}
 
 	renderAyuda(){
@@ -76,21 +135,16 @@ class TableroSolicitudes extends Component {
 			//ver detalle
 			return(<DetalleAyuda solicitud={this.state.solAyuda} atras={this.atras}/>);
 		}
+		else if(this.state.ofertaAyuda){
+			//ver detalle
+			return(<DetalleOferta solicitud={this.state.ofertaAyuda} atras={this.atras}/>);
+		}
 		else {
 			return(
 				<div>
-					<button className="btnOferta" style={{width:"auto"}}onClick={this.publicarSolicitudAyuda}>Publicar solicitud de ayuda</button>
-					<button className="btnOferta" style={{width:"auto"}}onClick={this.publicarOfertaAyuda}>Publicar Oferta de ayuda</button>
-					<div className="row">
-  					<div className="col-md-6 col-md-push-6">
-							<h1 className="hIem">Listado de Ofertas de ayuda</h1>
-							<ListaOfertas verDetalleOfertas={this.verDetalleOfertas}/>
-						</div>
-  					<div className="col-md-6 col-md-pull-6">
-							<h1 className="hIem">Listado de Solicitudes de ayuda</h1>
-							<ListaAyuda verDetalle={this.verDetalle}/>
-						</div>
-					</div>
+				
+				{this.renderLista()}
+					
 				</div>
 		);
 		}

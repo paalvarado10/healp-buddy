@@ -20,8 +20,9 @@ export default class AyudaItemLista extends Component {
       return(
         <div style={divStyle}>
         <h2 className="hIem" style={divStyle}>{solicitud.nombreSolicitud}</h2>
-        <h3 className="hIem" style={divStyle}>{solicitud.descripcion}</h3>
-        <h3 className="hIem" style={divStyle}>{solicitud.fechaLimite}</h3>
+        <br/>
+        <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
+        <h4 className="hIem" style={divStyle}>{solicitud.fechaLimite}</h4>
         <h4 className="hIem" style={divStyle}>{"Remuneración: $"+solicitud.remunn}</h4>
         </div>
       );
@@ -30,8 +31,9 @@ export default class AyudaItemLista extends Component {
       return(
         <div style={divStyle}>
         <h2 className="hIem" style={divStyle}>{solicitud.nombreSolicitud}</h2>
-        <h3 className="hIem" style={divStyle}>{solicitud.descripcion}</h3>
-        <h3 className="hIem" style={divStyle}>{solicitud.fechaLimite}</h3>
+        <br/>
+        <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
+        <h4 className="hIem" style={divStyle}>{solicitud.fechaLimite}</h4>
         </div>
       );
     }
@@ -50,7 +52,8 @@ export default class AyudaItemLista extends Component {
       }
       const divStyle = {
       overflow: "hidden",
-      width: "90%",
+      width: "270px",
+      height: "330px",
       margin: "auto",
       justifyContent: "center",
       alignItems: "center",

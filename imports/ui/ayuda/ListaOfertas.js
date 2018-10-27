@@ -13,16 +13,16 @@ class ListaOfertas extends Component {
     this.state = {
     };
     this.renderList=this.renderList.bind(this);
-    this.verDetalle = this.verDetalle.bind(this);
+    this.verDetalleOferta = this.verDetalleOferta.bind(this);
   }
-  verDetalle(id){
-    this.props.verDetalle(id);
+  verDetalleOferta(id){
+    this.props.verDetalleOferta(id);
   }
   renderList(solicitudes){
     let list =solicitudes;
     if(list.length>0){
       let render = list.map((item,i)=>{
-         return(<OfertaItemLista verDetalle={this.verDetalle} solicitud={item} key={i}/>)
+         return(<div  className="listao"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} solicitud={item} key={i}/></div>);
       });
       return(
         <div>
@@ -36,7 +36,7 @@ class ListaOfertas extends Component {
   }
   render() {
     const w = {
-      width: "80%",
+      width: "100%",
       margin: "auto",
     };
     return (

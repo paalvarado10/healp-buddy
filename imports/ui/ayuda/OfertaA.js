@@ -16,7 +16,6 @@ class OfertaA extends Component {
       tipo:"",
       remunerada:"",
       entidad:"",
-      remunn:0,
       publicada:false
     };
 
@@ -25,8 +24,6 @@ class OfertaA extends Component {
     this.tipoChange = this.tipoChange.bind(this);
     this.entidadChange=this.entidadChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.renderRemunerada = this.renderRemunerada.bind(this);
-    this.remunnChange = this.remunnChange.bind(this);
     this.atras=this.atras.bind(this);
     this.publicar=this.publicar.bind(this);
     this.renderForm=this.renderForm.bind(this);
@@ -34,6 +31,7 @@ class OfertaA extends Component {
 
   publicar()
   {
+    
     Meteor.call("ofertasA.add", this.state.nickname, this.state.nombreOferta, this.state.descripcion, this.state.tipo, 
       this.state.remunerada, this.state.entidad, (err, resultado)=>{
         if(resultado)
@@ -49,9 +47,6 @@ class OfertaA extends Component {
   }
   atras(){
     this.props.atras(true);
-  }
-  remunnChange(event){
-    this.setState({remunn:event.target.value});
   }
   nombreOfertaChange(event){
     this.setState({nombreOferta:event.target.value});
@@ -83,7 +78,7 @@ class OfertaA extends Component {
         margin: "auto",
       }
       let {
-        nickname, nombreOferta, descripcion, tipo, remunerada, fechaLimite, entidad,remunn
+        nickname, nombreOferta, descripcion, tipo, fechaLimite, entidad,remunn
       }=this.state;
 
       return (
@@ -92,34 +87,48 @@ class OfertaA extends Component {
       <br/>
         <form>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput">Nombre de la oferta: </label>
+            <label htmlFor="formGroupExampleInput" className="letra">Título: </label>
             <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Titulo de la oferta" value={nombreOferta} onChange={this.nombreOfertaChange}/>
           </div>
-          <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput2">Descripción: </label>
-            <textarea className="form-control" rows="5" id="formGroupExampleInput2" placeholder="Descripcion de la solicitud"value={descripcion} onChange={this.descripcionChange}/>
+            <label htmlFor="formGroupExampleInput2" className="letra">Descripción: </label>
+            <textarea className="form-control" rows="2" id="formGroupExampleInput2" placeholder="Descripcion de la solicitud"value={descripcion} onChange={this.descripcionChange}/>
           </div>
-          <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput3">Tipo: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput3" placeholder="Tipo" value={tipo} onChange={this.tipoChange}/>
+            <label htmlFor="formControlSelect" className="letra">Tipo: </label>
+            <select className="form-control" id="formControlSelect" value={tipo} onChange={this.tipoChange}>
+            <option value="Personal">Personal</option>
+            <option value="Monitoria">Monitoria</option>
+            <option value="Recomendacion">Recomendacion</option>
+            <option value="Otro">otro</option>
+          </select>
           </div>
-          <br/>
           <div className="form-group">
-          <label>
-          Exige remuneración:
+          <label className="letra">
+          
           <input
             name="isGoing"
             type="checkbox"
             checked={this.state.isGoing}
-            onChange={this.handleInputChange} />
+            onChange={this.handleInputChange} /> Sí cobro remuneración
+            
         </label>
-        {this.renderRemunerada(remunn)}
+        <br/>
+        <br/>
+        <br/>
+        <label className="letra">
+          
+          <input
+            name="isGoing"
+            type="checkbox"
+            checked={this.state.isGoing} /> No cobro remuneración
+            
+        </label>
+        <br/>
+        <br/>
           </div>
-          <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput6">Entidad: </label>
+            <label htmlFor="formGroupExampleInput6" className="letra">Entidad: </label>
             <input type="text" className="form-control" id="formGroupExampleInput6" placeholder="Enitidad u Organización" value={entidad} onChange={this.entidadChange}/>
           </div>
         </form>
@@ -135,24 +144,9 @@ class OfertaA extends Component {
     }
     
   }
-  renderRemunerada(remunn){
-    let r = this.state.remunerada;
-    if(r){
-      return (
-        <div>
-        <label htmlFor="formGroupExampleInputN">Remuneración </label>
-        <input type="number" min="0" max="100000000" className="form-control" id="formGroupExampleInputN" placeholder="Titulo de la oferta" value={remunn} onChange={this.remunnChange}/>
-        </div>
-      );
-    }
-    else {
-      return null;
-    }
-  }
   handleInputChange(event) {
   const target = event.target;
   const value = target.type === 'checkbox' ? target.checked : target.value;
-
   this.setState({
     remunerada: value
   });

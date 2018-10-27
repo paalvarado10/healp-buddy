@@ -18,6 +18,11 @@
     height: 55px;
     width: 55px;
 }
+.listao{
+  display: inline-block;
+  float: left;
+  padding: 5px;
+}
 .carta {
   border-radius: 25px;
   border-color: black;
@@ -106,12 +111,13 @@ th, td {
 }
 .hIem {
   color:#041527;
+  font-family: 'Concert One', cursive;
+  padding: 5px;
 }
 .carousel .thumb img {
     width: 100% !important;
     height: 100% !important;
 }
-
 .carousel .slide img {
     max-height: 500px;  /* change this to whatever you want */
     width: 700px;
@@ -165,12 +171,38 @@ th, td {
     height: 40px;
     width: 240px;
     font-family: 'Concert One', cursive;
-    font-size: 20px;
+    font-size: 22px;
     margin-right: 8px;
+    float: left;
 }
-.btnOferta:hover{
+.btnNueva{
+  border-radius: 8px;
+  background-color: #00A0D8;
+  color: white;
+  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    height: 40px;
+    width: 180px;
+    font-family: 'Concert One', cursive;
+    font-size: 22px;
+    text-align: center;
+    float: right;
+}
+.btnNueva:hover{
   background-color: #28D160;
-    color: #fff;
+}
+.btnSelec{
+  border-radius: 8px;
+  background-color: #28D160;
+  color: white;
+  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    height: 40px;
+    width: 240px;
+    font-family: 'Concert One', cursive;
+    font-size: 22px;
+    margin-right: 8px;
+    float: left;
 }
 .btnReg{
   border-radius: 8px;
@@ -224,13 +256,18 @@ th, td {
   font-family: 'Concert One', cursive;
     transition-duration: 0.4s;
     height: 40px;
-    width: 140px;
+    width: 190px;
     font-size: 20px;
     margin-right: 5px;
 }
 .btnLis:hover {
     background-color: #A2FCBC;
     color:#000;
+}
+.letra{
+  font-family: 'Concert One', cursive;
+  font-size: 27px;
+  float: left;
 }
 .errorMsg{
   color:#FA5858;

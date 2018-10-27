@@ -120,7 +120,6 @@ class SolicitudA extends Component {
     if(r){
       return (
         <div>
-        <label htmlFor="formGroupExampleInputN">Remuneración </label>
         <input type="number" min="0" max="100000000" className="form-control" id="formGroupExampleInputN" placeholder="Titulo de la solicitud" value={remunn} onChange={this.remunnChange}/>
         </div>
       );//
@@ -162,17 +161,15 @@ let {
       <br/>
         <form>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput">Nombre de la Solicitud: </label>
+            <label htmlFor="formGroupExampleInput" className="letra">Título de la Solicitud: </label>
             <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Titulo de la solicitud" value={nombreSolicitud} onChange={this.nombreSolicitudChange}/>
           </div>
-          <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput2">Descripción: </label>
-            <textarea className="form-control" rows="5" id="formGroupExampleInput2" placeholder="Descripcion de la solicitud"value={descripcion} onChange={this.descripcionChange}/>
+            <label htmlFor="formGroupExampleInput2" className="letra">Descripción: </label>
+            <textarea className="form-control" rows="2" id="formGroupExampleInput2" placeholder="Descripcion de la solicitud"value={descripcion} onChange={this.descripcionChange}/>
           </div>
-          <br/>
           <div className="form-group">
-            <label htmlFor="formControlSelect">Tipo: </label>
+            <label htmlFor="formControlSelect" className="letra">Tipo: </label>
             <select className="form-control" id="formControlSelect" value={tipo} onChange={this.tipoChange}>
             <option value="Personal">Personal</option>
             <option value="Monitoria">Monitoria</option>
@@ -180,9 +177,8 @@ let {
             <option value="Otro">otro</option>
           </select>
           </div>
-          <br/>
           <div className="form-group">
-          <label>
+          <label className="letra">
           Remunerada:
           <input
             name="isGoing"
@@ -193,12 +189,14 @@ let {
         {this.renderRemunerada(remunn)}
           </div>
           <br/>
+          <br/>
+          <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput5">Fecha Limite: </label>
+            <label htmlFor="formGroupExampleInput5" className="letra">Fecha Limite: </label>
             <input type="date" className="form-control" id="formGroupExampleInput5" placeholder="Fecha Limite" value={fechaLimite} onChange={this.fechaChange}/>
           </div>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput6">Entidad: </label>
+            <label htmlFor="formGroupExampleInput6" className="letra">Entidad: </label>
             <input type="text" className="form-control" id="formGroupExampleInput6" placeholder="Enitidad u Organización" value={entidad} onChange={this.entidadChange}/>
           </div>
         </form>

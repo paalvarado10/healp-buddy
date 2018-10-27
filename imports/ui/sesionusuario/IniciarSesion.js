@@ -74,7 +74,7 @@ loged(correo, nickname){
 
   render() {
     const divStyle = {
-    width: "80%",
+    width: "35%",
     margin: "auto",
       borderStyle: "solid",
     borderWidth: "2px",
@@ -98,13 +98,12 @@ let {
         <form>
           <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput2">Correo: </label>
+            <label htmlFor="formGroupExampleInput2" className="letra">Correo: </label>
             <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="correo@correo.com"value={correo} onChange={this.handleChangeCorreo}/>
           </div>
-          <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput4">Clave: </label>
-            <input type="password" className="form-control" id="formGroupExampleInput4" placeholder="Clave" value={clave} onChange={this.handleChangeClave}/>
+            <label htmlFor="formGroupExampleInput4" className="letra">Contraseña: </label>
+            <input type="password" className="form-control" id="formGroupExampleInput4" placeholder="Contraseña" value={clave} onChange={this.handleChangeClave}/>
           </div>
         </form>
         <br/>

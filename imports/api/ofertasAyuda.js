@@ -19,8 +19,12 @@ Meteor.methods(
 	  },
 	"ofertasAyuda.getOfertaNombre":function(nombreSolicitud){
 		const oferta = OfertasAyuda.findOne({ nombreOferta: nombreOferta});
-	  return solicitud;
+	  return oferta;
 	},
+	"ofertasAyuda.getOfertaID":function(id){
+			const oferta = OfertasAyuda.findOne({ _id: id});
+		  return oferta;
+		},
 	  "ofertasAyuda.eliminarOfertaNombre":function(id){
 	  const oferta = OfertasAyuda.deleteOne({ _id: id});
 	  return oferta;

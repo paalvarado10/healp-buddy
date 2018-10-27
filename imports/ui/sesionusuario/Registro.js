@@ -125,7 +125,7 @@ renderError(error){
 }
   render() {
     const divStyle = {
-    width: "80%",
+    width: "40%",
     margin: "auto",
       borderStyle: "solid",
     borderWidth: "2px",
@@ -151,28 +151,25 @@ let {
       <br/>
         <form>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput">Nombres: </label>
+            <label htmlFor="formGroupExampleInput" className="letra">Nombre y apellido: </label>
             <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Nombre y Apellido" value={nombre} onChange={this.handleChangeName}/>
           </div>
-          <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput2">Correo: </label>
+            <label htmlFor="formGroupExampleInput2" className="letra">Correo: </label>
             <input type="email" className="form-control" id="formGroupExampleInput2" placeholder="correo@correo.com"value={correo} onChange={this.handleChangeCorreo}/>
           </div>
-          <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput4">Clave: </label>
-            <input type="password" className="form-control" id="formGroupExampleInput4" placeholder="Clave" value={clave} onChange={this.handleChangeClave}/>
+            <label htmlFor="formGroupExampleInput4" className="letra">Contraseña: </label>
+            <input type="password" className="form-control" id="formGroupExampleInput4" placeholder="Contraseña" value={clave} onChange={this.handleChangeClave}/>
           </div>
-          <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput5">Repetir Clave: </label>
-            <input type="password" className="form-control" id="formGroupExampleInput5" placeholder="Repita la clave" value={repetirClave} onChange={this.handleChangeRClave}/>
+            <label htmlFor="formGroupExampleInput5" className="letra">Confirmar contraseña: </label>
+            <input type="password" className="form-control" id="formGroupExampleInput5" placeholder="Confirmar contraseña" value={repetirClave} onChange={this.handleChangeRClave}/>
           </div>
         </form>
         <br/>
         <button type="button" className="btnLis" onClick={this.listo}>Registrarme</button>
-        <button type="button" className="btnOut" onClick={this.atras}>Atras</button>
+        <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
       </div>
       <br/>
       <br/>

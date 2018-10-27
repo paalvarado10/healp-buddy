@@ -10,7 +10,15 @@ export default class OfertaItemLista extends Component {
     this.state = {
       solicitud:this.props.solicitud
     };
+
+    this.verDetalle=this.verDetalle.bind(this);
   }
+
+  verDetalle(){
+    let id = this.state.solicitud._id;
+   this.props.verDetalleOferta(id);
+  }
+
   renderSolicitud(solicitud){
     const divStyle = {
       margin: "auto",
@@ -20,8 +28,9 @@ export default class OfertaItemLista extends Component {
       return(
         <div style={divStyle}>
         <h2 className="hIem" style={divStyle}>{solicitud.nombreOferta}</h2>
-        <h3 className="hIem" style={divStyle}>{solicitud.descripcion}</h3>
-        <h4 className="hIem" style={divStyle}>{"Remuneración: $"+solicitud.remunn}</h4>
+        <br/>
+        <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
+        <h4 className="hIem" style={divStyle}>{"Cobro remuneración"}</h4>
         </div>
       );
     }
@@ -29,7 +38,8 @@ export default class OfertaItemLista extends Component {
       return(
         <div style={divStyle}>
         <h2 className="hIem" style={divStyle}>{solicitud.nombreOferta}</h2>
-        <h3 className="hIem" style={divStyle}>{solicitud.descripcion}</h3>
+        <br/>
+        <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
         </div>
       );
     }
@@ -45,7 +55,8 @@ export default class OfertaItemLista extends Component {
       }
       const divStyle = {
       overflow: "hidden",
-      width: "90%",
+      width: "270px",
+      height: "330px",
       margin: "auto",
       justifyContent: "center",
       alignItems: "center",
@@ -58,12 +69,12 @@ export default class OfertaItemLista extends Component {
     return (
       <div>
       <br/>
-      <div style={divStyle} key={solicitud._id}>>
+      <div style={divStyle} key={solicitud._id}>
       <br/>
       <br/>
             {this.renderSolicitud(solicitud)}
       <br/>
-      <button type="button" className="btnLis">Ver</button>
+      <button type="button" className="btnLis" onClick={this.verDetalle}>Ver</button>
       <br/>
       <br/>
       <br/>

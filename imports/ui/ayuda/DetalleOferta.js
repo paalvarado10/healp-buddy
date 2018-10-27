@@ -4,7 +4,8 @@ import '../App.css';
 import { Meteor } from "meteor/meteor";
 import StarRating from 'react-star-rating'
 import { withTracker } from 'meteor/react-meteor-data';
-export default class DetalleAyuda extends Component {
+
+export default class DetalleOferta extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,23 +16,18 @@ export default class DetalleAyuda extends Component {
 //    this.handleRatingClick = this.handleRatingClick.bind(this);
   }
   renderSolicitud(solicitud){
-    const divStyle = {
-      margin: "auto",
-      textAlign: "center",
-    }
     const center={
         margin: "auto",
         textAlign: "left",
       }
-
     if(solicitud.remunerada){
       return(
-        <h4 className="hIem" style={center}>{"$"+solicitud.remunn}</h4>
+        <h4 className="hIem" style={center}>{"Sí"}</h4>
       );
     }
     else{
       return(
-        <h4 className="hIem" style={center}>{"No aplica"}</h4>
+        <h4 className="hIem" style={center}>{"No"}</h4>
       );
     }
 
@@ -68,8 +64,8 @@ decreaseScore() {
       }
       const divStyle = {
       width: "40%",
+      padding:"20px",
       margin: "auto",
-      padding: "20px",
       justifyContent: "center",
       alignItems: "center",
       borderStyle: "solid",
@@ -84,18 +80,16 @@ decreaseScore() {
       <div style={divStyle} key={solicitud._id}>
       <br/>
       <br/>
-      <h2 className="hIem" style={centerTitle}>Usuario que solicita la ayuda: </h2>
+      <h2 className="hIem" style={centerTitle}>Usuario que ofrece la ayuda: </h2>
         <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
-      <h3 className="hIem" style={centerTitle}>Nombre de la solicitud: </h3>
-      <h3 className="hIem" style={center}>{solicitud.nombreSolicitud}</h3>
+      <h3 className="hIem" style={centerTitle}>Título de la oferta: </h3>
+      <h3 className="hIem" style={center}>{solicitud.nombreOferta}</h3>
       <h3 className="hIem" style={centerTitle}>Descripcion: </h3>
       <h3 className="hIem" style={center}>{solicitud.descripcion}</h3>
       <h3 className="hIem" style={centerTitle}>Tipo: </h3>
       <h3 className="hIem" style={center}>{solicitud.tipo}</h3>
-      <h3 className="hIem" style={centerTitle}>Remuneración: </h3>
+      <h3 className="hIem" style={centerTitle}>Cobra remuneración: </h3>
       {this.renderSolicitud(solicitud)}
-      <h3 className="hIem" style={centerTitle}>Fecha Limite: </h3>
-      <h3 className="hIem" style={center}>{solicitud.fechaLimite}</h3>
       <h3 className="hIem" style={centerTitle}>Entidad: </h3>
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
       <br/>
@@ -106,7 +100,7 @@ decreaseScore() {
       <br/>
       <br/>
       <br/>
-      <button type="button" className="btnLis">Ayudar</button>
+      <button type="button" className="btnLis">Solicitar ayuda</button>
       <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
       <br/>
       <br/>

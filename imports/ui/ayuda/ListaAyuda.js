@@ -21,7 +21,7 @@ class ListaAyuda extends Component {
     let list =solicitudes;
     if(list.length>0){
       let render = list.map((item,i)=>{
-         return(<AyudaItemLista verDetalle={this.verDetalle} solicitud={item} key={i}/>)
+         return(<div  className="listao"><AyudaItemLista verDetalle={this.verDetalle} solicitud={item} key={i}/></div>)
       });
       return(
         <div>
@@ -35,7 +35,7 @@ class ListaAyuda extends Component {
   }
   render() {
     const w = {
-      width: "80%",
+      width: "100%",
       margin: "auto",
     };
     return (
