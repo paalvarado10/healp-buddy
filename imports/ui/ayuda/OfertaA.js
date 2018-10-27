@@ -31,7 +31,7 @@ class OfertaA extends Component {
 
   publicar()
   {
-    
+
     Meteor.call("ofertasA.add", this.state.nickname, this.state.nombreOferta, this.state.descripcion, this.state.tipo, 
       this.state.remunerada, this.state.entidad, (err, resultado)=>{
         if(resultado)
