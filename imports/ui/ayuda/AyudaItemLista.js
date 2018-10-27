@@ -16,23 +16,31 @@ export default class AyudaItemLista extends Component {
       margin: "auto",
       textAlign: "center",
     }
+    const divStyleT = {
+      margin: "auto",
+      textAlign: "center",
+      maxHeight:"100px",
+      color: "#00A0D8",
+    }
     if(solicitud.remunerada){
       return(
         <div style={divStyle}>
-        <h2 className="hIem" style={divStyle}>{solicitud.nombreSolicitud}</h2>
+        <h2 className="hIem" style={divStyleT}>{solicitud.nombreSolicitud}</h2>
         <br/>
         <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
-        <h4 className="hIem" style={divStyle}>{solicitud.fechaLimite}</h4>
+        <br/>
         <h4 className="hIem" style={divStyle}>{"Remuneración: $"+solicitud.remunn}</h4>
+        <h4 className="hIem" style={divStyle}>{"Disponible hasta: "+solicitud.fechaLimite}</h4>
         </div>
       );
     }
     else{
       return(
         <div style={divStyle}>
-        <h2 className="hIem" style={divStyle}>{solicitud.nombreSolicitud}</h2>
+        <h2 className="hIem" style={divStyleT}>{solicitud.nombreSolicitud}</h2>
         <br/>
         <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
+        <br/>
         <h4 className="hIem" style={divStyle}>{solicitud.fechaLimite}</h4>
         </div>
       );

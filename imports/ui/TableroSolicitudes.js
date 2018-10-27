@@ -133,18 +133,18 @@ class TableroSolicitudes extends Component {
 		}
 		else if(this.state.solAyuda){
 			//ver detalle
-			return(<DetalleAyuda solicitud={this.state.solAyuda} atras={this.atras}/>);
+			return(<DetalleAyuda solicitud={this.state.solAyuda} nickname={this.state.nickname} atras={this.atras}/>);
 		}
 		else if(this.state.ofertaAyuda){
 			//ver detalle
-			return(<DetalleOferta solicitud={this.state.ofertaAyuda} atras={this.atras}/>);
+			return(<DetalleOferta solicitud={this.state.ofertaAyuda} nickname={this.state.nickname} atras={this.atras}/>);
 		}
 		else {
 			return(
 				<div>
-				
+
 				{this.renderLista()}
-					
+
 				</div>
 		);
 		}

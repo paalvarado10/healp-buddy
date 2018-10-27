@@ -31,12 +31,12 @@ class OfertaA extends Component {
 
   publicar()
   {
-    
-    Meteor.call("ofertasA.add", this.state.nickname, this.state.nombreOferta, this.state.descripcion, this.state.tipo, 
+
+    Meteor.call("ofertasA.add", this.state.nickname, this.state.nombreOferta, this.state.descripcion, this.state.tipo,
       this.state.remunerada, this.state.entidad, (err, resultado)=>{
         if(resultado)
         {
-          alert("Tu oferta ha sido publicada con éxito"); 
+          alert("Tu oferta ha sido publicada con éxito");
           this.setState({
             publicada:resultado
           });
@@ -105,24 +105,24 @@ class OfertaA extends Component {
           </div>
           <div className="form-group">
           <label className="letra">
-          
+
           <input
             name="isGoing"
             type="checkbox"
             checked={this.state.isGoing}
             onChange={this.handleInputChange} /> Sí cobro remuneración
-            
+
         </label>
         <br/>
         <br/>
         <br/>
         <label className="letra">
-          
+
           <input
             name="isGoing"
             type="checkbox"
             checked={this.state.isGoing} /> No cobro remuneración
-            
+
         </label>
         <br/>
         <br/>
@@ -142,7 +142,7 @@ class OfertaA extends Component {
 
        );//
     }
-    
+
   }
   handleInputChange(event) {
   const target = event.target;
@@ -152,8 +152,15 @@ class OfertaA extends Component {
   });
 }
   render() {
-    return(<div>{this.renderForm()}</div>);
-    
+    return(
+      <div>
+        <br/>
+        <h1 className="hIem">Crear Oferta de Ayuda</h1>
+        <br/>
+        {this.renderForm()}
+      </div>
+    );
+
   }
 }
 OfertaA.propTypes = {

@@ -10,6 +10,7 @@ class ListaAyuda extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      nickname: this.props.nickname,
     };
     this.renderList=this.renderList.bind(this);
     this.verDetalle = this.verDetalle.bind(this);
@@ -21,7 +22,7 @@ class ListaAyuda extends Component {
     let list =solicitudes;
     if(list.length>0){
       let render = list.map((item,i)=>{
-         return(<div  className="listao"><AyudaItemLista verDetalle={this.verDetalle} solicitud={item} key={i}/></div>)
+         return(<div  className="listao"><AyudaItemLista verDetalle={this.verDetalle} nickname={this.state.nickname} solicitud={item} key={i+"1"}/></div>)
       });
       return(
         <div>
@@ -39,8 +40,11 @@ class ListaAyuda extends Component {
       margin: "auto",
     };
     return (
+      <div>
+      <h1 className="hIem">Listado de Solicitudes de Ayuda</h1>
       <div style={w}>
       {this.renderList(this.props.solicitudesAyuda)}
+      </div>
       </div>
     );
   }

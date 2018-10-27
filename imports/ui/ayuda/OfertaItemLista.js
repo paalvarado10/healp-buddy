@@ -24,12 +24,19 @@ export default class OfertaItemLista extends Component {
       margin: "auto",
       textAlign: "center",
     }
+    const divStyleT = {
+      margin: "auto",
+      textAlign: "center",
+      maxHeight:"100px",
+      color: "#00A0D8",
+    }
     if(solicitud.remunerada){
       return(
         <div style={divStyle}>
-        <h2 className="hIem" style={divStyle}>{solicitud.nombreOferta}</h2>
+        <h2 className="hIem" style={divStyleT}>{solicitud.nombreOferta}</h2>
         <br/>
         <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
+        <br/>
         <h4 className="hIem" style={divStyle}>{"Cobro remuneración"}</h4>
         </div>
       );
@@ -37,7 +44,7 @@ export default class OfertaItemLista extends Component {
     else{
       return(
         <div style={divStyle}>
-        <h2 className="hIem" style={divStyle}>{solicitud.nombreOferta}</h2>
+        <h2 className="hIem" style={divStyleT}>{solicitud.nombreOferta}</h2>
         <br/>
         <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
         </div>
@@ -63,7 +70,7 @@ export default class OfertaItemLista extends Component {
       borderStyle: "solid",
       borderWidth: "2px",
       borderRadius: "20px",
-      borderColor: "#00A0D8",
+      borderColor: "#FACC2E",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   };
     return (

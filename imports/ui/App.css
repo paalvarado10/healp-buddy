@@ -113,6 +113,8 @@ th, td {
   color:#041527;
   font-family: 'Concert One', cursive;
   padding: 5px;
+  overflow: auto;
+  max-height: 50px;
 }
 .carousel .thumb img {
     width: 100% !important;
