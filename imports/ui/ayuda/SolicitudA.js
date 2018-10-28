@@ -155,6 +155,10 @@ let {
   nickname, nombreSolicitud, descripcion, tipo, remunerada, fechaLimite, entidad,remunn,error
 }=this.state;
     return (
+      <div>
+        <br/>
+        <h1 className="hIem">Crear Solicitud de Ayuda</h1>
+        <br/>
     <div style={divStyle}>
       <div style={w}>
       {this.renderError(error)}
@@ -206,6 +210,7 @@ let {
       </div>
       <br/>
       <br/>
+      </div>
       </div>
 
     );

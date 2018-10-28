@@ -26,7 +26,8 @@ Meteor.methods(
 	  return solicitud;
 	},
   "solicitudayuda.eliminarAyudaNombre":function(id){
-  const solicitud = SolicitudAyuda.deleteOne({ _id: id});
+  const solicitud = SolicitudAyuda.findOne({ _id: id});
+  SolicitudAyuda.remove(solicitud);
   return solicitud;
 }
 });

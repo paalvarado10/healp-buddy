@@ -9,10 +9,17 @@ export default class DetalleAyuda extends Component {
     super(props);
     this.state = {
       solicitud:this.props.solicitud,
+      nickname: this.props.nickname,
       cal:3,
     };
     this.atras = this.atras.bind(this);
+    this.eliminarSolicitud = this.eliminarSolicitud.bind(this);
 //    this.handleRatingClick = this.handleRatingClick.bind(this);
+  }
+  eliminarSolicitud(){
+    Meteor.call("solicitudayuda.eliminarAyudaNombre",this.props.solicitud._id);
+        
+    this.atras();
   }
   renderSolicitud(solicitud){
     const divStyle = {
@@ -78,6 +85,41 @@ decreaseScore() {
       borderColor: "#00A0D8",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   };
+  let nickname = this.state.nickname;
+  if(this.state.nickname===solicitud.nickname){
+    return (
+      <div>
+      <br/>
+      <div style={divStyle} key={solicitud._id}>
+      <br/>
+      <br/>
+      <h2 className="hIem" style={centerTitle}>Usuario que solicita la ayuda: </h2>
+        <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
+      <h3 className="hIem" style={centerTitle}>Nombre de la solicitud: </h3>
+      <h3 className="hIem" style={center}>{solicitud.nombreSolicitud}</h3>
+      <h3 className="hIem" style={centerTitle}>Descripcion: </h3>
+      <h3 className="hIem" style={center}>{solicitud.descripcion}</h3>
+      <h3 className="hIem" style={centerTitle}>Tipo: </h3>
+      <h3 className="hIem" style={center}>{solicitud.tipo}</h3>
+      <h3 className="hIem" style={centerTitle}>Remuneración: </h3>
+      {this.renderSolicitud(solicitud)}
+      <h3 className="hIem" style={centerTitle}>Fecha Limite: </h3>
+      <h3 className="hIem" style={center}>{solicitud.fechaLimite}</h3>
+      <h3 className="hIem" style={centerTitle}>Entidad: </h3>
+      <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
+      <br/>
+      <br/>
+      <br/>
+      <button type="button" className="btnLis" onClick={this.eliminarSolicitud}>Eliminar</button>
+      <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
+      <br/>
+      <br/>
+      <br/>
+      </div>
+      </div>
+    );
+  }
+  else{
     return (
       <div>
       <br/>
@@ -114,5 +156,6 @@ decreaseScore() {
       </div>
       </div>
     );
+  }
   }
 }

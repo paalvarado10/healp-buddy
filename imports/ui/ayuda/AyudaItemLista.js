@@ -16,23 +16,31 @@ export default class AyudaItemLista extends Component {
       margin: "auto",
       textAlign: "center",
     }
+    const divStyleT = {
+      margin: "auto",
+      textAlign: "center",
+      maxHeight:"100px",
+      color: "#00A0D8",
+    }
     if(solicitud.remunerada){
       return(
         <div style={divStyle}>
-        <h2 className="hIem" style={divStyle}>{solicitud.nombreSolicitud}</h2>
+        <h2 className="hIem" style={divStyleT}>{solicitud.nombreSolicitud}</h2>
         <br/>
         <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
-        <h4 className="hIem" style={divStyle}>{solicitud.fechaLimite}</h4>
+        <br/>
         <h4 className="hIem" style={divStyle}>{"Remuneración: $"+solicitud.remunn}</h4>
+        <h4 className="hIem" style={divStyle}>{"Disponible hasta: "+solicitud.fechaLimite}</h4>
         </div>
       );
     }
     else{
       return(
         <div style={divStyle}>
-        <h2 className="hIem" style={divStyle}>{solicitud.nombreSolicitud}</h2>
+        <h2 className="hIem" style={divStyleT}>{solicitud.nombreSolicitud}</h2>
         <br/>
         <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
+        <br/>
         <h4 className="hIem" style={divStyle}>{solicitud.fechaLimite}</h4>
         </div>
       );
@@ -46,9 +54,12 @@ export default class AyudaItemLista extends Component {
     render() {
       let solicitud = this.state.solicitud;
       const center={
+        overflow: "auto",
+        width: "270px",
+        height: "280px",
         margin: "auto",
-        textAlign: "center",
-        overflow: "hidden",
+        justifyContent: "center",
+        alignItems: "center",
       }
       const divStyle = {
       overflow: "hidden",
@@ -64,18 +75,16 @@ export default class AyudaItemLista extends Component {
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   };
     return (
-      <div>
-      <br/>
       <div style={divStyle} key={solicitud._id}>
+      <div style={center}>
       <br/>
       <br/>
             {this.renderSolicitud(solicitud)}
       <br/>
+      </div>
       <button type="button" className="btnLis" onClick={this.verDetalle}>Ver</button>
       <br/>
       <br/>
-      <br/>
-      </div>
       </div>
     );
   }

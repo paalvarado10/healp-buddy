@@ -26,8 +26,8 @@ Meteor.methods(
 		  return oferta;
 		},
 	  "ofertasAyuda.eliminarOfertaNombre":function(id){
-	  const oferta = OfertasAyuda.deleteOne({ _id: id});
-	  return oferta;
+	  const oferta = OfertasAyuda.findOne({ _id: id});
+	  OfertasAyuda.remove(oferta);
 	},
 	"ofertasAyuda.getAll":function(){
 		const ofertas = OfertasAyuda.find({}).fetch();

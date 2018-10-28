@@ -4,17 +4,28 @@ import '../App.css';
 import { Meteor } from "meteor/meteor";
 import StarRating from 'react-star-rating'
 import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from "prop-types";
+import {OfertasAyuda} from '../../api/ofertasAyuda.js';
 
-export default class DetalleOferta extends Component {
+class DetalleOferta extends Component {
   constructor(props) {
     super(props);
     this.state = {
       solicitud:this.props.solicitud,
+      nickname: this.props.nickname,
       cal:3,
     };
     this.atras = this.atras.bind(this);
+    this.eliminarOferta = this.eliminarOferta.bind(this);
 //    this.handleRatingClick = this.handleRatingClick.bind(this);
   }
+
+  eliminarOferta(){
+    Meteor.call("ofertasAyuda.eliminarOfertaNombre",this.props.solicitud._id);
+        
+    this.atras();
+  }
+
   renderSolicitud(solicitud){
     const center={
         margin: "auto",
@@ -50,6 +61,7 @@ decreaseScore() {
     render() {
       let cal = this.state.cal;
       let solicitud = this.state.solicitud;
+      let nickname = this.state.nickname;
       const center={
         margin: "auto",
         textAlign: "left",
@@ -71,9 +83,41 @@ decreaseScore() {
       borderStyle: "solid",
       borderWidth: "2px",
       borderRadius: "20px",
-      borderColor: "#00A0D8",
+      borderColor: "#FACC2E",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   };
+  if(nickname===solicitud.nickname){
+    return (
+      <div>
+      <br/>
+      <div style={divStyle} key={solicitud._id}>
+      <br/>
+      <br/>
+      <h2 className="hIem" style={centerTitle}>Usuario que ofrece la ayuda: </h2>
+        <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
+      <h3 className="hIem" style={centerTitle}>Título de la oferta: </h3>
+      <h3 className="hIem" style={center}>{solicitud.nombreOferta}</h3>
+      <h3 className="hIem" style={centerTitle}>Descripcion: </h3>
+      <h3 className="hIem" style={center}>{solicitud.descripcion}</h3>
+      <h3 className="hIem" style={centerTitle}>Tipo: </h3>
+      <h3 className="hIem" style={center}>{solicitud.tipo}</h3>
+      <h3 className="hIem" style={centerTitle}>Cobra remuneración: </h3>
+      {this.renderSolicitud(solicitud)}
+      <h3 className="hIem" style={centerTitle}>Entidad: </h3>
+      <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
+      <br/>
+      <br/>
+      <br/>
+      <button type="button" className="btnLis" onClick={this.eliminarOferta}>Eliminar</button>
+      <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
+      <br/>
+      <br/>
+      <br/>
+      </div>
+      </div>
+    );
+  }
+  else {
     return (
       <div>
       <br/>
@@ -109,4 +153,19 @@ decreaseScore() {
       </div>
     );
   }
+
+  }
 }
+
+DetalleOferta.propTypes = {
+  ofertasAyuda:PropTypes.array,
+};
+
+export default withTracker(() => {
+
+Meteor.subscribe("ofertasAyuda");
+
+  return {
+    ofertasAyuda:OfertasAyuda.find({}).fetch()
+  };
+})(DetalleOferta);

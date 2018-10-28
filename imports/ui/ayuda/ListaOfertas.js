@@ -40,8 +40,11 @@ class ListaOfertas extends Component {
       margin: "auto",
     };
     return (
+      <div>
+      <h1 className="hIem">Listado de Ofertas de Ayuda</h1>
       <div style={w}>
       {this.renderList(this.props.ofertasAyuda)}
+      </div>
       </div>
     );
   }
