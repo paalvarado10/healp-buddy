@@ -33,10 +33,8 @@ Meteor.methods(
 
 	"solicitudayuda.enviar":function(to, pfrom, asunto, mensaje){
 	Meteor.startup( function() {
-      process.env.MAIL_URL = 
-         "aca va lo de whatsapp";
+      process.env.MAIL_URL = Meteor.settings.public.stripe.mail__url;
      Email.send({ to:to, from:pfrom, subject:asunto, text:mensaje });
      });
-    	
 	}
 });
