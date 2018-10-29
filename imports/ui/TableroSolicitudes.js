@@ -21,6 +21,7 @@ class TableroSolicitudes extends Component {
 				nuevaOfertaAyuda:false,
 				nuevaSolicitudAyuda:false,
 				nickname:this.props.nickname,
+				correo:this.props.correo,
 				idSolAyuda:"",
 				idOfertaAyuda:"",
 				solAyuda:"",
@@ -137,7 +138,7 @@ class TableroSolicitudes extends Component {
 		else if(this.state.nuevaOfertaAyuda)
 		{
 			return (
-				<OfertaA nickname={this.state.nickname} atras={this.atras}/>
+				<OfertaA nickname={this.state.nickname} correo={this.state.correo} atras={this.atras}/>
 			);
 		}
 		else if(this.state.solAyuda){
@@ -146,7 +147,7 @@ class TableroSolicitudes extends Component {
 		}
 		else if(this.state.ofertaAyuda){
 			//ver detalle
-			return(<DetalleOferta solicitud={this.state.ofertaAyuda} nickname={this.state.nickname} atras={this.atras}/>);
+			return(<DetalleOferta solicitud={this.state.ofertaAyuda} correo={this.state.correo} nickname={this.state.nickname} atras={this.atras}/>);
 		}
 		else {
 			return(

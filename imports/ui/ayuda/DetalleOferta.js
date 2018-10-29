@@ -13,11 +13,58 @@ class DetalleOferta extends Component {
     this.state = {
       solicitud:this.props.solicitud,
       nickname: this.props.nickname,
+      correo:this.props.correo,
       cal:3,
+      auxilio:false,
+      asunto:"",
+      contenidoCorreo:"",
+      listo:false
     };
+
     this.atras = this.atras.bind(this);
     this.eliminarOferta = this.eliminarOferta.bind(this);
+    this.solicitarAyuda = this.solicitarAyuda.bind(this);
+    this.enviar = this.enviar.bind(this);
+    this.handleChangeAsunto = this.handleChangeAsunto.bind(this);
+    this.handleChangeCorreo = this.handleChangeCorreo.bind(this);
+   
 //    this.handleRatingClick = this.handleRatingClick.bind(this);
+  }
+
+  enviar()
+  {
+
+    var to = this.state.solicitud.correo;
+    console.log("to ", to);
+    var asunto = this.state.asunto;
+    var mensaje = this.state.contenidoCorreo;
+    var pfrom = this.state.correo;
+
+    console.log(mensaje);
+
+    Meteor.call("ofertasAyuda.enviar", to, pfrom, asunto, mensaje);
+    this.atras();  
+  }
+
+  handleChangeAsunto(event)
+  {
+    this.setState({
+      asunto:event.target.value
+    });
+  }
+
+  handleChangeCorreo(event)
+  {
+    this.setState({
+      contenidoCorreo:event.target.value
+    });
+  }
+
+  solicitarAyuda()
+  {
+    this.setState({
+      auxilio:true
+    });
   }
 
   eliminarOferta(){
@@ -85,8 +132,53 @@ decreaseScore() {
       borderRadius: "20px",
       borderColor: "#FACC2E",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-  };
-  if(nickname===solicitud.nickname){
+  };//
+  if(this.state.auxilio)
+  {
+
+      const divStyle = {
+    width: "80%",
+    margin: "auto",
+      borderStyle: "solid",
+    borderWidth: "2px",
+    borderRadius: "20px",
+    borderColor: "#041527",
+     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+      };
+      const w = {
+        width: "80%",
+        margin: "auto",
+      }
+      let {
+        nickname, nombreOferta, descripcion, tipo, fechaLimite, entidad,remunn
+      }=this.state;
+
+    return(
+        <div style={divStyle}>
+      <div style={w}>
+      <br/>
+      
+      <br/>
+        <form>
+        <h4>Envía un email a {this.state.solicitud.nickname} para solicitar su ayuda</h4>
+          <div className="form-group">
+            <label htmlFor="formGroupExampleInput" className="letra">Asunto: </label>
+            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Asunto" onChange={this.handleChangeAsunto}/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="formGroupExampleInput2" className="letra">Body: </label>
+            <textarea className="form-control" rows="4" id="formGroupExampleInput2" placeholder="Redacta el contenido del correo" onChange={this.handleChangeCorreo}/>
+          </div>
+        <br/>
+        </form>
+        <button type="button" className="btnLis" onClick={this.enviar}>Enviar</button>
+        <button type="button" className="btnOut" onClick={this.atras}>Atras</button>
+      </div>
+      <br/>
+      <br/>
+      </div>);
+  }
+  else if(nickname===solicitud.nickname){
     return (
       <div>
       <br/>
@@ -144,7 +236,7 @@ decreaseScore() {
       <br/>
       <br/>
       <br/>
-      <button type="button" className="btnLis">Solicitar ayuda</button>
+      <button type="button" className="btnLis" onClick={this.solicitarAyuda}>Solicitar ayuda</button>
       <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
       <br/>
       <br/>

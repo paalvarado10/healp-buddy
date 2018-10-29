@@ -91,13 +91,14 @@ loged(bol,correo,nickname){
 showContent()
 {
   let nickname = this.state.nickname;
+  let correo = this.state.correo;
   if(this.state.loggeado)
   {
     return(<div>
       <br/>
       <br/>
       <br/>
-      <TableroSolicitudes nickname={nickname}/>
+      <TableroSolicitudes nickname={nickname} correo={correo}/>
       </div>);
   }
   else

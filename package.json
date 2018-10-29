@@ -34,5 +34,8 @@
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
+  },
+  "devDependencies": {
+    "@types/gapi.client.gmail": "^1.0.0"
   }
 }
