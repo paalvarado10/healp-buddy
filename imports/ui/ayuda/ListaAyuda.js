@@ -4,6 +4,7 @@ import '../App.css';
 import { Meteor } from "meteor/meteor";
 import { withTracker } from 'meteor/react-meteor-data';
 import {SolicitudAyuda} from '../../api/solicitudayuda.js';
+import {CalificacionAyuda} from '../../api/calificacionAyuda.js';
 import AyudaItemLista from './AyudaItemLista.js';
 import PropTypes from "prop-types";
 class ListaAyuda extends Component {
@@ -16,7 +17,17 @@ class ListaAyuda extends Component {
     this.verDetalle = this.verDetalle.bind(this);
   }
   verDetalle(id){
-    this.props.verDetalle(id);
+    console.log(this.state.nickname+" LLEGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    Meteor.call('calificacionesAyuda.get', id, this.state.nickname , (err, res)=>{
+      if(err){
+        console.log("error");
+        this.props.verDetalle(id, null);
+      }
+      else {
+      this.props.verDetalle(id, res);
+      }
+    });
+
   }
   renderList(solicitudes){
     let list =solicitudes;
@@ -51,11 +62,14 @@ class ListaAyuda extends Component {
 }
 ListaAyuda.propTypes = {
   solicitudesAyuda:PropTypes.array,
+  calificacionesAyuda:PropTypes.array,
 };
 
 export default withTracker(() => {
   Meteor.subscribe("solicitudayuda");
+  Meteor.subscribe("calificacionesAyuda");
   return {
     solicitudesAyuda:SolicitudAyuda.find({}).fetch(),
+    calificacionesAyuda:CalificacionAyuda.find({}).fetch(),
   };
 })(ListaAyuda);

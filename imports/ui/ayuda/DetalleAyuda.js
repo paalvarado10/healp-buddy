@@ -2,23 +2,44 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../App.css';
 import { Meteor } from "meteor/meteor";
-import StarRating from 'react-star-rating'
+import PropTypes from "prop-types";
 import { withTracker } from 'meteor/react-meteor-data';
-export default class DetalleAyuda extends Component {
+import {CalificacionAyuda} from '../../api/calificacionAyuda.js';
+class DetalleAyuda extends Component {
   constructor(props) {
     super(props);
     this.state = {
       solicitud:this.props.solicitud,
       nickname: this.props.nickname,
-      cal:3,
+      cal:0,
+      calificacion:this.props.calificacion,
     };
+     this.increaseAnswerScore= this.increaseAnswerScore.bind(this);
+     this.decreaseScore= this.decreaseScore.bind(this);
+  //  this.renderCal = this.renderCal.bind(this);
     this.atras = this.atras.bind(this);
+   this.load = this.load.bind(this);
     this.eliminarSolicitud = this.eliminarSolicitud.bind(this);
-//    this.handleRatingClick = this.handleRatingClick.bind(this);
+  }
+  load(){
+
+      if(this.state.cal!=0 || this.state.calificacion != undefined){
+        return null;
+      }
+      else {
+          return (
+            <div>
+            <button className="btnImg" onClick={this.increaseAnswerScore.bind()}><img className="imgBtn" src="/like.svg" alt="like"/></button>
+            <span>   </span>
+              <button className="btnImg" onClick={this.decreaseScore.bind()}><img className="imgBtn" src="/dislike.svg" alt="like"/></button>
+            </div>
+          );
+      }
+
   }
   eliminarSolicitud(){
     Meteor.call("solicitudayuda.eliminarAyudaNombre",this.props.solicitud._id);
-        
+
     this.atras();
   }
   renderSolicitud(solicitud){
@@ -46,18 +67,31 @@ export default class DetalleAyuda extends Component {
   atras(){
     this.props.atras(true);
   }
-  handleRatingClick(e, data) {
-    alert('You left a ' + data.rating + ' star rating for ' + data.caption);
-}
 increaseAnswerScore(){
-  console.log("AUMENTAR");
+  let cali = 1;
+  Meteor.call("calificacionesAyuda.add",this.state.solicitud._id,this.state.nickname,cali,(err, res)=>{
+    if(err){
+      console.log(err);
+    }
+    else {
+      console.log(res);
+      alert("Gracias, tu calificación ha sido guardada");
+      this.atras();
+    }
+  });
 }
 decreaseScore() {
-  console.log("DISMINUIR");
+  let cali = -1;
+  Meteor.call("calificacionesAyuda.add",this.state.solicitud._id,this.state.nickname,cali,(err, res)=>{
+    if(err){
+      console.log(err);
+    }
+    else {
+      alert("Gracias, tu calificación ha sido guardada");
+      this.atras();
+    }
+  });
 }
-  handleRate(rate){
-    console.log(rate);
-  }
     render() {
       let cal = this.state.cal;
       let solicitud = this.state.solicitud;
@@ -85,6 +119,7 @@ decreaseScore() {
       borderColor: "#00A0D8",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   };
+  console.log(this.props.calificacionesAyuda);
   let nickname = this.state.nickname;
   if(this.state.nickname===solicitud.nickname){
     return (
@@ -102,7 +137,7 @@ decreaseScore() {
       <h3 className="hIem" style={centerTitle}>Tipo: </h3>
       <h3 className="hIem" style={center}>{solicitud.tipo}</h3>
       <h3 className="hIem" style={centerTitle}>Remuneración: </h3>
-      {this.renderSolicitud(solicitud)}
+
       <h3 className="hIem" style={centerTitle}>Fecha Limite: </h3>
       <h3 className="hIem" style={center}>{solicitud.fechaLimite}</h3>
       <h3 className="hIem" style={centerTitle}>Entidad: </h3>
@@ -142,9 +177,7 @@ decreaseScore() {
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
       <br/>
       <br/>
-      <button className="btnImg" onClick={this.increaseAnswerScore.bind()}><img className="imgBtn" src="/like.svg" alt="like"/></button>
-      <span>   </span>
-        <button className="btnImg" onClick={this.decreaseScore.bind()}><img className="imgBtn" src="/dislike.svg" alt="like"/></button>
+      {this.load()}
       <br/>
       <br/>
       <br/>
@@ -159,3 +192,12 @@ decreaseScore() {
   }
   }
 }
+DetalleAyuda.propTypes = {
+  calificacionesAyuda:PropTypes.array,
+};
+export default withTracker(() => {
+  Meteor.subscribe("calificacionesAyuda");
+  return {
+    calificacionesAyuda:CalificacionAyuda.find({}).fetch(),
+  };
+})(DetalleAyuda);

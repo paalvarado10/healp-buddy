@@ -49,7 +49,8 @@ export default class AyudaItemLista extends Component {
   }
   verDetalle(){
     let id = this.state.solicitud._id;
-   this.props.verDetalle(id);
+    console.log(id);
+    this.props.verDetalle(id);
   }
     render() {
       let solicitud = this.state.solicitud;
