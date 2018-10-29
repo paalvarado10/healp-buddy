@@ -13,17 +13,27 @@ if(Meteor.isServer)
 Meteor.methods(
 {
 	"calificacionesAyuda.add":function(idAyuda, nickname, puntos){
-    console.log(idAyuda, nickname, puntos);
 				return CalificacionAyuda.insert({nickname:nickname, idAyuda:idAyuda, puntos:puntos});
 	  },
 		"calificacionesAyuda.get":function(idAyuda, nickname){
-      console.log(idAyuda, nickname);
 			const calificacion = CalificacionAyuda.findOne({ idAyuda:idAyuda ,nickname:nickname});
 		  return calificacion;
 		},
+		"calificacionesAyuda.getSol":function(idAyuda){
+			console.log(idAyuda+"GET SOL");
+			const calificacion = CalificacionAyuda.find({ idAyuda:idAyuda}).fetch();
+			if(!calificacion)
+		  {
+
+					return null;
+		  }
+		  else
+		  {
+				return calificacion;
+		  }
+		},
 	"calificacionesAyuda.getAll":function(){
 		const calificaciones = CalificacionAyuda.find({}).fetch();
-		console.log(ofertas);
 		return calificacion;
 	}
 });

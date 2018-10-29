@@ -6,6 +6,7 @@ import StarRating from 'react-star-rating'
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from "prop-types";
 import {OfertasAyuda} from '../../api/ofertasAyuda.js';
+import {CalificacionOferta} from '../../api/calificacionOferta.js';
 
 class DetalleOferta extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class DetalleOferta extends Component {
     this.enviar = this.enviar.bind(this);
     this.handleChangeAsunto = this.handleChangeAsunto.bind(this);
     this.handleChangeCorreo = this.handleChangeCorreo.bind(this);
-   
+
 //    this.handleRatingClick = this.handleRatingClick.bind(this);
   }
 
@@ -43,7 +44,7 @@ class DetalleOferta extends Component {
     console.log(mensaje);
 
     Meteor.call("ofertasAyuda.enviar", to, pfrom, asunto, mensaje);
-    this.atras();  
+    this.atras();
   }
 
   handleChangeAsunto(event)
@@ -69,11 +70,21 @@ class DetalleOferta extends Component {
 
   eliminarOferta(){
     Meteor.call("ofertasAyuda.eliminarOfertaNombre",this.props.solicitud._id);
-        
+
     this.atras();
   }
 
   renderSolicitud(solicitud){
+    Meteor.call('calificacionesAyuda.getSol', solicitud.id, (err, res)=>{
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log(res);
+      }
+
+    });
+
     const center={
         margin: "auto",
         textAlign: "left",
@@ -157,7 +168,7 @@ decreaseScore() {
         <div style={divStyle}>
       <div style={w}>
       <br/>
-      
+
       <br/>
         <form>
         <h4>Envía un email a {this.state.solicitud.nickname} para solicitar su ayuda</h4>

@@ -15,7 +15,8 @@ class DetalleAyuda extends Component {
       calificacion:this.props.calificacion,
       asunto:"",
       contenidoCorreo:"",
-      ayudar:false
+      ayudar:false,
+      calificaciones: this.props.calificaciones
     };
      this.increaseAnswerScore= this.increaseAnswerScore.bind(this);
      this.decreaseScore= this.decreaseScore.bind(this);
@@ -115,7 +116,6 @@ increaseAnswerScore(){
       console.log(err);
     }
     else {
-      console.log(res);
       alert("Gracias, tu calificación ha sido guardada");
       this.atras();
     }
@@ -132,6 +132,37 @@ decreaseScore() {
       this.atras();
     }
   });
+}
+renderCalificacion(calificaciones){
+  const centerTitle={
+    margin: "auto",
+    textAlign: "left",
+    color:"#00A0D8",
+  }
+  const red ={
+    color:"#CE7885",
+  }
+
+  const green ={
+    color:"#28D160",
+  }
+
+  let cal =0
+
+  calificaciones.map((calificacion)=>{
+    console.log(calificacion.puntos);
+    cal+= parseInt(calificacion.puntos);
+  });
+  if(cal>=0){
+    return (
+      <h4 className="hIem" style={centerTitle}>Calificacion: <span style={green}>{cal}</span></h4>
+    );
+  }
+  else{
+  return (
+      <h4 className="hIem" style={centerTitle}>Calificacion:<span style={red}>{cal}</span></h4>
+  );
+  }
 }
     render() {
       let cal = this.state.cal;
@@ -160,8 +191,7 @@ decreaseScore() {
       borderColor: "#00A0D8",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   };
-  console.log(this.props.calificacionesAyuda);
-  let nickname = this.state.nickname;//
+  let nickname = this.state.nickname;
   if(this.state.ayudar)
   {
      const divStyle = {
@@ -229,6 +259,7 @@ decreaseScore() {
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
       <br/>
       <br/>
+      {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <button type="button" className="btnLis" onClick={this.eliminarSolicitud}>Eliminar</button>
       <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
@@ -260,6 +291,9 @@ decreaseScore() {
       <h3 className="hIem" style={center}>{solicitud.fechaLimite}</h3>
       <h3 className="hIem" style={centerTitle}>Entidad: </h3>
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
+      <br/>
+      <br/>
+      {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <br/>
       {this.load()}
