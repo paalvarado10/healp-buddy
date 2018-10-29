@@ -29,5 +29,14 @@ Meteor.methods(
   const solicitud = SolicitudAyuda.findOne({ _id: id});
   SolicitudAyuda.remove(solicitud);
   return solicitud;
-}
+	},
+
+	"solicitudayuda.enviar":function(to, pfrom, asunto, mensaje){
+	Meteor.startup( function() {
+      process.env.MAIL_URL = 
+         "aca va lo de whatsapp";
+     Email.send({ to:to, from:pfrom, subject:asunto, text:mensaje });
+     });
+    	
+	}
 });

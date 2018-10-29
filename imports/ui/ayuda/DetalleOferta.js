@@ -172,7 +172,7 @@ decreaseScore() {
         <br/>
         </form>
         <button type="button" className="btnLis" onClick={this.enviar}>Enviar</button>
-        <button type="button" className="btnOut" onClick={this.atras}>Atras</button>
+        <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
       </div>
       <br/>
       <br/>

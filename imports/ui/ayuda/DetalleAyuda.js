@@ -13,6 +13,9 @@ class DetalleAyuda extends Component {
       nickname: this.props.nickname,
       cal:0,
       calificacion:this.props.calificacion,
+      asunto:"",
+      contenidoCorreo:"",
+      ayudar:false
     };
      this.increaseAnswerScore= this.increaseAnswerScore.bind(this);
      this.decreaseScore= this.decreaseScore.bind(this);
@@ -20,7 +23,46 @@ class DetalleAyuda extends Component {
     this.atras = this.atras.bind(this);
    this.load = this.load.bind(this);
     this.eliminarSolicitud = this.eliminarSolicitud.bind(this);
+    this.enviar = this.enviar.bind(this);
+    this.handleChangeAsunto = this.handleChangeAsunto.bind(this);
+    this.handleChangeCorreo = this.handleChangeCorreo.bind(this);
   }
+
+  enviar()
+  {
+    var to = this.state.solicitud.correo;
+    console.log("to ", to);
+    var asunto = this.state.asunto;
+    var mensaje = this.state.contenidoCorreo;
+    var pfrom = this.state.correo;
+
+    console.log(mensaje);
+
+    Meteor.call("solicitudayuda.enviar", to, pfrom, asunto, mensaje);
+    this.atras();  
+  }
+
+  handleChangeAsunto(event)
+  {
+    this.setState({
+      asunto:event.target.value
+    });
+  }
+
+  handleChangeCorreo(event)
+  {
+    this.setState({
+      contenidoCorreo:event.target.value
+    });
+  }
+
+  darAyuda()
+  {
+    this.setState({
+      ayudar:true
+    });
+  }
+
   load(){
 
       if(this.state.cal!=0 || this.state.calificacion != undefined){
@@ -120,8 +162,52 @@ decreaseScore() {
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   };
   console.log(this.props.calificacionesAyuda);
-  let nickname = this.state.nickname;
-  if(this.state.nickname===solicitud.nickname){
+  let nickname = this.state.nickname;//
+  if(this.state.ayudar)
+  {
+     const divStyle = {
+    width: "80%",
+    margin: "auto",
+      borderStyle: "solid",
+    borderWidth: "2px",
+    borderRadius: "20px",
+    borderColor: "#041527",
+     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+      };
+      const w = {
+        width: "80%",
+        margin: "auto",
+      }
+      let {
+        nickname, nombreSolicitud, descripcion, tipo, fechaLimite, entidad,remunn
+      }=this.state;
+
+    return(
+        <div style={divStyle}>
+      <div style={w}>
+      <br/>
+      
+      <br/>
+        <form>
+        <h4>Envía un email a {this.state.solicitud.nickname} para brindarle ayuda</h4>
+          <div className="form-group">
+            <label htmlFor="formGroupExampleInput" className="letra">Asunto: </label>
+            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Asunto" onChange={this.handleChangeAsunto}/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="formGroupExampleInput2" className="letra">Body: </label>
+            <textarea className="form-control" rows="4" id="formGroupExampleInput2" placeholder="Redacta el contenido del correo" onChange={this.handleChangeCorreo}/>
+          </div>
+        <br/>
+        </form>
+        <button type="button" className="btnLis" onClick={this.enviar}>Enviar</button>
+        <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
+      </div>
+      <br/>
+      <br/>
+      </div>);
+  }
+  else if(this.state.nickname===solicitud.nickname){
     return (
       <div>
       <br/>
@@ -181,7 +267,7 @@ decreaseScore() {
       <br/>
       <br/>
       <br/>
-      <button type="button" className="btnLis">Ayudar</button>
+      <button type="button" className="btnLis" onClick={this.enviar}>Contactar para ayudar</button>
       <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
       <br/>
       <br/>
