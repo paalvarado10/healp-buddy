@@ -97,7 +97,7 @@ class DetalleOferta extends Component {
         <h4 className="hIem" style={center}>No</h4>
       );
     }
-  
+
   }
   atras(){
     this.props.atras(true);
@@ -289,6 +289,8 @@ class DetalleOferta extends Component {
       <br/>
       <h2 className="hIem" style={centerTitle}>Usuario que ofrece la ayuda: </h2>
         <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
+        <h3 className="hIem" style={centerTitle}>Correo de contacto: </h3>
+      <h3 className="hIem" style={center}>{solicitud.correo}</h3>
       <h3 className="hIem" style={centerTitle}>Título de la oferta: </h3>
       <h3 className="hIem" style={center}>{solicitud.nombreOferta}</h3>
       <h3 className="hIem" style={centerTitle}>Descripcion: </h3>
@@ -301,10 +303,6 @@ class DetalleOferta extends Component {
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
       {this.renderCalificacion(this.props.calificaciones)}
       <br/>
-      <br/>
-      <button className="btnImg" onClick={this.increaseAnswerScore.bind()}><img className="imgBtn" src="/like.svg" alt="like"/></button>
-      <span>   </span>
-        <button className="btnImg" onClick={this.decreaseScore.bind()}><img className="imgBtn" src="/dislike.svg" alt="dislike"/></button>
       <br/>
       {this.load()}
       <br/>

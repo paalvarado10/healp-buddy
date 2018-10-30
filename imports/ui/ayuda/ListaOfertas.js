@@ -22,13 +22,9 @@ class ListaOfertas extends Component {
   renderList(solicitudes){
     let list =solicitudes;
     if(list.length>0){
-      return(
-        <div>
-        <br/>
-        <br/>
-        <PaginationO items={list} nickname={this.state.nickname} verDetalleOferta={this.verDetalleOferta} perPage={4}/>
-        </div>
-      );
+      
+        return(<div  className="listao"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} solicitud={item} key={i}/></div>);
+        
     }
     else {
       return null;

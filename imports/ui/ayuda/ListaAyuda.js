@@ -29,11 +29,12 @@ this.props.verDetalle(id);
   renderList(solicitudes){
     let list =solicitudes;
     if(list.length>0){
+      let render = list.map((item,i)=>{
+         return(<div  className="listao"><AyudaItemLista verDetalle={this.verDetalle} nickname={this.state.nickname} solicitud={item} key={i+"1"}/></div>)
+      });
       return(
         <div>
-        <br/>
-        <br/>
-        <PaginationA items={list} nickname={this.state.nickname} verDetalle={this.verDetalle} perPage={4}/>
+        {render}
         </div>
       );
     }

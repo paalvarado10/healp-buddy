@@ -64,8 +64,8 @@ listo(){
     msg=("Se requiere el correo");
     this.setState({error:msg});
     }
-  else if(clave===""){
-    msg=("Se requiere clave");
+  else if(clave==="" || clave.length < 4){
+    msg=("La contraseña debe tener al menos 4 dígitos");
     this.setState({error:msg});
     }
   else if(clave!=repetirClave){
