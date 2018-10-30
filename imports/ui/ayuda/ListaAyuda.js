@@ -17,17 +17,16 @@ class ListaAyuda extends Component {
     this.verDetalle = this.verDetalle.bind(this);
   }
   verDetalle(id){
-    console.log(this.state.nickname+" LLEGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-    Meteor.call('calificacionesAyuda.get', id, this.state.nickname , (err, res)=>{
-      if(err){
-        console.log("error");
-        this.props.verDetalle(id, null);
-      }
-      else {
-      this.props.verDetalle(id, res);
-      }
-    });
-
+    // Meteor.call('calificacionesAyuda.get', id, this.state.nickname , (err, res)=>{
+    //   if(err){
+    //     console.log("error");
+    //     this.props.verDetalle(id, null);
+    //   }
+    //   else {
+    //   this.props.verDetalle(id, res);
+    //   }
+    // });
+this.props.verDetalle(id);
   }
   renderList(solicitudes){
     let list =solicitudes;

@@ -34,7 +34,7 @@ Meteor.methods(
 
 	"solicitudayuda.enviar":function(to, pfrom, asunto, mensaje){
 	Meteor.startup( function() {
-      process.env.MAIL_URL = "smtp://postmaster@sandbox5d645043d7d8479da382c8659d352a86.mailgun.org:d8f4eb41843381d37b0931d1eaf3a7b7-c9270c97-a9941b57";
+      process.env.MAIL_URL = Meteor.settings.public.stripe.mail__url;
      Email.send({ to:to, from:pfrom, subject:asunto, text:mensaje });
      });
 	}
