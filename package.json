@@ -17,6 +17,7 @@
     "crypto.js": "^1.1.5",
     "dotenv": "^6.1.0",
     "jquery": "^1.9.1",
+    "mailgun-js": "^0.22.0",
     "meteor-node-stubs": "^0.4.1",
     "prop-types": "^15.6.2",
     "react": "^16.6.0",

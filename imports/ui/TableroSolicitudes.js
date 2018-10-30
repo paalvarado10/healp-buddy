@@ -132,7 +132,7 @@ class TableroSolicitudes extends Component {
 		if(this.state.nuevaSolicitudAyuda)
 		{
 			return (
-				<SolicitudA nickname={this.state.nickname} atras={this.atras}/>
+				<SolicitudA nickname={this.state.nickname} correo={this.state.correo} atras={this.atras}/>
 			);
 		}
 		else if(this.state.nuevaOfertaAyuda)

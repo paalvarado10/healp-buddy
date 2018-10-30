@@ -26,6 +26,7 @@ class DetalleAyuda extends Component {
     this.enviar = this.enviar.bind(this);
     this.handleChangeAsunto = this.handleChangeAsunto.bind(this);
     this.handleChangeCorreo = this.handleChangeCorreo.bind(this);
+    this.darAyuda = this.darAyuda.bind(this);
   }
 
   enviar()
@@ -37,8 +38,9 @@ class DetalleAyuda extends Component {
     var pfrom = this.state.correo;
 
     console.log(mensaje);
+
     Meteor.call("solicitudayuda.enviar", to, pfrom, asunto, mensaje);
-    this.atras();
+    this.atras();  
   }
 
   handleChangeAsunto(event)
@@ -72,7 +74,7 @@ class DetalleAyuda extends Component {
             <div>
             <button className="btnImg" onClick={this.increaseAnswerScore.bind()}><img className="imgBtn" src="/like.svg" alt="like"/></button>
             <span>   </span>
-              <button className="btnImg" onClick={this.decreaseScore.bind()}><img className="imgBtn" src="/dislike.svg" alt="like"/></button>
+              <button className="btnImg" onClick={this.decreaseScore.bind()}><img className="imgBtn" src="/dislike.svg" alt="dislike"/></button>
             </div>
           );
       }
@@ -185,7 +187,7 @@ decreaseScore() {
         <div style={divStyle}>
       <div style={w}>
       <br/>
-
+      
       <br/>
         <form>
         <h4>Envía un email a {this.state.solicitud.nickname} para brindarle ayuda</h4>
@@ -266,7 +268,7 @@ decreaseScore() {
       <br/>
       <br/>
       <br/>
-      <button type="button" className="btnLis" onClick={this.enviar}>Contactar para ayudar</button>
+      <button type="button" className="btnLis" onClick={this.darAyuda}>Contactar para ayudar</button>
       <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
       <br/>
       <br/>

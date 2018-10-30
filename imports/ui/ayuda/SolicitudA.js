@@ -11,6 +11,7 @@ class SolicitudA extends Component {
     super(props);
     this.state = {
       nickname:this.props.nickname,
+      correo: this.props.correo,
       nombreSolicitud:"",
       descripcion:"",
       tipo:"",
@@ -43,6 +44,7 @@ class SolicitudA extends Component {
   listo(){
     let{
       nickname,
+      correo,
       nombreSolicitud,
       descripcion,
       tipo,
@@ -84,7 +86,8 @@ class SolicitudA extends Component {
         this.setState({error:"La fecha limite debe ser minimo un dia despues de hoy"});
       }
       else{
-      Meteor.call("solicitudayuda.add",nickname, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad,(err,res)=>{if(res==="success"){
+        console.log("Correo publicador ", correo);
+      Meteor.call("solicitudayuda.add",nickname, correo, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad,(err,res)=>{if(res==="success"){
         alert("Solicitud Guaradada");
         this.atras();
       }else{
