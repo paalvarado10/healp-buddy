@@ -5,6 +5,7 @@ import { Meteor } from "meteor/meteor";
 import { withTracker } from 'meteor/react-meteor-data';
 import {OfertasAyuda} from '../../api/ofertasAyuda.js';
 import PropTypes from "prop-types";
+import PaginationO from '../pagination/PaginationO.js';
 import OfertaItemLista from './OfertaItemLista.js';
 
 class ListaOfertas extends Component {
@@ -21,12 +22,12 @@ class ListaOfertas extends Component {
   renderList(solicitudes){
     let list =solicitudes;
     if(list.length>0){
-      let render = list.map((item,i)=>{
-         return(<div  className="listao"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} solicitud={item} key={i}/></div>);
-      });
+      // let render = list.map((item,i)=>{
+      //    return(<div  className="listao"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} solicitud={item} key={i}/></div>);
+      // });
       return(
         <div>
-        {render}
+        <PaginationO items={list} nickname={this.state.nickname} verDetalle={this.verDetalle} perPage={4}/>
         </div>
       );
     }
