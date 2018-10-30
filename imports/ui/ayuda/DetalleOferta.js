@@ -48,7 +48,7 @@ class DetalleOferta extends Component {
 
     console.log(mensaje);
 
-    Meteor.call("ofertasAyuda.enviar", to, pfrom, asunto, mensaje);
+    // Meteor.call("ofertasAyuda.enviar", to, pfrom, asunto, mensaje);
     this.atras();
   }
 

@@ -39,7 +39,7 @@ class DetalleAyuda extends Component {
     var pfrom = this.state.correo;
 
 
-    Meteor.call("solicitudayuda.enviar", to, pfrom, asunto, mensaje);
+    // Meteor.call("solicitudayuda.enviar", to, pfrom, asunto, mensaje);
     this.atras();
   }
 
@@ -216,7 +216,7 @@ renderCalificacion(calificaciones){
         <div style={divStyle}>
       <div style={w}>
       <br/>
-      
+
       <br/>
         <form>
         <h4>Envía un email a {this.state.solicitud.nickname} para brindarle ayuda</h4>
