@@ -7,40 +7,66 @@ export default class PaginationA extends Component {
     this.state = {
       items:[],
       currentPage: 1,
-      todosPerPage: 4
+      todosPerPage: 4,
+      indexOfLastTodo:"",
+      indexOfFirstTodo:"",
+      currentTodos:[],
     };
     this.handleClick = this.handleClick.bind(this);
     this.verDetalle = this.verDetalle.bind(this);
   }
 
   handleClick(event) {
+    const items = this.state.items;
+    const todosPerPage = this.state.todosPerPage;
+    const indexOfLastTodo = event.target.id * todosPerPage;
+    const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+    const currentTodos = items.slice(indexOfFirstTodo, indexOfLastTodo);
+
     this.setState({
-      currentPage: Number(event.target.id)
+      currentPage: Number(event.target.id),
+      indexOfLastTodo:indexOfLastTodo,
+      indexOfFirstTodo:indexOfFirstTodo,
+      currentTodos:currentTodos
     });
+    this.renderT=this.renderT.bind(this);
   }
   componentWillMount(){
     if(this.props.items){
-
-    this.setState({items:this.props.items});
+      const items = this.props.items;
+      const { currentPage, todosPerPage } = this.state;
+      const indexOfLastTodo = currentPage * todosPerPage;
+      const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+      const currentTodos = items.slice(indexOfFirstTodo, indexOfLastTodo);
+      const nickname = this.props.nickname;
+    this.setState({items:this.props.items, indexOfLastTodo:indexOfLastTodo, indexOfFirstTodo:indexOfFirstTodo, currentTodos:currentTodos});
     }
-
-
   }
+  renderT(){
+    const {  items, currentPage, todosPerPage, indexOfLastTodo, indexOfFirstTodo, currentTodos } = this.state;
+    if(items){
+      const nickname = this.props.nickname;
+      const renderTodos = currentTodos.map((item, index) => {
+        if(index<=currentTodos.length){
+            return (<div  className="listao"><AyudaItemLista verDetalle={this.verDetalle} nickname={nickname} solicitud={currentTodos[index]} key={index+"1"+currentPage}/></div>);
+        }
+
+      });
+      return renderTodos
+  }
+  else {
+    return null;
+  }
+}
   verDetalle(id){
 this.props.verDetalle(id);
   }
   render() {
 
-    const {  items, currentPage, todosPerPage } = this.state;
+    const items = this.state.items
+
     if(items){
-      const indexOfLastTodo = currentPage * todosPerPage;
-      const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-      const currentTodos = items.slice(indexOfFirstTodo, indexOfLastTodo);
-      const nickname = this.props.nickname;
-      const renderTodos = currentTodos.map((item, index) => {
-        return (<div  className="listao"><AyudaItemLista verDetalle={this.verDetalle} nickname={nickname} solicitud={item} key={index+"1"}/></div>);
-      });
-      // Logic for displaying page numbers
+      const todosPerPage = this.state.todosPerPage;
       const pageNumbers = [];
       for (let i = 1; i <= Math.ceil(items.length / todosPerPage); i++) {
         pageNumbers.push(i);
@@ -74,7 +100,7 @@ this.props.verDetalle(id);
       });
       return (
         <div>
-            {renderTodos}
+            {this.renderT()}
           <ul id="page-numbers">
             {renderPageNumbers}
           </ul>

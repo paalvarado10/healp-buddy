@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import OfertaItemLista from '../ayuda/OfertaItemLista.js';
 import '../App.css';
-export default class PaginationA extends Component {
+export default class PaginationO extends Component {
   constructor() {
     super();
     this.state = {
@@ -35,7 +35,7 @@ this.props.verDetalleOferta(id);
       const currentTodos = items.slice(indexOfFirstTodo, indexOfLastTodo);
       const nickname = this.props.nickname;
       const renderTodos = currentTodos.map((item, index) => {
-        return (<div  className="listao"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={nickname} solicitud={item} key={index+"1"}/></div>);
+        return (<div  className="listao"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={nickname} solicitud={item} key={index+"1"+currentPage}/></div>);
       });
       // Logic for displaying page numbers
       const pageNumbers = [];
