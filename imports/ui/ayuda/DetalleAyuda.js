@@ -301,7 +301,7 @@ renderCalificacion(calificaciones){
       <br/>
       <br/>
       <br/>
-      <button type="button" className="btnLis" onClick={this.darAyuda}>Contactar para ayudar</button>
+      <button type="button" className="btnLis2" onClick={this.darAyuda}>Contactar para ayudar</button>
       <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
       <br/>
       <br/>

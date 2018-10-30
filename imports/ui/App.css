@@ -249,6 +249,22 @@ th, td {
 .btnNormal:hover {
     background-color: #CFDBE5;
 }
+.btnLis2{
+  border-radius: 10px;
+  background-color:#28D160;
+  color: white;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  font-family: 'Concert One', cursive;
+    transition-duration: 0.4s;
+    height: 40px;
+    width: 220px;
+    font-size: 20px;
+    margin-right: 5px;
+}
+.btnLis2:hover {
+    background-color: #A2FCBC;
+    color:#000;
+}
 .btnLis{
   border-radius: 10px;
   background-color:#28D160;
