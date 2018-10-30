@@ -31,6 +31,8 @@ this.props.verDetalle(id);
     if(list.length>0){
       return(
         <div>
+        <br/>
+        <br/>
         <PaginationA items={list} nickname={this.state.nickname} verDetalle={this.verDetalle} perPage={4}/>
         </div>
       );

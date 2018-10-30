@@ -34,16 +34,5 @@ Meteor.methods(
 		const ofertas = OfertasAyuda.find({}).fetch();
 		console.log(ofertas);
 		return ofertas;
-	},
-	"ofertasAyuda.enviar":function(to, pfrom, asunto, mensaje){
-Meteor.startup( function() {
-      process.env.MAIL_URL = Meteor.settings.public.stripe.mail__url;
-
-         console.log("Credenciales ", Meteor.settings.public.stripe.mail__url);
-         
-         
-     Email.send({ to:to, from:pfrom, subject:asunto, text:mensaje });
-     });
-    	
 	}
 });

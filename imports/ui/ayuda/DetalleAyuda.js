@@ -39,7 +39,6 @@ class DetalleAyuda extends Component {
     var pfrom = this.state.correo;
 
 
-    Meteor.call("solicitudayuda.enviar", to, pfrom, asunto, mensaje);
     this.atras();
   }
 
@@ -109,6 +108,7 @@ class DetalleAyuda extends Component {
   }
   atras(){
     this.props.atras(true);
+
   }
 increaseAnswerScore(){
   let cali = 1;

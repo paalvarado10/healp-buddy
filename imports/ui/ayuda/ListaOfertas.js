@@ -24,7 +24,9 @@ class ListaOfertas extends Component {
     if(list.length>0){
       return(
         <div>
-        <PaginationO items={list} nickname={this.state.nickname} verDetalle={this.verDetalle} perPage={4}/>
+        <br/>
+        <br/>
+        <PaginationO items={list} nickname={this.state.nickname} verDetalleOferta={this.verDetalleOferta} perPage={4}/>
         </div>
       );
     }

@@ -48,7 +48,6 @@ class DetalleOferta extends Component {
 
     console.log(mensaje);
 
-    Meteor.call("ofertasAyuda.enviar", to, pfrom, asunto, mensaje);
     this.atras();
   }
 
@@ -256,6 +255,8 @@ class DetalleOferta extends Component {
       <br/>
       <h2 className="hIem" style={centerTitle}>Usuario que ofrece la ayuda: </h2>
         <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
+        <h3 className="hIem" style={centerTitle}>Correo de contacto: </h3>
+      <h3 className="hIem" style={center}>{solicitud.correo}</h3>
       <h3 className="hIem" style={centerTitle}>Título de la oferta: </h3>
       <h3 className="hIem" style={center}>{solicitud.nombreOferta}</h3>
       <h3 className="hIem" style={centerTitle}>Descripcion: </h3>

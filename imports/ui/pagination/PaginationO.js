@@ -10,7 +10,7 @@ export default class PaginationA extends Component {
       todosPerPage: 4
     };
     this.handleClick = this.handleClick.bind(this);
-    this.verDetalle = this.verDetalle.bind(this);
+    this.verDetalleOferta = this.verDetalleOferta.bind(this);
   }
 
   handleClick(event) {
@@ -23,8 +23,8 @@ export default class PaginationA extends Component {
     this.setState({items:this.props.items});
     }
   }
-  verDetalle(id){
-this.props.verDetalle(id);
+  verDetalleOferta(id){
+this.props.verDetalleOferta(id);
   }
   render() {
 
@@ -35,7 +35,7 @@ this.props.verDetalle(id);
       const currentTodos = items.slice(indexOfFirstTodo, indexOfLastTodo);
       const nickname = this.props.nickname;
       const renderTodos = currentTodos.map((item, index) => {
-        return (<div  className="listao"><OfertaItemLista verDetalle={this.verDetalle} nickname={nickname} solicitud={item} key={index+"1"}/></div>);
+        return (<div  className="listao"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={nickname} solicitud={item} key={index+"1"}/></div>);
       });
       // Logic for displaying page numbers
       const pageNumbers = [];
