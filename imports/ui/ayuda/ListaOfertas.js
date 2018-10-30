@@ -23,8 +23,11 @@ class ListaOfertas extends Component {
     let list =solicitudes;
     if(list.length>0){
       
-        return(<div  className="listao"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} solicitud={item} key={i}/></div>);
-        
+      return(
+        <div>
+        <PaginationO items={list} nickname={this.state.nickname} verDetalleOferta={this.verDetalleOferta} perPage={4}/>
+        </div>
+      );
     }
     else {
       return null;

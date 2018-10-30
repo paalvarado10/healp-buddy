@@ -47,7 +47,6 @@ class DetalleOferta extends Component {
     var pfrom = this.state.correo;
 
     console.log(mensaje);
-
     this.atras();
   }
 
