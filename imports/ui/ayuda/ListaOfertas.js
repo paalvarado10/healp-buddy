@@ -22,9 +22,6 @@ class ListaOfertas extends Component {
   renderList(solicitudes){
     let list =solicitudes;
     if(list.length>0){
-      // let render = list.map((item,i)=>{
-      //    return(<div  className="listao"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} solicitud={item} key={i}/></div>);
-      // });
       return(
         <div>
         <PaginationO items={list} nickname={this.state.nickname} verDetalle={this.verDetalle} perPage={4}/>
