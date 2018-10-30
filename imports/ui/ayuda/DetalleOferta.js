@@ -48,7 +48,7 @@ class DetalleOferta extends Component {
 
     console.log(mensaje);
 
-    // Meteor.call("ofertasAyuda.enviar", to, pfrom, asunto, mensaje);
+    Meteor.call("ofertasAyuda.enviar", to, pfrom, asunto, mensaje);
     this.atras();
   }
 
@@ -301,6 +301,9 @@ class DetalleOferta extends Component {
       {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <br/>
+      <button className="btnImg" onClick={this.increaseAnswerScore.bind()}><img className="imgBtn" src="/like.svg" alt="like"/></button>
+      <span>   </span>
+        <button className="btnImg" onClick={this.decreaseScore.bind()}><img className="imgBtn" src="/dislike.svg" alt="dislike"/></button>
       <br/>
       {this.load()}
       <br/>

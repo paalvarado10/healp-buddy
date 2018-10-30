@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
-import {Meteor} from "meteor/meteor"
+import {Meteor} from "meteor/meteor";
+import { Email } from 'meteor/email';
 
 export const SolicitudAyuda = new Mongo.Collection('solicitudayuda');
 //
@@ -12,8 +13,8 @@ if(Meteor.isServer)
 
 Meteor.methods(
 {
-	"solicitudayuda.add":function(nickname, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad){
-	      SolicitudAyuda.insert({nickname:nickname, nombreSolicitud:nombreSolicitud, descripcion:descripcion,
+	"solicitudayuda.add":function(nickname, correo, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad){
+	      SolicitudAyuda.insert({nickname:nickname, correo: correo, nombreSolicitud:nombreSolicitud, descripcion:descripcion,
            tipo:tipo, remunerada:remunerada, remunn:remunn, fechaLimite:fechaLimite, entidad:entidad});
 				return "success";
 	  },
