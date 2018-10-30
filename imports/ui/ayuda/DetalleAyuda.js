@@ -38,7 +38,7 @@ class DetalleAyuda extends Component {
     var pfrom = this.state.correo;
 
     console.log(mensaje);
-    Meteor.call("solicitudayuda.enviar", to, pfrom, asunto, mensaje);
+//    Meteor.call("solicitudayuda.enviar", to, pfrom, asunto, mensaje);
     this.atras();
   }
 

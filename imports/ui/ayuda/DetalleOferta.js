@@ -48,7 +48,7 @@ class DetalleOferta extends Component {
 
     console.log(mensaje);
 
-    Meteor.call("ofertasAyuda.enviar", to, pfrom, asunto, mensaje);
+    // Meteor.call("ofertasAyuda.enviar", to, pfrom, asunto, mensaje);
     this.atras();
   }
 
@@ -98,32 +98,7 @@ class DetalleOferta extends Component {
         <h4 className="hIem" style={center}>No</h4>
       );
     }
-  // renderSolicitud(solicitud){
-  //   Meteor.call('calificacionesAyuda.getSol', solicitud.id, (err, res)=>{
-  //     if(err){
-  //       console.log(err);
-  //     }
-  //     else{
-  //       console.log(res);
-  //     }
-  //
-  //   });
-  //
-  //   const center={
-  //       margin: "auto",
-  //       textAlign: "left",
-  //     }
-  //   if(solicitud.remunerada){
-  //     return(
-  //       <h4 className="hIem" style={center}>{"Sí"}</h4>
-  //     );
-  //   }
-  //   else{
-  //     return(
-  //       <h4 className="hIem" style={center}>{"No"}</h4>
-  //     );
-  //   }
-  //
+  
   }
   atras(){
     this.props.atras(true);
