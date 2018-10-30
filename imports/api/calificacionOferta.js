@@ -22,5 +22,17 @@ Meteor.methods(
 	"calificacionesoferta.getAll":function(){
 		const calificaciones = CalificacionOferta.find({}).fetch();
 		return calificacion;
+	},
+	"calificacionesoferta.getSol":function(idOferta){
+		const calificacion = CalificacionOferta.find({ idOferta:idOferta}).fetch();
+		if(!calificacion)
+		{
+
+				return null;
+		}
+		else
+		{
+			return calificacion;
+		}
 	}
 });

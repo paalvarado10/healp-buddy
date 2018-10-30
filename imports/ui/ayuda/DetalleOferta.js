@@ -15,14 +15,19 @@ class DetalleOferta extends Component {
       solicitud:this.props.solicitud,
       nickname: this.props.nickname,
       correo:this.props.correo,
-      cal:3,
+      cal:0,
+      calificacion:this.props.calificacion,
       auxilio:false,
       asunto:"",
       contenidoCorreo:"",
-      listo:false
+      listo:false,
+      calificaciones: this.props.calificaciones
     };
 
     this.atras = this.atras.bind(this);
+    this.load = this.load.bind(this);
+    this.increaseAnswerScore= this.increaseAnswerScore.bind(this);
+    this.decreaseScore= this.decreaseScore.bind(this);
     this.eliminarOferta = this.eliminarOferta.bind(this);
     this.solicitarAyuda = this.solicitarAyuda.bind(this);
     this.enviar = this.enviar.bind(this);
@@ -73,48 +78,126 @@ class DetalleOferta extends Component {
 
     this.atras();
   }
-
   renderSolicitud(solicitud){
-    Meteor.call('calificacionesAyuda.getSol', solicitud.id, (err, res)=>{
-      if(err){
-        console.log(err);
-      }
-      else{
-        console.log(res);
-      }
-
-    });
-
+    const divStyle = {
+      margin: "auto",
+      textAlign: "center",
+    }
     const center={
         margin: "auto",
         textAlign: "left",
       }
+
     if(solicitud.remunerada){
       return(
-        <h4 className="hIem" style={center}>{"Sí"}</h4>
+        <h4 className="hIem" style={center}>Sí</h4>
       );
     }
     else{
       return(
-        <h4 className="hIem" style={center}>{"No"}</h4>
+        <h4 className="hIem" style={center}>No</h4>
       );
     }
-
+  // renderSolicitud(solicitud){
+  //   Meteor.call('calificacionesAyuda.getSol', solicitud.id, (err, res)=>{
+  //     if(err){
+  //       console.log(err);
+  //     }
+  //     else{
+  //       console.log(res);
+  //     }
+  //
+  //   });
+  //
+  //   const center={
+  //       margin: "auto",
+  //       textAlign: "left",
+  //     }
+  //   if(solicitud.remunerada){
+  //     return(
+  //       <h4 className="hIem" style={center}>{"Sí"}</h4>
+  //     );
+  //   }
+  //   else{
+  //     return(
+  //       <h4 className="hIem" style={center}>{"No"}</h4>
+  //     );
+  //   }
+  //
   }
   atras(){
     this.props.atras(true);
   }
-  handleRatingClick(e, data) {
-    alert('You left a ' + data.rating + ' star rating for ' + data.caption);
-}
-increaseAnswerScore(){
-  console.log("AUMENTAR");
-}
-decreaseScore() {
-  console.log("DISMINUIR");
-}
-  handleRate(rate){
-    console.log(rate);
+  load(){
+
+      if(this.state.cal!=0 || this.state.calificacion != undefined){
+        return null;
+      }
+      else {
+          return (
+            <div>
+            <button className="btnImg" onClick={this.increaseAnswerScore.bind()}><img className="imgBtn" src="/like.svg" alt="like"/></button>
+            <span>   </span>
+              <button className="btnImg" onClick={this.decreaseScore.bind()}><img className="imgBtn" src="/dislike.svg" alt="like"/></button>
+            </div>
+          );
+      }
+
+  }
+  increaseAnswerScore(){
+    let cali = 1;
+    Meteor.call("calificacionesoferta.add",this.state.solicitud._id,this.state.nickname,cali,(err, res)=>{
+      if(err){
+        console.log(err);
+      }
+      else {
+        alert("Gracias, tu calificación ha sido guardada");
+        this.atras();
+      }
+    });
+  }
+  decreaseScore() {
+    let cali = -1;
+    Meteor.call("calificacionesoferta.add",this.state.solicitud._id,this.state.nickname,cali,(err, res)=>{
+      if(err){
+        console.log(err);
+      }
+      else {
+        alert("Gracias, tu calificación ha sido guardada");
+        this.atras();
+      }
+    });
+  }
+  renderCalificacion(calificaciones){
+    const centerTitle={
+      margin: "auto",
+      textAlign: "left",
+      color:"#00A0D8",
+    }
+    const red ={
+      color:"#CE7885",
+    }
+
+    const green ={
+      color:"#28D160",
+    }
+
+    let cal =0
+
+    calificaciones.map((calificacion)=>{
+      console.log(calificacion.puntos);
+      cal+= parseInt(calificacion.puntos);
+    });
+    if(cal>=0){
+      return (
+        <h4 className="hIem" style={centerTitle}>Calificación: <span style={green}>{cal}</span></h4>
+      );
+    }
+    else{
+    return (
+        <h4 className="hIem" style={centerTitle}>Calificación:<span style={red}>{cal}</span></h4>
+    );
+    }
   }
     render() {
       let cal = this.state.cal;
@@ -208,6 +291,7 @@ decreaseScore() {
       {this.renderSolicitud(solicitud)}
       <h3 className="hIem" style={centerTitle}>Entidad: </h3>
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
+      {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <br/>
       <br/>
@@ -239,12 +323,11 @@ decreaseScore() {
       {this.renderSolicitud(solicitud)}
       <h3 className="hIem" style={centerTitle}>Entidad: </h3>
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
+      {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <br/>
-      <button className="btnImg" onClick={this.increaseAnswerScore.bind()}><img className="imgBtn" src="/like.svg" alt="like"/></button>
-      <span>   </span>
-        <button className="btnImg" onClick={this.decreaseScore.bind()}><img className="imgBtn" src="/dislike.svg" alt="like"/></button>
       <br/>
+      {this.load()}
       <br/>
       <br/>
       <button type="button" className="btnLis" onClick={this.solicitarAyuda}>Solicitar ayuda</button>

@@ -29,7 +29,9 @@ class TableroSolicitudes extends Component {
 				solicitudes:true,
 				ofertas:false,
 				calAyuda:"",
+				calOferta:"",
 				calificaciones:[],
+				calificacionesO:[],
 	    };
 
 	    this.publicarOfertaAyuda = this.publicarOfertaAyuda.bind(this);
@@ -74,6 +76,24 @@ class TableroSolicitudes extends Component {
 	verDetalleOferta(id)
 	{
 		this.setState({idOfertaAyuda:id});
+		Meteor.call('calificacionesoferta.getSol', id, (err, res)=>{
+			if(err){
+				console.log("error");
+			}
+			else {
+				this.setState({calificacionesO:res});
+			console.log("Listado de calificaciones"+JSON.stringify(res));
+			}
+		});
+
+		Meteor.call('calificacionesoferta.get', id, this.state.nickname , (err, res)=>{
+			if(err){
+				console.log("error");
+			}
+			else {
+			this.setState({calOferta:res});
+			}
+		});
 		Meteor.call("ofertasAyuda.getOfertaID",id,(err,res)=>{if(res){
 			this.setState({ofertaAyuda:res,nuevaSolicitudAyuda:false, nuevaOfertaAyuda:false, solAyuda:""},()=>{
 
@@ -156,7 +176,7 @@ class TableroSolicitudes extends Component {
 		}
 		else if(this.state.ofertaAyuda){
 			//ver detalle
-			return(<DetalleOferta solicitud={this.state.ofertaAyuda} correo={this.state.correo} nickname={this.state.nickname} atras={this.atras}/>);
+			return(<DetalleOferta solicitud={this.state.ofertaAyuda} calificaciones={this.state.calificacionesO} calificacion={this.state.calOferta} correo={this.state.correo} nickname={this.state.nickname} atras={this.atras}/>);
 		}
 		else {
 			return(

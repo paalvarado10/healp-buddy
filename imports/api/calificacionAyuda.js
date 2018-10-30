@@ -2,7 +2,6 @@ import { Mongo } from 'meteor/mongo';
 import {Meteor} from "meteor/meteor"
 
 export const CalificacionAyuda = new Mongo.Collection('calificacionesAyuda');
-//
 if(Meteor.isServer)
 {
 	Meteor.publish("calificacionesAyuda", ()=>{
@@ -20,7 +19,6 @@ Meteor.methods(
 		  return calificacion;
 		},
 		"calificacionesAyuda.getSol":function(idAyuda){
-			console.log(idAyuda+"GET SOL");
 			const calificacion = CalificacionAyuda.find({ idAyuda:idAyuda}).fetch();
 			if(!calificacion)
 		  {

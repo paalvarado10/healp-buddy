@@ -155,12 +155,12 @@ renderCalificacion(calificaciones){
   });
   if(cal>=0){
     return (
-      <h4 className="hIem" style={centerTitle}>Calificacion: <span style={green}>{cal}</span></h4>
+      <h4 className="hIem" style={centerTitle}>Calificación: <span style={green}>{cal}</span></h4>
     );
   }
   else{
   return (
-      <h4 className="hIem" style={centerTitle}>Calificacion:<span style={red}>{cal}</span></h4>
+      <h4 className="hIem" style={centerTitle}>Calificación:<span style={red}>{cal}</span></h4>
   );
   }
 }
@@ -257,9 +257,9 @@ renderCalificacion(calificaciones){
       <h3 className="hIem" style={center}>{solicitud.fechaLimite}</h3>
       <h3 className="hIem" style={centerTitle}>Entidad: </h3>
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
+            {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <br/>
-      {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <button type="button" className="btnLis" onClick={this.eliminarSolicitud}>Eliminar</button>
       <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
@@ -291,9 +291,9 @@ renderCalificacion(calificaciones){
       <h3 className="hIem" style={center}>{solicitud.fechaLimite}</h3>
       <h3 className="hIem" style={centerTitle}>Entidad: </h3>
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
+            {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <br/>
-      {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <br/>
       {this.load()}
