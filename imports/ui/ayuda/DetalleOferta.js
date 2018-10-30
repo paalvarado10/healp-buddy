@@ -98,7 +98,7 @@ class DetalleOferta extends Component {
         <h4 className="hIem" style={center}>No</h4>
       );
     }
-  
+
   }
   atras(){
     this.props.atras(true);
@@ -300,10 +300,6 @@ class DetalleOferta extends Component {
       <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
       {this.renderCalificacion(this.props.calificaciones)}
       <br/>
-      <br/>
-      <button className="btnImg" onClick={this.increaseAnswerScore.bind()}><img className="imgBtn" src="/like.svg" alt="like"/></button>
-      <span>   </span>
-        <button className="btnImg" onClick={this.decreaseScore.bind()}><img className="imgBtn" src="/dislike.svg" alt="dislike"/></button>
       <br/>
       {this.load()}
       <br/>
