@@ -245,8 +245,6 @@ renderCalificacion(calificaciones){
       <br/>
       <h2 className="hIem" style={centerTitle}>Usuario que solicita la ayuda: </h2>
         <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
-        <h3 className="hIem" style={centerTitle}>Correo de contacto: </h3>
-      <h3 className="hIem" style={center}>{solicitud.correo}</h3>
       <h3 className="hIem" style={centerTitle}>Nombre de la solicitud: </h3>
       <h3 className="hIem" style={center}>{solicitud.nombreSolicitud}</h3>
       <h3 className="hIem" style={centerTitle}>Descripcion: </h3>
@@ -281,8 +279,6 @@ renderCalificacion(calificaciones){
       <br/>
       <h2 className="hIem" style={centerTitle}>Usuario que solicita la ayuda: </h2>
         <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
-        <h3 className="hIem" style={centerTitle}>Correo de contacto: </h3>
-      <h3 className="hIem" style={center}>{solicitud.correo}</h3>
       <h3 className="hIem" style={centerTitle}>Nombre de la solicitud: </h3>
       <h3 className="hIem" style={center}>{solicitud.nombreSolicitud}</h3>
       <h3 className="hIem" style={centerTitle}>Descripcion: </h3>
