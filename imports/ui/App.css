@@ -22,6 +22,41 @@
   display: inline-block;
   padding: 5px;
 }
+#page-numbers {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+.number-selected {
+  font-family: 'Concert One', cursive;
+  color: black;
+  margin-right: 0.3em;
+    user-select: auto;
+    cursor: pointer;
+    border: solid;
+    border-width: 1px;
+    border-radius: 100%;
+    border-color: black;
+    font-size: 2em;
+    padding: 1em;
+}
+.number {
+  font-family: 'Concert One', cursive;
+  color: blue;
+  margin-right: 0.3em;
+    color: blue;
+    user-select: auto;
+    cursor: pointer;
+    border: solid;
+    border-width: 1px;
+    border-radius: 100%;
+    border-color: black;
+    font-size: 2em;
+    padding: 1em;
+}
+.number:hover{
+  background-color: #C2C2C2;
+}
 .carta {
   border-radius: 25px;
   border-color: black;

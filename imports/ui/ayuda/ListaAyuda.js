@@ -6,37 +6,32 @@ import { withTracker } from 'meteor/react-meteor-data';
 import {SolicitudAyuda} from '../../api/solicitudayuda.js';
 import {CalificacionAyuda} from '../../api/calificacionAyuda.js';
 import AyudaItemLista from './AyudaItemLista.js';
+import PaginationA from '../pagination/PaginationA.js';
 import PropTypes from "prop-types";
+
 class ListaAyuda extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      pageOfItems: [],
       nickname: this.props.nickname,
     };
     this.renderList=this.renderList.bind(this);
     this.verDetalle = this.verDetalle.bind(this);
+    this.onChangePage = this.onChangePage.bind(this);
   }
+  onChangePage(pageOfItems) {
+     this.setState({ pageOfItems: pageOfItems });
+ }
   verDetalle(id){
-    // Meteor.call('calificacionesAyuda.get', id, this.state.nickname , (err, res)=>{
-    //   if(err){
-    //     console.log("error");
-    //     this.props.verDetalle(id, null);
-    //   }
-    //   else {
-    //   this.props.verDetalle(id, res);
-    //   }
-    // });
 this.props.verDetalle(id);
   }
   renderList(solicitudes){
     let list =solicitudes;
     if(list.length>0){
-      let render = list.map((item,i)=>{
-         return(<div  className="listao"><AyudaItemLista verDetalle={this.verDetalle} nickname={this.state.nickname} solicitud={item} key={i+"1"}/></div>)
-      });
       return(
         <div>
-        {render}
+        <PaginationA items={list} nickname={this.state.nickname} verDetalle={this.verDetalle} perPage={4}/>
         </div>
       );
     }
