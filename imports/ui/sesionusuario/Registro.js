@@ -10,6 +10,10 @@ var CryptoJS = require("crypto-js");
 let animals =["tigre","leon","cocodrilo","serpiente","aguila","lobo", "buho", "perro", "conejo", "rana", "zorro","gato", "delfin","tiburon","pollo"];
 let numbers =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 let action = ["saltarin","sonriente","comelon","jugueton","dormilon","incognito","sisipeto","boxeador","futbolero","azul","rojo","astuto","aleatorio","feliz","estudioso"];
+
+//Facilitar registro de usuarios a través del paquete de Accounts de Meteor
+import { Accounts } from 'meteor/accounts-base';
+
 class Registro extends Component {
   constructor(props) {
     super(props);
@@ -109,6 +113,29 @@ listo(){
       console.log("Ya se registro un usuario con ese correo, porfavor vuelva a intentarlo");
       this.setState({correo:""});
     });
+    
+    //Para evitar este desarrollo manual puedes usar el paquete de Accounts de la siguiente forma:
+     let newUser = {
+      username: this.username.value,
+      password: this.pass.value,
+      profile: {
+        
+        //En este atributo profile puedes incluir todos los atributos extra que tenga el usuario como su nickname.
+                       
+      }
+     
+    };
+    Accounts.createUser(newUser, (e) => {
+      console.log(Meteor.user());
+      if (!Meteor.user() || e) {
+        console.log('[ERROR] No se realiza el signup: ' + e.reason);
+       
+      }
+      else{
+        console.log('Exito. Se agrego el usuario: ', newUser);
+        
+      }
+}); 
   }
 }
 loged(correo,nickname){
