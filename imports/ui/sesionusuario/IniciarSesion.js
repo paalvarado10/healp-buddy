@@ -46,6 +46,21 @@ listo(){
     alert("Se requiere clave");
   }
   else {
+  // Juan Vega: Para facilitar el proceso de autenticacion e inicio de sesion hubieran posido usar el método Meteor.loginWithPassword()
+    //De esta forma, hubieran podido aprovechar el manejo de cuentas de Meteor evitando la implementación manual.
+    //A continuación, les pongo un ejemplo:
+    
+    Meteor.loginWithPassword(correo, clave, (e) => {
+      if (e) {
+        console.log('[ERROR] No se realiza el login: ' + e.reason);
+        
+      }
+      else {
+         console.log('Login exitoso');
+       
+      }
+    });
+    
     let sk=Meteor.settings.public.stripe.p_key;
     const ciphertext = CryptoJS.AES.encrypt(clave, sk).toString();
     var bytes  = CryptoJS.AES.decrypt(ciphertext, sk);
