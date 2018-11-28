@@ -148,7 +148,7 @@ th, td {
   font-family: 'Concert One', cursive;
   padding: 5px;
   overflow-x: hidden;
-  overflow-y: auto;  
+  overflow-y: hidden;  
   max-height: 50px;
 }
 .carousel .thumb img {

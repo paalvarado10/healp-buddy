@@ -35,8 +35,8 @@ this.props.verDetalleOferta(id);
       const currentTodos = items.slice(indexOfFirstTodo, indexOfLastTodo);
       const nickname = this.props.nickname;
       const renderTodos = currentTodos.map((item, index) => {
-
-        return (<div  className="listao"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={nickname} solicitud={item} key={index+"1"+currentPage}/></div>);
+        let rand = Math.random();
+        return (<div  className="listao" key={rand*index}><OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={nickname} solicitud={item} key={index+"1"+currentPage*rand}/></div>);
 
       });
       // Logic for displaying page numbers

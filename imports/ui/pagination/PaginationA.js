@@ -39,6 +39,7 @@ export default class PaginationA extends Component {
       const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
       const currentTodos = items.slice(indexOfFirstTodo, indexOfLastTodo);
       const nickname = this.props.nickname;
+      const perPage = this.props.perPage;
     this.setState({items:this.props.items, indexOfLastTodo:indexOfLastTodo, indexOfFirstTodo:indexOfFirstTodo, currentTodos:currentTodos});
     }
   }
@@ -48,7 +49,8 @@ export default class PaginationA extends Component {
       const nickname = this.props.nickname;
       const renderTodos = currentTodos.map((item, index) => {
         if(index<=currentTodos.length){
-            return (<div  className="listao"><AyudaItemLista verDetalle={this.verDetalle} nickname={nickname} solicitud={currentTodos[index]} key={index+"1"+currentPage}/></div>);
+          let rand = Math.random();
+            return (<div  className="listao" key={rand*index}><AyudaItemLista verDetalle={this.verDetalle} nickname={nickname} solicitud={currentTodos[index]} key={index+"1"+currentPage*rand}/></div>);
         }
 
       });
