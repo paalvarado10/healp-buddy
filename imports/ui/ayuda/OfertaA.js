@@ -10,6 +10,7 @@ class OfertaA extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id:this.props.id,
       nickname:this.props.nickname,
       correo: this.props.correo,
       nombreOferta:"",
@@ -33,7 +34,8 @@ class OfertaA extends Component {
   publicar()
   {
     console.log("Correo que publica: ", this.state.correo);
-    Meteor.call("ofertasA.add", this.state.nickname, this.state.correo, this.state.nombreOferta, this.state.descripcion, this.state.tipo,
+    
+    Meteor.call("ofertasA.add", this.state.id, this.state.nickname, this.state.correo, this.state.nombreOferta, this.state.descripcion, this.state.tipo,
       this.state.remunerada, this.state.entidad, (err, resultado)=>{
         if(resultado)
         {

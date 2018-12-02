@@ -10,6 +10,7 @@ class SolicitudA extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id:this.props.id,
       nickname:this.props.nickname,
       correo: this.props.correo,
       nombreSolicitud:"",
@@ -43,6 +44,7 @@ class SolicitudA extends Component {
   }
   listo(){
     let{
+      id,
       nickname,
       correo,
       nombreSolicitud,
@@ -87,7 +89,7 @@ class SolicitudA extends Component {
       }
       else{
         console.log("Correo publicador ", correo);
-      Meteor.call("solicitudayuda.add",nickname, correo, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad,(err,res)=>{if(res==="success"){
+      Meteor.call("solicitudayuda.add", id, nickname, correo, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad,(err,res)=>{if(res==="success"){
         alert("Solicitud Guaradada");
         this.atras();
       }else{

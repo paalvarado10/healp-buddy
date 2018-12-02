@@ -7,6 +7,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from "prop-types";
 import {OfertasAyuda} from '../../api/ofertasAyuda.js';
 import {CalificacionOferta} from '../../api/calificacionOferta.js';
+import {Chat} from "../chat/Chat.js";
 
 class DetalleOferta extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class DetalleOferta extends Component {
     this.state = {
       solicitud:this.props.solicitud,
       nickname: this.props.nickname,
+      id:this.props.id,
       correo:this.props.correo,
       cal:0,
       calificacion:this.props.calificacion,
@@ -200,50 +202,15 @@ class DetalleOferta extends Component {
       borderColor: "#FACC2E",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   };//
+
+
   if(this.state.auxilio)
   {
-
-      const divStyle = {
-    width: "80%",
-    margin: "auto",
-      borderStyle: "solid",
-    borderWidth: "2px",
-    borderRadius: "20px",
-    borderColor: "#041527",
-     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-      };
-      const w = {
-        width: "80%",
-        margin: "auto",
-      }
-      let {
-        nickname, nombreOferta, descripcion, tipo, fechaLimite, entidad,remunn
-      }=this.state;
-
-    return(
-        <div style={divStyle}>
-      <div style={w}>
-      <br/>
-
-      <br/>
-        <form>
-        <h4>Envía un email a {this.state.solicitud.nickname} para solicitar su ayuda</h4>
-          <div className="form-group">
-            <label htmlFor="formGroupExampleInput" className="letra">Asunto: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Asunto" onChange={this.handleChangeAsunto}/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="formGroupExampleInput2" className="letra">Body: </label>
-            <textarea className="form-control" rows="4" id="formGroupExampleInput2" placeholder="Redacta el contenido del correo" onChange={this.handleChangeCorreo}/>
-          </div>
-        <br/>
-        </form>
-        <button type="button" className="btnLis" onClick={this.enviar}>Enviar</button>
-        <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
+    return (
+      <div>
+        <Chat nickname={this.state.nickname} solicitud={this.state.solicitud} idMine={this.state.id} atras={this.atras}/>
       </div>
-      <br/>
-      <br/>
-      </div>);
+      );
   }
   else if(nickname===solicitud.nickname){
     return (

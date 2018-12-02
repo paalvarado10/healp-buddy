@@ -7,7 +7,7 @@ export default class PaginationA extends Component {
     this.state = {
       items:[],
       currentPage: 1,
-      todosPerPage: 4,
+      todosPerPage: 10,
       indexOfLastTodo:"",
       indexOfFirstTodo:"",
       currentTodos:[],

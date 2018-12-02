@@ -13,14 +13,24 @@ if(Meteor.isServer)
 
 Meteor.methods(
 {
-	"solicitudayuda.add":function(nickname, correo, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad){
-	      SolicitudAyuda.insert({nickname:nickname, correo: correo, nombreSolicitud:nombreSolicitud, descripcion:descripcion,
+	"solicitudayuda.add":function(id1, nickname, correo, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad){
+	      SolicitudAyuda.insert({id:id1,nickname:nickname, correo: correo, nombreSolicitud:nombreSolicitud, descripcion:descripcion,
            tipo:tipo, remunerada:remunerada, remunn:remunn, fechaLimite:fechaLimite, entidad:entidad});
 				return "success";
 	  },
 		"solicitudayuda.getAyudaID":function(id){
+
 			const solicitud = SolicitudAyuda.findOne({ _id: id});
-		  return solicitud;
+			if(!solicitud.id)
+			{
+				console.log("No tiene id");
+				SolicitudAyuda.remove(solicitud);
+				return undefined;
+			}
+			else{
+				return solicitud;
+			}
+		  
 		},
 	"solicitudayuda.getAyudaNombre":function(nombreSolicitud){
 		const solicitud = SolicitudAyuda.findOne({ nombreSolicitud: nombreSolicitud});

@@ -7,7 +7,7 @@ export default class PaginationO extends Component {
     this.state = {
       items:[],
       currentPage: 1,
-      todosPerPage: 4
+      todosPerPage: 10
     };
     this.handleClick = this.handleClick.bind(this);
     this.verDetalleOferta = this.verDetalleOferta.bind(this);

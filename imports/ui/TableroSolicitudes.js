@@ -12,6 +12,7 @@ import DetalleOferta from './ayuda/DetalleOferta.js';
 import {SolicitudAyuda} from '../api/solicitudayuda.js';
 import {OfertaAyuda} from '../api/ofertasAyuda.js';
 import PropTypes from "prop-types";
+import {Chat} from "./chat/Chat.js";
 
 class TableroSolicitudes extends Component {
 	constructor(props) {
@@ -20,6 +21,7 @@ class TableroSolicitudes extends Component {
 	    this.state = {
 				nuevaOfertaAyuda:false,
 				nuevaSolicitudAyuda:false,
+				id:this.props.id,
 				nickname:this.props.nickname,
 				correo:this.props.correo,
 				idSolAyuda:"",
@@ -32,6 +34,7 @@ class TableroSolicitudes extends Component {
 				calOferta:"",
 				calificaciones:[],
 				calificacionesO:[],
+				chat:false
 	    };
 
 	    this.publicarOfertaAyuda = this.publicarOfertaAyuda.bind(this);
@@ -42,10 +45,17 @@ class TableroSolicitudes extends Component {
 			this.verDetalleOferta = this.verDetalleOferta.bind(this);
 			this.verSolicitudes = this.verSolicitudes.bind(this);
 			this.verOfertas = this.verOfertas.bind(this);
+			this.irAlChat = this.irAlChat.bind(this);
 	}
 	atras(atras){
-		this.setState({nuevaOfertaAyuda:false,nuevaSolicitudAyuda:false,idSolAyuda:"",solAyuda:"", ofertaAyuda:"", idOfertaAyuda:""});
+		this.setState({nuevaOfertaAyuda:false,nuevaSolicitudAyuda:false,idSolAyuda:"",solAyuda:"", ofertaAyuda:"", idOfertaAyuda:"", chat:false});
 	}
+
+	irAlChat()
+	{
+		this.setState({chat:true});
+	}
+
 	verDetalle(id){
 		this.setState({idSolAyuda:id});
 		Meteor.call('calificacionesAyuda.getSol', id, (err, res)=>{
@@ -69,9 +79,10 @@ class TableroSolicitudes extends Component {
 		Meteor.call("solicitudayuda.getAyudaID",id,(err,res)=>{if(res){
 			this.setState({solAyuda:res,nuevaSolicitudAyuda:false, nuevaOfertaAyuda:false, ofertaAyuda:""});
 			}else{
-				alert("Error");
+				alert("Error tal vez no tiene id esa solicitud y es vieja, refresque la página");
 			}
 		});
+
 	}
 	verDetalleOferta(id)
 	{
@@ -99,7 +110,7 @@ class TableroSolicitudes extends Component {
 
 				});
 			}else{
-				alert("Error");
+				alert("Error tal vez no tiene id esa oferta y es vieja, refresque la página");
 			}
 		});
 	}
@@ -122,37 +133,51 @@ class TableroSolicitudes extends Component {
 
 	renderLista()
 	{
-		if(this.state.solicitudes)
+		if(this.state.chat)
 		{
-			return(<div>
-				<div>
-					<button className="btnSelec" onClick={this.verSolicitudes}>Solicitudes de ayuda</button>
-					<button className="btnOferta" onClick={this.verOfertas}>Ofertas de ayuda</button>
-					<button className="btnNueva" onClick={this.publicarSolicitudAyuda}>Publicar</button>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<ListaAyuda verDetalle={this.verDetalle}/>
+			return (
+		      <div>
+		        <Chat nickname={this.state.nickname} idMine={this.state.id} atras={this.atras}/>
+		      </div>
+		      );
+		}
+		else
+		{
+			if(this.state.solicitudes)
+			{
+				return(<div>
+					<div>
+						<button className="btnSelec" onClick={this.verSolicitudes}>Solicitudes de ayuda</button>
+						<button className="btnOferta" onClick={this.verOfertas}>Ofertas de ayuda</button>
+						<button className="btnNueva" onClick={this.publicarSolicitudAyuda}>Publicar</button>
+						<button className="btnNueva" onClick={this.irAlChat}>Chat</button>
+					</div>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<ListaAyuda verDetalle={this.verDetalle}/>
 
-			   </div>);
-		}
-		else if(this.state.ofertas)
-		{
-			return(<div>
-				<div>
-					<button className="btnOferta" onClick={this.verSolicitudes}>Solicitudes de ayuda</button>
-					<button className="btnSelec" onClick={this.verOfertas}>Ofertas de ayuda</button>
-					<button className="btnNueva" onClick={this.publicarOfertaAyuda}>Publicar</button>
-				</div>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<ListaOfertas verDetalleOferta={this.verDetalleOferta}/>
-			   </div>);
-		}
+				   </div>);
+			}
+			else if(this.state.ofertas)
+			{
+				return(<div>
+					<div>
+						<button className="btnOferta" onClick={this.verSolicitudes}>Solicitudes de ayuda</button>
+						<button className="btnSelec" onClick={this.verOfertas}>Ofertas de ayuda</button>
+						<button className="btnNueva" onClick={this.publicarOfertaAyuda}>Publicar</button>
+						<button className="btnNueva" onClick={this.irAlChat}>Chat</button>
+					</div>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<ListaOfertas verDetalleOferta={this.verDetalleOferta}/>
+				   </div>);
+			}
+		}	
+		
 
 	}
 
@@ -161,22 +186,22 @@ class TableroSolicitudes extends Component {
 		if(this.state.nuevaSolicitudAyuda)
 		{
 			return (
-				<SolicitudA nickname={this.state.nickname} correo={this.state.correo} atras={this.atras}/>
+				<SolicitudA id={this.state.id} nickname={this.state.nickname} correo={this.state.correo} atras={this.atras}/>
 			);
 		}
 		else if(this.state.nuevaOfertaAyuda)
 		{
 			return (
-				<OfertaA nickname={this.state.nickname} correo={this.state.correo} atras={this.atras}/>
+				<OfertaA id={this.state.id} nickname={this.state.nickname} correo={this.state.correo} atras={this.atras}/>
 			);
 		}
 		else if(this.state.solAyuda){
 			//ver detalle
-			return(<DetalleAyuda solicitud={this.state.solAyuda} nickname={this.state.nickname} calificaciones={this.state.calificaciones} calificacion={this.state.calAyuda} atras={this.atras}/>);
+			return(<DetalleAyuda solicitud={this.state.solAyuda} id={this.state.id} nickname={this.state.nickname} calificaciones={this.state.calificaciones} calificacion={this.state.calAyuda} atras={this.atras}/>);
 		}
 		else if(this.state.ofertaAyuda){
 			//ver detalle
-			return(<DetalleOferta solicitud={this.state.ofertaAyuda} calificaciones={this.state.calificacionesO} calificacion={this.state.calOferta} correo={this.state.correo} nickname={this.state.nickname} atras={this.atras}/>);
+			return(<DetalleOferta solicitud={this.state.ofertaAyuda} id={this.state.id} calificaciones={this.state.calificacionesO} calificacion={this.state.calOferta} correo={this.state.correo} nickname={this.state.nickname} atras={this.atras}/>);
 		}
 		else {
 			return(

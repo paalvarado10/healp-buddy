@@ -23,6 +23,7 @@ class App extends Component {
       loggeado:false,
       correo:"",
       nickname:"",
+      id:"",
       solicitarAyuda:false
     };
     this.iniciarSesion = this.iniciarSesion.bind(this);
@@ -85,20 +86,23 @@ renderBtnSesion()
 }
 
 //
-loged(bol,correo,nickname){
-  this.setState({loggeado:true, correo:correo, nickname:nickname});
+loged(bol,correo,nickname, id1){
+  this.setState({loggeado:true, correo:correo, nickname:nickname, id:id1});
+  console.log("id del usuario es ", id1);
 }
 showContent()
 {
   let nickname = this.state.nickname;
   let correo = this.state.correo;
+  let id = this.state.id;
+
   if(this.state.loggeado)
   {
     return(<div>
       <br/>
       <br/>
       <br/>
-      <TableroSolicitudes nickname={nickname} correo={correo}/>
+      <TableroSolicitudes id={id} nickname={nickname} correo={correo}/>
       </div>);
   }
   else

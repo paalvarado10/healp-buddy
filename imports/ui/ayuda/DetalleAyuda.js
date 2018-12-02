@@ -5,12 +5,15 @@ import { Meteor } from "meteor/meteor";
 import PropTypes from "prop-types";
 import { withTracker } from 'meteor/react-meteor-data';
 import {CalificacionAyuda} from '../../api/calificacionAyuda.js';
+import {Chat} from "../chat/Chat.js";
+
 class DetalleAyuda extends Component {
   constructor(props) {
     super(props);
     this.state = {
       solicitud:this.props.solicitud,
       nickname: this.props.nickname,
+      id:this.props.id,
       cal:0,
       calificacion:this.props.calificacion,
       asunto:"",
@@ -28,6 +31,7 @@ class DetalleAyuda extends Component {
     this.handleChangeAsunto = this.handleChangeAsunto.bind(this);
     this.handleChangeCorreo = this.handleChangeCorreo.bind(this);
     this.darAyuda = this.darAyuda.bind(this);
+   // this.chat = this.chat.bind(this);
   }
 
   enviar()
@@ -78,6 +82,9 @@ class DetalleAyuda extends Component {
       }
 
   }
+
+
+
   eliminarSolicitud(){
     Meteor.call("solicitudayuda.eliminarAyudaNombre",this.props.solicitud._id);
 
@@ -105,8 +112,8 @@ class DetalleAyuda extends Component {
     }
 
   }
-  atras(){
-    this.props.atras(true);
+  atras(atras){
+    this.props.atras(atras);
 
   }
 increaseAnswerScore(){
@@ -163,7 +170,7 @@ renderCalificacion(calificaciones){
       <h4 className="hIem" style={centerTitle}>Calificación:<span style={red}>{cal}</span></h4>
   );
   }
-}
+}//
     render() {
       let cal = this.state.cal;
       let solicitud = this.state.solicitud;
@@ -192,49 +199,16 @@ renderCalificacion(calificaciones){
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   };
   let nickname = this.state.nickname;
+  let idMine = this.state.id;
   if(this.state.ayudar)
   {
-     const divStyle = {
-    width: "80%",
-    margin: "auto",
-      borderStyle: "solid",
-    borderWidth: "2px",
-    borderRadius: "20px",
-    borderColor: "#041527",
-     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-      };
-      const w = {
-        width: "80%",
-        margin: "auto",
-      }
-      let {
-        nickname, nombreSolicitud, descripcion, tipo, fechaLimite, entidad,remunn
-      }=this.state;
-
-    return(
-        <div style={divStyle}>
-      <div style={w}>
-      <br/>
-
-      <br/>
-        <form>
-        <h4>Envía un email a {this.state.solicitud.nickname} para brindarle ayuda</h4>
-          <div className="form-group">
-            <label htmlFor="formGroupExampleInput" className="letra">Asunto: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Asunto" onChange={this.handleChangeAsunto}/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="formGroupExampleInput2" className="letra">Body: </label>
-            <textarea className="form-control" rows="4" id="formGroupExampleInput2" placeholder="Redacta el contenido del correo" onChange={this.handleChangeCorreo}/>
-          </div>
-        <br/>
-        </form>
-        <button type="button" className="btnLis" onClick={this.enviar}>Enviar</button>
-        <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
+    return (
+      <div>
+        <Chat nickname={nickname} solicitud={solicitud} idMine={idMine} atras={this.atras}/>
       </div>
-      <br/>
-      <br/>
-      </div>);
+      );//
+
+    //{this.chat(nickname, solicitud.nickname, solicitud.id, idMine)}  
   }
   else if(this.state.nickname===solicitud.nickname){
     return (
