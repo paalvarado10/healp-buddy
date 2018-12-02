@@ -92,18 +92,18 @@ let {
   clave,
 }=this.state;
     return (
-      <div style={divStyle}>
+      <div style={divStyle} aria-label="Formulario para iniciar sesion">
 <div style={w}>
       <br/>
         <form>
           <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput2" className="letra">Correo: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="correo@correo.com"value={correo} onChange={this.handleChangeCorreo}/>
+            <label htmlFor="correo" className="letra">Correo: </label>
+            <input aria-required="true" type="text" className="form-control" id="correo" placeholder="correo@correo.com"value={correo} onChange={this.handleChangeCorreo}/>
           </div>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput4" className="letra">Contraseña: </label>
-            <input type="password" className="form-control" id="formGroupExampleInput4" placeholder="Contraseña" value={clave} onChange={this.handleChangeClave}/>
+            <label htmlFor="clave" className="letra">Contraseña: </label>
+            <input aria-required="true" type="password" className="form-control" id="clave" placeholder="Contraseña" value={clave} onChange={this.handleChangeClave}/>
           </div>
         </form>
         <br/>

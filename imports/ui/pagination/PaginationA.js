@@ -7,7 +7,7 @@ export default class PaginationA extends Component {
     this.state = {
       items:[],
       currentPage: 1,
-      todosPerPage: 10,
+      todosPerPage: 8,
       indexOfLastTodo:"",
       indexOfFirstTodo:"",
       currentTodos:[],
@@ -50,11 +50,13 @@ export default class PaginationA extends Component {
       const renderTodos = currentTodos.map((item, index) => {
         if(index<=currentTodos.length){
           let rand = Math.random();
-            return (<div  className="listao" key={rand*index}><AyudaItemLista verDetalle={this.verDetalle} nickname={nickname} solicitud={currentTodos[index]} key={index+"1"+currentPage*rand}/></div>);
+            return (<div  className="listao" key={rand*index} role="listitem"><AyudaItemLista verDetalle={this.verDetalle} nickname={nickname} solicitud={currentTodos[index]} key={index+"1"+currentPage*rand}/></div>);
         }
 
       });
-      return renderTodos
+      return (<div role="list">
+      {renderTodos}
+      </div>);
   }
   else {
     return null;

@@ -25,11 +25,11 @@ export default class AyudaItemLista extends Component {
     if(solicitud.remunerada){
       return(
         <div style={divStyle}>
-        <h2 className="hIem" style={divStyleT}>{solicitud.nombreSolicitud}</h2>
+        <h2 className="hIem" style={divStyleT} aria-label={"Nombre de la solicitud de ayuda:   "+solicitud.nombreSolicitud}>{solicitud.nombreSolicitud}</h2>
         <br/>
-        <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
+        <h4 className="hIem" style={divStyle} aria-label={"Descripcion de la solicitud:    "+solicitud.descripcion}>{solicitud.descripcion}</h4>
         <br/>
-        <h4 className="hIem" style={divStyle}>{"Remuneración: $"+solicitud.remunn}</h4>
+        <h4 className="hIem" style={divStyle} aria-label={"Remuneracion ofrecida por la ayuda:    "+solicitud.remunn}>{"Remuneración: $"+solicitud.remunn}</h4>
         <h4 className="hIem" style={divStyle}>{"Disponible hasta: "+solicitud.fechaLimite}</h4>
         </div>
       );
@@ -37,11 +37,11 @@ export default class AyudaItemLista extends Component {
     else{
       return(
         <div style={divStyle}>
-        <h2 className="hIem" style={divStyleT}>{solicitud.nombreSolicitud}</h2>
+        <h2 className="hIem" style={divStyleT} aria-label={"Nombre de la solicitud de ayuda: "+solicitud.nombreSolicitud}>{solicitud.nombreSolicitud}</h2>
         <br/>
-        <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
+        <h4 className="hIem" style={divStyle} aria-label={"Descripcion de la solicitud: "+solicitud.descripcion}>{solicitud.descripcion}</h4>
         <br/>
-        <h4 className="hIem" style={divStyle}>{solicitud.fechaLimite}</h4>
+        <h4 className="hIem" style={divStyle}>{"Disponible hasta: "+solicitud.fechaLimite}</h4>
         </div>
       );
     }

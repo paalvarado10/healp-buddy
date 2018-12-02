@@ -180,7 +180,7 @@ showContent()
   render() {
     return (
       <div>
-           <nav className="barra">
+           <nav className="barra" role="navigation">
                <a> <img className="q" src="/q.png" alt="help buddy icon"/> Help Buddy </a>
 
                      {this.renderBtnSesion()}

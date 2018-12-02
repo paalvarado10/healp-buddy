@@ -7,7 +7,7 @@ export default class PaginationO extends Component {
     this.state = {
       items:[],
       currentPage: 1,
-      todosPerPage: 10
+      todosPerPage: 8
     };
     this.handleClick = this.handleClick.bind(this);
     this.verDetalleOferta = this.verDetalleOferta.bind(this);
@@ -36,7 +36,7 @@ this.props.verDetalleOferta(id);
       const nickname = this.props.nickname;
       const renderTodos = currentTodos.map((item, index) => {
         let rand = Math.random();
-        return (<div  className="listao" key={rand*index}><OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={nickname} solicitud={item} key={index+"1"+currentPage*rand}/></div>);
+        return (<div  className="listao" key={rand*index} role="listitem"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={nickname} solicitud={item} key={index+"1"+currentPage*rand}/></div>);
 
       });
       // Logic for displaying page numbers
@@ -73,7 +73,9 @@ this.props.verDetalleOferta(id);
       });
       return (
         <div>
-            {renderTodos}
+        <div role="list">
+        {renderTodos}
+        </div>
           <ul id="page-numbers">
             {renderPageNumbers}
           </ul>

@@ -153,24 +153,24 @@ let {
     return (
       <div style={divStyle}>
 {this.renderError(error)}
-<div style={w}>
+<div style={w} aria-label="Formulario para registrarse">
       <br/>
         <form>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput" className="letra">Nombre y apellido: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Nombre y Apellido" value={nombre} onChange={this.handleChangeName}/>
+            <label htmlFor="nombreYApellido" className="letra">Nombre y apellido: </label>
+            <input aria-required="true" type="text" className="form-control" id="nombreYApellido" placeholder="Nombre y Apellido" value={nombre} onChange={this.handleChangeName}/>
           </div>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput2" className="letra">Correo: </label>
-            <input type="email" className="form-control" id="formGroupExampleInput2" placeholder="correo@correo.com"value={correo} onChange={this.handleChangeCorreo}/>
+            <label htmlFor="correo" className="letra">Correo: </label>
+            <input aria-required="true" type="email" className="form-control" id="correo" placeholder="correo@correo.com"value={correo} onChange={this.handleChangeCorreo}/>
           </div>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput4" className="letra">Contraseña: </label>
-            <input type="password" className="form-control" id="formGroupExampleInput4" placeholder="Contraseña" value={clave} onChange={this.handleChangeClave}/>
+            <label htmlFor="clave" className="letra">Contraseña: </label>
+            <input aria-required="true" type="password" className="form-control" id="clave" placeholder="Contraseña" value={clave} onChange={this.handleChangeClave}/>
           </div>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput5" className="letra">Confirmar contraseña: </label>
-            <input type="password" className="form-control" id="formGroupExampleInput5" placeholder="Confirmar contraseña" value={repetirClave} onChange={this.handleChangeRClave}/>
+            <label htmlFor="confirmarclave" className="letra">Confirmar contraseña: </label>
+            <input aria-required="true" type="password" className="form-control" id="confirmarclave" placeholder="Confirmar contraseña" value={repetirClave} onChange={this.handleChangeRClave}/>
           </div>
         </form>
         <br/>

@@ -36,14 +36,16 @@ class ListaOfertas extends Component {
 
             let rand = Math.random();
             return(
-              <div  className="listao" key={rand}><OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/></div>)
+              <div  className="listao" key={rand} role="listitem"><OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/></div>)
           }
         });
         return(<div>
           <h2 className="hIem">{"Resultado de la busqueda: "+ busqueda }</h2>
           <br/>
           <br/>
+          <div role="list">
           {items}
+          </div>
           </div>);
       }
       else {
@@ -67,9 +69,9 @@ class ListaOfertas extends Component {
     return (
       <div>
       <h1 className="hIem">Listado de Ofertas de Ayuda</h1>
-      <form>
+      <form role="search">
       <label htmlFor="search" className="letra">Buscar por nombre: </label>
-      <input type="text" className="form-control" placeholder="Nombre solicitud.." id="search" value={busqueda} onChange={this.onChangeBusqueda}/>
+      <input aria-label="Buscar Solicitud por nombre" type="text" className="form-control" placeholder="Nombre solicitud.." id="search" value={busqueda} onChange={this.onChangeBusqueda}/>
       </form>
       <br/>
       <br/>

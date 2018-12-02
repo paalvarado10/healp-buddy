@@ -34,7 +34,7 @@ class OfertaA extends Component {
   publicar()
   {
     console.log("Correo que publica: ", this.state.correo);
-    
+
     Meteor.call("ofertasA.add", this.state.id, this.state.nickname, this.state.correo, this.state.nombreOferta, this.state.descripcion, this.state.tipo,
       this.state.remunerada, this.state.entidad, (err, resultado)=>{
         if(resultado)
@@ -86,20 +86,20 @@ class OfertaA extends Component {
 
       return (
     <div style={divStyle}>
-      <div style={w}>
+      <div style={w} aria-label="Formulario para crear una oferta de ayuda">
       <br/>
         <form>
           <div className="form-group">
             <label htmlFor="formGroupExampleInput" className="letra">Título: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Titulo de la oferta" value={nombreOferta} onChange={this.nombreOfertaChange}/>
+            <input aria-required="true" type="text" className="form-control" id="formGroupExampleInput" placeholder="Titulo de la oferta" value={nombreOferta} onChange={this.nombreOfertaChange}/>
           </div>
           <div className="form-group">
             <label htmlFor="formGroupExampleInput2" className="letra">Descripción: </label>
-            <textarea className="form-control" rows="2" id="formGroupExampleInput2" placeholder="Descripcion de la solicitud"value={descripcion} onChange={this.descripcionChange}/>
+            <textarea aria-required="true" className="form-control" rows="2" id="formGroupExampleInput2" placeholder="Descripcion de la solicitud"value={descripcion} onChange={this.descripcionChange}/>
           </div>
           <div className="form-group">
             <label htmlFor="formControlSelect" className="letra">Tipo: </label>
-            <select className="form-control" id="formControlSelect" value={tipo} onChange={this.tipoChange}>
+            <select aria-required="true" className="form-control" id="formControlSelect" value={tipo} onChange={this.tipoChange}>
             <option value="Personal">Personal</option>
             <option value="Monitoria">Monitoria</option>
             <option value="Recomendacion">Recomendacion</option>
@@ -121,7 +121,7 @@ class OfertaA extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="formGroupExampleInput6" className="letra">Entidad: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput6" placeholder="Enitidad u Organización" value={entidad} onChange={this.entidadChange}/>
+            <input aria-required="true" type="text" className="form-control" id="formGroupExampleInput6" placeholder="Enitidad u Organización" value={entidad} onChange={this.entidadChange}/>
           </div>
         </form>
         <br/>
@@ -131,8 +131,7 @@ class OfertaA extends Component {
       <br/>
       <br/>
       </div>
-
-       );//
+       );
     }
 
   }

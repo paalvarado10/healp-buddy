@@ -33,9 +33,9 @@ export default class OfertaItemLista extends Component {
     if(solicitud.remunerada){
       return(
         <div style={divStyle}>
-        <h2 className="hIem" style={divStyleT}>{solicitud.nombreOferta}</h2>
+        <h2 className="hIem" style={divStyleT} aria-label={"Nombre de la oferta de ayuda:   "+solicitud.nombreOferta}>{solicitud.nombreOferta}</h2>
         <br/>
-        <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
+        <h4 className="hIem" style={divStyle} aria-label={"Descripcion de la oferta:   "+solicitud.descripcion}>{solicitud.descripcion}</h4>
         <br/>
         <h4 className="hIem" style={divStyle}>{"Cobro remuneración"}</h4>
         </div>
@@ -44,9 +44,9 @@ export default class OfertaItemLista extends Component {
     else{
       return(
         <div style={divStyle}>
-        <h2 className="hIem" style={divStyleT}>{solicitud.nombreOferta}</h2>
+        <h2 className="hIem" style={divStyleT} aria-label={"Nombre de la oferta de ayuda:   "+solicitud.nombreOferta}>{solicitud.nombreOferta}</h2>
         <br/>
-        <h4 className="hIem" style={divStyle}>{solicitud.descripcion}</h4>
+        <h4 className="hIem" style={divStyle} aria-label={"Descripcion de la oferta:   "+solicitud.descripcion}>{solicitud.descripcion}</h4>
         </div>
       );
     }

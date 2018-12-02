@@ -176,8 +176,8 @@ class TableroSolicitudes extends Component {
 					<ListaOfertas verDetalleOferta={this.verDetalleOferta}/>
 				   </div>);
 			}
-		}	
-		
+		}
+
 
 	}
 

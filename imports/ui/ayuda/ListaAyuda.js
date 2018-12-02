@@ -42,7 +42,7 @@ this.props.verDetalle(id);
           if(solicitud.nombreSolicitud.startsWith(busqueda)){
             let rand = Math.random();
             return(
-          <div  className="listao" key={rand}>
+          <div  className="listao" key={rand} role="listitem">
           <AyudaItemLista verDetalle={this.verDetalle} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/>
           </div>)
           }
@@ -52,7 +52,10 @@ this.props.verDetalle(id);
             <h2 className="hIem">{"Resultado de la busqueda: "+ busqueda }</h2>
             <br/>
             <br/>
+
+            <div role="list">
           {items}
+          </div>
           <br/>
           <br/>
           </div>
@@ -85,9 +88,9 @@ this.props.verDetalle(id);
       return (
         <div>
         <h1 className="hIem">Listado de Solicitudes de Ayuda</h1>
-        <form>
+        <form role="search">
         <label htmlFor="search" className="letra">Buscar por nombre: </label>
-        <input type="text" className="form-control" placeholder="Nombre solicitud.." id="search" value={busqueda} onChange={this.onChangeBusqueda}/>
+        <input aria-label="Buscar ayuda por nombre" type="text" className="form-control" placeholder="Nombre solicitud.." id="search" value={busqueda} onChange={this.onChangeBusqueda}/>
         </form>
         <div style={w}>
         {this.renderList(lista)}
@@ -99,9 +102,9 @@ this.props.verDetalle(id);
     return (
       <div>
       <h1 className="hIem">Listado de Solicitudes de Ayuda</h1>
-      <form>
-      <label htmlFor="search" className="letra">Buscar por nombre: </label>
-      <input type="text" className="form-control" placeholder="Nombre solicitud.." id="search" value={busqueda} onChange={this.onChangeBusqueda}/>
+      <form role="search">
+      <label htmlFor="BarraBusquedaAyuda" className="letra">Buscar por nombre: </label>
+      <input aria-label="Buscar ayuda por nombre" type="text" className="form-control" placeholder="Nombre solicitud.." id="BarraBusquedaAyuda" value={busqueda} onChange={this.onChangeBusqueda}/>
       </form>
       <div style={w}>
       {this.renderList(this.props.solicitudesAyuda)}

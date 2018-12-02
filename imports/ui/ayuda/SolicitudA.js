@@ -165,21 +165,21 @@ let {
         <h1 className="hIem">Crear Solicitud de Ayuda</h1>
         <br/>
     <div style={divStyle}>
-      <div style={w}>
+      <div style={w} aria-label="Formulario para crear una solicitud de ayuda">
       {this.renderError(error)}
       <br/>
         <form>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput" className="letra">Título de la Solicitud: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Titulo de la solicitud" value={nombreSolicitud} onChange={this.nombreSolicitudChange}/>
+            <label htmlFor="tituloSolicitudAyuda" className="letra">Título de la Solicitud: </label>
+            <input aria-required="true" type="text" className="form-control" id="tituloSolicitudAyuda" placeholder="Titulo de la solicitud" value={nombreSolicitud} onChange={this.nombreSolicitudChange}/>
           </div>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput2" className="letra">Descripción: </label>
-            <textarea className="form-control" rows="2" id="formGroupExampleInput2" placeholder="Descripcion de la solicitud"value={descripcion} onChange={this.descripcionChange}/>
+            <label htmlFor="descripcionSolicitudAyuda" className="letra">Descripción: </label>
+            <textarea aria-required="true" className="form-control" rows="2" id="descripcionSolicitudAyuda" placeholder="Descripcion de la solicitud"value={descripcion} onChange={this.descripcionChange}/>
           </div>
           <div className="form-group">
-            <label htmlFor="formControlSelect" className="letra">Tipo: </label>
-            <select className="form-control" id="formControlSelect" value={tipo} onChange={this.tipoChange}>
+            <label htmlFor="tipoSolicitudAyuda" className="letra">Tipo: </label>
+            <select aria-required="true" className="form-control" id="tipoSolicitudAyuda" value={tipo} onChange={this.tipoChange}>
             <option value="Personal">Personal</option>
             <option value="Monitoria">Monitoria</option>
             <option value="Recomendacion">Recomendacion</option>
@@ -190,9 +190,9 @@ let {
           <label className="letra">
           Remunerada:
           <input
-            name="isGoing"
+            name="remunerada"
             type="checkbox"
-            checked={this.state.isGoing}
+            checked={this.state.remunerada}
             onChange={this.handleInputChange} />
         </label>
         {this.renderRemunerada(remunn)}
@@ -201,16 +201,16 @@ let {
           <br/>
           <br/>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput5" className="letra">Fecha Limite: </label>
-            <input type="date" className="form-control" id="formGroupExampleInput5" placeholder="Fecha Limite" value={fechaLimite} onChange={this.fechaChange}/>
+            <label htmlFor="fechaSolicitudAyuda" className="letra">Fecha Limite: </label>
+            <input type="date" aria-required="true" className="form-control" id="fechaSolicitudAyuda" placeholder="Fecha Limite" value={fechaLimite} onChange={this.fechaChange}/>
           </div>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput6" className="letra">Entidad: </label>
-            <input type="text" className="form-control" id="formGroupExampleInput6" placeholder="Enitidad u Organización" value={entidad} onChange={this.entidadChange}/>
+            <label htmlFor="entidadSolicitudAyuda" className="letra">Entidad: </label>
+            <input type="text" aria-required="true" className="form-control" id="entidadSolicitudAyuda" placeholder="Enitidad u Organización" value={entidad} onChange={this.entidadChange}/>
           </div>
         </form>
         <br/>
-        <button type="button" className="btnLis" onClick={this.listo}>Listo</button>
+        <button type="button" className="btnLis" onClick={this.listo}>Publicar</button>
         <button type="button" className="btnOut" onClick={this.atras}>Atras</button>
       </div>
       <br/>
