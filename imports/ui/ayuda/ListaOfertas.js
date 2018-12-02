@@ -39,7 +39,12 @@ class ListaOfertas extends Component {
               <div  className="listao" key={rand}><OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/></div>)
           }
         });
-        return(<div>{items}</div>);
+        return(<div>
+          <h2 className="hIem">{"Resultado de la busqueda: "+ busqueda }</h2>
+          <br/>
+          <br/>
+          {items}
+          </div>);
       }
       else {
       return(
@@ -66,6 +71,8 @@ class ListaOfertas extends Component {
       <label htmlFor="search" className="letra">Buscar por nombre: </label>
       <input type="text" className="form-control" placeholder="Nombre solicitud.." id="search" value={busqueda} onChange={this.onChangeBusqueda}/>
       </form>
+      <br/>
+      <br/>
       <div style={w}>
       {this.renderList(this.props.ofertasAyuda)}
       </div>
