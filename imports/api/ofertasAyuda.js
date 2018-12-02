@@ -14,16 +14,23 @@ if(Meteor.isServer)
 Meteor.methods(
 {
 	"ofertasA.add":function(id1, nickname, correo, nombreOferta, descripcion, tipo, remunerada, entidad){
-	
+	check(nickname, String);
+		check(correo, String);
+		check(nombreOferta, String);
+		check(descripcion, String);
+		check(entidad, String);
+
 	      OfertasAyuda.insert({id:id1, nickname:nickname, correo:correo, nombreOferta:nombreOferta, descripcion:descripcion,
            tipo:tipo, remunerada:remunerada, entidad:entidad});
 				return true;
 	  },
 	"ofertasAyuda.getOfertaNombre":function(nombreSolicitud){
+		check(nombreOferta, String);
 		const oferta = OfertasAyuda.findOne({ nombreOferta: nombreOferta});
 	  return oferta;
 	},
 	"ofertasAyuda.getOfertaID":function(id){
+		check(id, String);
 			const oferta = OfertasAyuda.findOne({ _id: id});
 			if(!oferta.id)
 			{
@@ -38,6 +45,7 @@ Meteor.methods(
 		  
 		},
 	  "ofertasAyuda.eliminarOfertaNombre":function(id){
+			check(id, String);
 	  const oferta = OfertasAyuda.findOne({ _id: id});
 	  OfertasAyuda.remove(oferta);
 	},

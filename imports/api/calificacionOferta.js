@@ -13,9 +13,14 @@ if(Meteor.isServer)
 Meteor.methods(
 {
 	"calificacionesoferta.add":function(idOferta, nickname, puntos){
+		check(idOferta, String);
+		check(nickname, String);
+		check(puntos, Number);
 				return CalificacionOferta.insert({nickname:nickname, idOferta:idOferta, puntos:puntos});
 	  },
 		"calificacionesoferta.get":function(idOferta, nickname){
+			check(idOferta, String);
+			check(nickname, String);
 			const calificacion = CalificacionOferta.findOne({ idOferta:idOferta ,nickname:nickname});
 		  return calificacion;
 		},
@@ -24,6 +29,7 @@ Meteor.methods(
 		return calificacion;
 	},
 	"calificacionesoferta.getSol":function(idOferta){
+		check(idOferta, String);
 		const calificacion = CalificacionOferta.find({ idOferta:idOferta}).fetch();
 		if(!calificacion)
 		{
