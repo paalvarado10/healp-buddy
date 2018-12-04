@@ -32,27 +32,29 @@
 }
 .number-selected {
   font-family: 'Concert One', cursive;
-  color: black;
+  color: #00A0D8;
   margin-right: 0.3em;
     user-select: auto;
     cursor: pointer;
-    border: solid;
+    border-bottom: solid;
+    border-top: solid;
     border-width: 1px;
-    border-radius: 100%;
-    border-color: black;
+    border-radius: 10%;
+    border-color: #00A0D8;
     font-size: 2em;
     padding: 1em;
 }
 .number {
   font-family: 'Concert One', cursive;
-  color: blue;
+  color: black;
   margin-right: 0.3em;
-    color: blue;
+    color: black;
     user-select: auto;
     cursor: pointer;
-    border: solid;
+    border-bottom: solid;
+    border-top: solid;
     border-width: 1px;
-    border-radius: 100%;
+    border-radius: 10%;
     border-color: black;
     font-size: 2em;
     padding: 1em;

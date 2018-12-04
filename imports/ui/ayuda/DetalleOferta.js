@@ -217,12 +217,10 @@ class DetalleOferta extends Component {
       <div>
       <br/>
       <div style={divStyle} key={solicitud._id}>
-      <br/>
+      
       <br/>
       <h2 className="hIem" style={centerTitle}>Usuario que ofrece la ayuda: </h2>
         <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
-        <h3 className="hIem" style={centerTitle}>Correo de contacto: </h3>
-      <h3 className="hIem" style={center}>{solicitud.correo}</h3>
       <h3 className="hIem" style={centerTitle}>Título de la oferta: </h3>
       <h3 className="hIem" style={center}>{solicitud.nombreOferta}</h3>
       <h3 className="hIem" style={centerTitle}>Descripcion: </h3>
@@ -231,8 +229,6 @@ class DetalleOferta extends Component {
       <h3 className="hIem" style={center}>{solicitud.tipo}</h3>
       <h3 className="hIem" style={centerTitle}>Cobra remuneración: </h3>
       {this.renderSolicitud(solicitud)}
-      <h3 className="hIem" style={centerTitle}>Entidad: </h3>
-      <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
       {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <br/>
@@ -265,8 +261,6 @@ class DetalleOferta extends Component {
       <h3 className="hIem" style={center}>{solicitud.tipo}</h3>
       <h3 className="hIem" style={centerTitle}>Cobra remuneración: </h3>
       {this.renderSolicitud(solicitud)}
-      <h3 className="hIem" style={centerTitle}>Entidad: </h3>
-      <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
       {this.renderCalificacion(this.props.calificaciones)}
       <br/>
       <br/>
@@ -279,6 +273,8 @@ class DetalleOferta extends Component {
       <br/>
       <br/>
       </div>
+      <br/>
+      <br/>
       </div>
     );
   }

@@ -154,10 +154,11 @@ class TableroSolicitudes extends Component {
 					</div>
 					<br/>
 					<br/>
-					<br/>
-					<br/>
 					<ListaAyuda verDetalle={this.verDetalle}/>
-
+					<br/>
+					<br/>
+					<br/>
+					
 				   </div>);
 			}
 			else if(this.state.ofertas)
@@ -171,9 +172,10 @@ class TableroSolicitudes extends Component {
 					</div>
 					<br/>
 					<br/>
-					<br/>
-					<br/>
 					<ListaOfertas verDetalleOferta={this.verDetalleOferta}/>
+					<br/>
+					<br/><br/>
+					
 				   </div>);
 			}
 		}

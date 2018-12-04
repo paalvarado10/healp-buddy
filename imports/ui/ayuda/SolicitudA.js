@@ -16,7 +16,7 @@ class SolicitudA extends Component {
       nombreSolicitud:"",
       descripcion:"",
       tipo:"",
-      remunerada:"",
+      remunerada:false,
       fechaLimite:"",
       entidad:"",
       remunn:0,
@@ -68,9 +68,6 @@ class SolicitudA extends Component {
     else if(fechaLimite===""){
       this.setState({error:"Brinde una fecha limite para guardar la solicitud"});
     }
-    else if(entidad===""){
-      this.setState({error:"Brinde una entidad para guardar la solicitud"});
-    }
     else{
       if(!remunerada){
         remunn=0;
@@ -103,7 +100,8 @@ class SolicitudA extends Component {
     this.props.atras(true);
   }
   remunnChange(event){
-    this.setState({remunn:event.target.value});
+    console.log("cambia");
+    this.setState({remunn:event.target.value, remunerada:true});
   }
   nombreSolicitudChange(event){
     this.setState({nombreSolicitud:event.target.value});
@@ -125,7 +123,7 @@ class SolicitudA extends Component {
     if(r){
       return (
         <div>
-        <input type="number" min="0" max="100000000" className="form-control" id="formGroupExampleInputN" placeholder="Titulo de la solicitud" value={remunn} onChange={this.remunnChange}/>
+        <input type="number" min="0" max="100000000" className="form-control" id="formGroupExampleInputN" placeholder="Valor de la remuneración" value={remunn} onChange={this.remunnChange}/>
         </div>
       );//
     }
@@ -179,33 +177,43 @@ let {
           </div>
           <div className="form-group">
             <label htmlFor="tipoSolicitudAyuda" className="letra">Tipo: </label>
-            <select aria-required="true" className="form-control" id="tipoSolicitudAyuda" value={tipo} onChange={this.tipoChange}>
-            <option value="Personal">Personal</option>
-            <option value="Monitoria">Monitoria</option>
-            <option value="Recomendacion">Recomendacion</option>
-            <option value="Otro">otro</option>
+            <select aria-required="true" className="form-control" id="tipoSolicitudAyuda" placeholder="Seleccione alguna opción" value={tipo} onChange={this.tipoChange}>
+            <option value="">Seleccione alguna opción</option>
+            <option value="Consejería y situaciones personales">Consejería y situaciones personales</option>
+            <option value="Ayuda académica">Ayuda académica</option>
+            <option value="Recomendacion">Recomendación</option>
+            <option value="Restaurantes y comida">Restaurantes y comida</option>
+            <option value="Tecnología">Tecnología</option>
+            <option value="Compras o ventas">Compras o ventas</option>
+            <option value="Ropa y modas">Ropa y modas</option>
+            <option value="Ocio y entretenimiento">Ocio y entretenimiento</option>
+            <option value="Música">Musica</option>
+            <option value="Investigación y proyectos">Investigación y proyectos</option>
+            <option value="Otro">Otro</option>
           </select>
           </div>
           <div className="form-group">
-          <label className="letra">
-          Remunerada:
-          <input
-            name="remunerada"
-            type="checkbox"
-            checked={this.state.remunerada}
-            onChange={this.handleInputChange} />
-        </label>
+            <label className="letra">
+            Remunerada:
+            <input
+              name="remunerada"
+              type="checkbox"
+              checked={this.state.remunerada}
+              onChange={this.handleInputChange} />
+            </label>
         {this.renderRemunerada(remunn)}
+        
           </div>
-          <br/>
-          <br/>
-          <br/>
+
           <div className="form-group">
+          <br />
+          <br />
+          <br />
             <label htmlFor="fechaSolicitudAyuda" className="letra">Fecha Limite: </label>
             <input type="date" aria-required="true" className="form-control" id="fechaSolicitudAyuda" placeholder="Fecha Limite" value={fechaLimite} onChange={this.fechaChange}/>
           </div>
           <div className="form-group">
-            <label htmlFor="entidadSolicitudAyuda" className="letra">Entidad: </label>
+            <label htmlFor="entidadSolicitudAyuda" className="letra">Entidad u organización: </label>
             <input type="text" aria-required="true" className="form-control" id="entidadSolicitudAyuda" placeholder="Enitidad u Organización" value={entidad} onChange={this.entidadChange}/>
           </div>
         </form>

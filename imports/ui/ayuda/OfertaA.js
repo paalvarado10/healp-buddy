@@ -100,10 +100,18 @@ class OfertaA extends Component {
           <div className="form-group">
             <label htmlFor="formControlSelect" className="letra">Tipo: </label>
             <select aria-required="true" className="form-control" id="formControlSelect" value={tipo} onChange={this.tipoChange}>
-            <option value="Personal">Personal</option>
-            <option value="Monitoria">Monitoria</option>
-            <option value="Recomendacion">Recomendacion</option>
-            <option value="Otro">otro</option>
+            <option value="">Seleccione alguna opción</option>
+            <option value="Consejería y situaciones personales">Consejería y situaciones personales</option>
+            <option value="Ayuda académica">Ayuda académica</option>
+            <option value="Recomendacion">Recomendación</option>
+            <option value="Restaurantes y comida">Restaurantes y comida</option>
+            <option value="Tecnología">Tecnología</option>
+            <option value="Compras o ventas">Compras o ventas</option>
+            <option value="Ropa y modas">Ropa y modas</option>
+            <option value="Ocio y entretenimiento">Ocio y entretenimiento</option>
+            <option value="Música">Musica</option>
+            <option value="Investigación y proyectos">Investigación y proyectos</option>
+            <option value="Otro">Otro</option>
           </select>
           </div>
           <div className="form-group">
@@ -120,7 +128,7 @@ class OfertaA extends Component {
         <br/>
           </div>
           <div className="form-group">
-            <label htmlFor="formGroupExampleInput6" className="letra">Entidad: </label>
+            <label htmlFor="formGroupExampleInput6" className="letra">Entidad u organización: </label>
             <input aria-required="true" type="text" className="form-control" id="formGroupExampleInput6" placeholder="Enitidad u Organización" value={entidad} onChange={this.entidadChange}/>
           </div>
         </form>

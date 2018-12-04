@@ -100,7 +100,9 @@ class DetalleAyuda extends Component {
         textAlign: "left",
       }
 
+
     if(solicitud.remunerada){
+
       return(
         <h4 className="hIem" style={center}>{"$"+solicitud.remunn}</h4>
       );
@@ -216,41 +218,6 @@ renderCalificacion(calificaciones){
       <br/>
       <div style={divStyle} key={solicitud._id}>
       <br/>
-      <br/>
-      <h2 className="hIem" style={centerTitle}>Usuario que solicita la ayuda: </h2>
-        <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
-      <h3 className="hIem" style={centerTitle}>Nombre de la solicitud: </h3>
-      <h3 className="hIem" style={center}>{solicitud.nombreSolicitud}</h3>
-      <h3 className="hIem" style={centerTitle}>Descripcion: </h3>
-      <h3 className="hIem" style={center}>{solicitud.descripcion}</h3>
-      <h3 className="hIem" style={centerTitle}>Tipo: </h3>
-      <h3 className="hIem" style={center}>{solicitud.tipo}</h3>
-      <h3 className="hIem" style={centerTitle}>Remuneración: </h3>
-
-      <h3 className="hIem" style={centerTitle}>Fecha Limite: </h3>
-      <h3 className="hIem" style={center}>{solicitud.fechaLimite}</h3>
-      <h3 className="hIem" style={centerTitle}>Entidad: </h3>
-      <h3 className="hIem" style={center}>{solicitud.entidad}</h3>
-            {this.renderCalificacion(this.props.calificaciones)}
-      <br/>
-      <br/>
-      <br/>
-      <button type="button" className="btnLis" onClick={this.eliminarSolicitud}>Eliminar</button>
-      <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
-      <br/>
-      <br/>
-      <br/>
-      </div>
-      </div>
-    );
-  }
-  else{
-    return (
-      <div>
-      <br/>
-      <div style={divStyle} key={solicitud._id}>
-      <br/>
-      <br/>
       <h2 className="hIem" style={centerTitle}>Usuario que solicita la ayuda: </h2>
         <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
       <h3 className="hIem" style={centerTitle}>Nombre de la solicitud: </h3>
@@ -269,6 +236,41 @@ renderCalificacion(calificaciones){
       <br/>
       <br/>
       <br/>
+      <button type="button" className="btnLis" onClick={this.eliminarSolicitud}>Eliminar</button>
+      <button type="button" className="btnOut" onClick={this.atras}>Atrás</button>
+      <br/>
+      <br/>
+      <br/>
+      </div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      </div>
+    );
+  }
+  else{
+    return (
+      <div>
+      <br/>
+      <div style={divStyle} key={solicitud._id}>
+      <br/>
+      <h2 className="hIem" style={centerTitle}>Usuario que solicita la ayuda: </h2>
+        <h2 className="hIem" style={center}>{solicitud.nickname}</h2>
+      <h3 className="hIem" style={centerTitle}>Nombre de la solicitud: </h3>
+      <h3 className="hIem" style={center}>{solicitud.nombreSolicitud}</h3>
+      <h3 className="hIem" style={centerTitle}>Descripcion: </h3>
+      <h3 className="hIem" style={center}>{solicitud.descripcion}</h3>
+      <h3 className="hIem" style={centerTitle}>Tipo: </h3>
+      <h3 className="hIem" style={center}>{solicitud.tipo}</h3>
+      <h3 className="hIem" style={centerTitle}>Remuneración: </h3>
+      {this.renderSolicitud(solicitud)}
+      <h3 className="hIem" style={centerTitle}>Fecha Limite: </h3>
+      <h3 className="hIem" style={center}>{solicitud.fechaLimite}</h3>
+            {this.renderCalificacion(this.props.calificaciones)}
+      <br/>
+      <br/>
+      <br/>
       <br/>
       {this.load()}
       <br/>
@@ -280,6 +282,9 @@ renderCalificacion(calificaciones){
       <br/>
       <br/>
       </div>
+      <br/>
+      <br/>
+      <br/>
       </div>
     );
   }

@@ -50,7 +50,11 @@ export default class PaginationA extends Component {
       const renderTodos = currentTodos.map((item, index) => {
         if(index<=currentTodos.length){
           let rand = Math.random();
-            return (<div  className="listao" key={rand*index} role="listitem"><AyudaItemLista verDetalle={this.verDetalle} nickname={nickname} solicitud={currentTodos[index]} key={index+"1"+currentPage*rand}/></div>);
+            return (<div  className="listao" key={rand*index} role="listitem">
+              <AyudaItemLista verDetalle={this.verDetalle} nickname={nickname} solicitud={currentTodos[index]} key={index+"1"+currentPage*rand}/>
+              <br />
+              <br/>
+              </div>);
         }
 
       });
