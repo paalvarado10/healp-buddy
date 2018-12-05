@@ -39,7 +39,7 @@ class ListaAyuda extends Component {
   }
 
   remunChange(event){
-   this.setState({busquedaRemun:event.target.value}); 
+   this.setState({busquedaRemun:event.target.value});
   }
   verDetalle(id){
 this.props.verDetalle(id);
@@ -82,7 +82,7 @@ this.props.verDetalle(id);
         if(busquedaTipo === "Todos")
         {
           items = list.map((solicitud)=>{
-          
+
             let rand = Math.random();
             return(
                 <div  className="listao" key={rand} role="listitem">
@@ -130,7 +130,7 @@ this.props.verDetalle(id);
         {
 
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si){
                 let rand = Math.random();
                 return(
@@ -165,8 +165,8 @@ this.props.verDetalle(id);
         else
         {
           let items = list.map((solicitud)=>{
-              
-               
+
+
                 let rand = Math.random();
                 return(
                     <div  className="listao" key={rand} role="listitem">
@@ -189,7 +189,7 @@ this.props.verDetalle(id);
               </div>
                );//
         }
-        
+
       }
       else if(busquedaNombre.length>0 && busquedaTipo && !busquedaRemun)
       {
@@ -210,7 +210,7 @@ this.props.verDetalle(id);
         else
         {
           items = list.map((solicitud)=>{
-          if(solicitud.tipo.toLowerCase().includes(busquedaTipo.toLowerCase()) && 
+          if(solicitud.tipo.toLowerCase().includes(busquedaTipo.toLowerCase()) &&
              solicitud.nombreSolicitud.toLowerCase().includes(busquedaNombre.toLowerCase()))
           {
             let rand = Math.random();
@@ -219,7 +219,7 @@ this.props.verDetalle(id);
                 <AyudaItemLista verDetalle={this.verDetalle} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/>
                 </div>)
           }
-        
+
           });
         }
 
@@ -251,7 +251,7 @@ this.props.verDetalle(id);
         {
 
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si && solicitud.nombreSolicitud.toLowerCase().includes(busquedaNombre)){
                 let rand = Math.random();
                 return(
@@ -286,7 +286,7 @@ this.props.verDetalle(id);
         else
         {
           let items = list.map((solicitud)=>{
-              
+
                if(solicitud.nombreSolicitud.toLowerCase().includes(busquedaNombre)){
                 let rand = Math.random();
                 return(
@@ -324,7 +324,7 @@ this.props.verDetalle(id);
         if(busquedaRemun!=="Todos" && busquedaTipo!=="Todos")
         {
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si && solicitud.tipo.includes(busquedaTipo)){
                 let rand = Math.random();
                 return(
@@ -359,7 +359,7 @@ this.props.verDetalle(id);
         else if(busquedaRemun!=="Todos" && busquedaTipo==="Todos")
         {
           let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si){
                 let rand = Math.random();
                 return(
@@ -394,7 +394,7 @@ this.props.verDetalle(id);
         else if(busquedaRemun==="Todos" && busquedaTipo!=="Todos")
         {
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.tipo.includes(busquedaTipo)){
                 let rand = Math.random();
                 return(
@@ -402,7 +402,7 @@ this.props.verDetalle(id);
                     <AyudaItemLista verDetalle={this.verDetalle} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/>
                     </div>)
               }
-                    
+
                 });
 
             return(
@@ -422,13 +422,13 @@ this.props.verDetalle(id);
         else
         {
           let items = list.map((solicitud)=>{
-              
+
                 let rand = Math.random();
                 return(
                     <div  className="listao" key={rand} role="listitem">
                     <AyudaItemLista verDetalle={this.verDetalle} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/>
                     </div>)
-                  
+
                 });
 
             return(
@@ -458,7 +458,7 @@ this.props.verDetalle(id);
         if(busquedaRemun!=="Todos" && busquedaTipo!=="Todos")
         {
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si && solicitud.tipo.includes(busquedaTipo) && solicitud.nombreSolicitud.toLowerCase().includes(busquedaNombre.toLowerCase())){
                 let rand = Math.random();
                 return(
@@ -493,7 +493,7 @@ this.props.verDetalle(id);
         else if(busquedaRemun!=="Todos" && busquedaTipo==="Todos")
         {
           let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si && solicitud.nombreSolicitud.toLowerCase().includes(busquedaNombre.toLowerCase())){
                 let rand = Math.random();
                 return(
@@ -528,7 +528,7 @@ this.props.verDetalle(id);
         else if(busquedaRemun==="Todos" && busquedaTipo!=="Todos")
         {
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.tipo.includes(busquedaTipo) && solicitud.nombreSolicitud.toLowerCase().includes(busquedaNombre.toLowerCase())){
                 let rand = Math.random();
                 return(
@@ -536,7 +536,7 @@ this.props.verDetalle(id);
                     <AyudaItemLista verDetalle={this.verDetalle} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/>
                     </div>)
               }
-                    
+
                 });
 
             return(
@@ -556,7 +556,7 @@ this.props.verDetalle(id);
         else
         {
           let items = list.map((solicitud)=>{
-              
+
                if(solicitud.nombreSolicitud.toLowerCase().includes(busquedaNombre.toLowerCase())){
                 let rand = Math.random();
                 return(
@@ -587,7 +587,7 @@ this.props.verDetalle(id);
           <br/>
           <br/>
           <br/>
-          
+
           <PaginationA items={list} nickname={this.state.nickname} verDetalle={this.verDetalle} perPage={10}/>
           <br/>
           <br/>
@@ -614,22 +614,22 @@ this.props.verDetalle(id);
 
          <h1 className="hIem">Listado de Solicitudes de ayuda</h1>
 
-        <div class="row" >
-            <div class="col-md-4">
+        <div className="row" >
+            <div className="col-md-4">
             <form role="search">
                   <label htmlFor="search" className="letra">Filtrar por nombre: </label>
                   <input aria-label="Filtrar solicitudes por nombre" type="text" className="form-control" placeholder="Nombre solicitud..." id="search" value={busqueda} onChange={this.onChangeBusqueda}/>
             </form>
-            
+
             </div>
-            <div class="col-md-4">
-            
+            <div className="col-md-4">
+
             </div>
-            <div class="col-md-4">
-            
+            <div className="col-md-4">
+
             </div>
         </div>
-        
+
         <div style={w}>
         {this.renderList(lista)}
         </div>
@@ -642,16 +642,16 @@ this.props.verDetalle(id);
       <p></p>
       <br />
 
-        <div class="row" >
-          <div class="col-md-4">
+        <div className="row" >
+          <div className="col-md-4">
 
                 <form role="search">
                       <label htmlFor="BarraBusquedaAyuda" className="letra">Filtrar por nombre: </label>
                       <input aria-label="Filtrar solicitudes por nombre" type="text" className="form-control" placeholder="Nombre solicitud.." id="BarraBusquedaAyuda" value={busqueda} onChange={this.onChangeBusqueda}/>
                 </form>
-            
+
           </div>
-          <div class="col-md-4">
+          <div className="col-md-4">
 
                 <label htmlFor="tipoSolicitudAyuda" className="letra">Filtrar por tipo: </label>
                 <select aria-required="true" className="form-control" id="tipoSolicitudAyuda" onChange={this.tipoChange}>
@@ -669,9 +669,9 @@ this.props.verDetalle(id);
                     <option value="Otro">Otro</option>
                 </select>
 
-            
+
           </div>
-          <div class="col-md-4">
+          <div className="col-md-4">
                 <label htmlFor="remuneracionAyuda" className="letra">Filtrar por remuneración: </label>
                 <select aria-required="true" className="form-control" id="remuneracionAyuda" onChange={this.remunChange}>
                     <option value="Todos">Todos</option>

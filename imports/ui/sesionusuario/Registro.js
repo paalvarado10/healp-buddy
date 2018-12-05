@@ -118,6 +118,12 @@ listo(){
   }
 }
 loged(correo,nickname, id1){
+  let datos = new Object();
+  datos.correo=correo;
+  datos.nickname=nickname;
+  datos.id=id1;
+  console.log(datos);
+  localStorage.setItem("sesion" , JSON.stringify(datos));
   this.props.loged(true,correo,nickname, id1);
 }
 renderError(error){

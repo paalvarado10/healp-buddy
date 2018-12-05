@@ -12,11 +12,9 @@ import SolicitudA from './ayuda/SolicitudA.js';
 import OfertaA from './ayuda/OfertaA.js';
 import IniciarSesion from './sesionusuario/IniciarSesion.js';
 import TableroSolicitudes from './TableroSolicitudes.js';
-
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       registro: false,
       login: false,
@@ -38,9 +36,15 @@ class App extends Component {
       solicitarAyuda:true
     });
   }
-
+componentDidMount(){
+  let sesion = JSON.parse(localStorage.getItem("sesion"));
+  if (sesion){
+    this.setState({loggeado:true, correo:sesion.correo, nickname:sesion.nickname, id:sesion.id});
+  }
+}
 cerrarSesion(){
   this.setState({registro:false,login:false,loggeado:false,correo:"",nickname:""});
+  localStorage.removeItem("sesion");
 }
 registrarse()
 {
@@ -57,7 +61,7 @@ atras(atras){
 
 renderBtnSesion()
 {
-  if(this.state.registro==false && this.state.login==false){
+  if(this.state.registro==false && this.state.login==false && this.state.loggeado==false){
       return(
         <div className="useri">
         <button type="button" className="btnReg" onClick={this.registrarse}>Registrarme</button>
@@ -66,7 +70,6 @@ renderBtnSesion()
         <button type="button" className="btnReg" onClick={this.iniciarSesion}>Iniciar Sesión</button>
         <span> </span>
         </div>
-
       );
   }
   else if(this.state.loggeado) {
@@ -201,14 +204,9 @@ showContent()
     );
   }
 }
-
-
 App.propTypes = {
-
 };
-
 export default withTracker(() => {
-
   return {
   };
 })(App);

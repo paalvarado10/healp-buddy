@@ -56,6 +56,11 @@ listo(){
       const originalText = bytes.toString(CryptoJS.enc.Utf8);
       if(originalText===clave){
         this.loged(correo,use.nickname, use.id);
+        let datos = new Object();
+        datos.correo=correo;
+        datos.nickname=use.nickname;
+        datos.id=use.id;
+        localStorage.setItem("sesion", JSON.stringify(datos));
       }
       else{
         alert("Credenciales Invalidas");
