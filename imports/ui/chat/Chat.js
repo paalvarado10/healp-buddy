@@ -11,6 +11,11 @@ export class Chat extends Component {
 	    	solicitud:this.props.solicitud,
 	    	idMine:this.props.idMine
 	    }
+	    
+	    this.verSolicitudes = this.verSolicitudes.bind(this);
+	    this.verOfertas = this.verOfertas.bind(this);
+	    this.publicarSolicitudAyuda = this.publicarOfertaAyuda.bind(this);
+	    this.publicarOfertaAyuda = this.publicarOfertaAyuda.bind(this);
 	}
 
 	atras()
@@ -18,6 +23,22 @@ export class Chat extends Component {
     	this.props.atras(true);
   	}
 
+	verSolicitudes()
+	{
+		this.props.verSolicitudes();
+	}
+	publicarSolicitudAyuda()
+	{
+		this.props.publicarSolicitudAyuda();
+	}
+	publicarOfertaAyuda()
+	{
+		this.props.publicarOfertaAyuda();
+	}
+	verOfertas()
+	{
+		this.props.verOfertas();
+	}
 
 	todo()
 	{
@@ -106,7 +127,12 @@ export class Chat extends Component {
 
 		return (
 		<div>
-
+		<div>
+			<button className="btnSelec" onClick={this.verSolicitudes}>Solicitudes de ayuda</button>
+			<button className="btnOferta" onClick={this.verOfertas}>Ofertas de ayuda</button>
+			<button className="btnNueva" onClick={this.publicarSolicitudAyuda}>Publicar</button>
+			<button className="btnNueva" onClick={this.irAlChat}>Chat</button>
+		</div>
 		<button type="button" className="btnOut" onClick={this.atras.bind(this)}>Regresar</button>
 		<br/>
 		<br/>

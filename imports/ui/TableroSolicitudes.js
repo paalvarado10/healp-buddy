@@ -41,6 +41,7 @@ class TableroSolicitudes extends Component {
 			this.publicarSolicitudAyuda = this.publicarSolicitudAyuda.bind(this);
 			this.renderAyuda = this.renderAyuda.bind(this);
 			this.atras= this.atras.bind(this);
+			
 			this.verDetalle = this.verDetalle.bind(this);
 			this.verDetalleOferta = this.verDetalleOferta.bind(this);
 			this.verSolicitudes = this.verSolicitudes.bind(this);
@@ -114,22 +115,24 @@ class TableroSolicitudes extends Component {
 			}
 		});
 	}
+
 	publicarSolicitudAyuda()
 	{
-		this.setState({nuevaSolicitudAyuda:true});
+		this.setState({nuevaSolicitudAyuda:true, chat:false});
 	}
 	publicarOfertaAyuda()
 	{
-		this.setState({nuevaOfertaAyuda:true});
+		this.setState({nuevaOfertaAyuda:true, chat:false});
 	}
 	verSolicitudes()
 	{
-		this.setState({solicitudes:true, ofertas:false});
+		this.setState({solicitudes:true, ofertas:false, chat:false});
 	}
 	verOfertas()
 	{
-		this.setState({ofertas:true, solicitudes:false});
+		this.setState({ofertas:true, solicitudes:false, chat:false});
 	}
+
 
 	renderLista()
 	{
@@ -137,12 +140,14 @@ class TableroSolicitudes extends Component {
 		{
 			return (
 		      <div>
-		        <Chat nickname={this.state.nickname} idMine={this.state.id} atras={this.atras}/>
+		        <Chat nickname={this.state.nickname} idMine={this.state.id} atras={this.atras} verSolicitudes={this.verSolicitudes} 
+		        verOfertas={this.verOfertas} publicarSolicitudAyuda={this.publicarSolicitudAyuda} publicarOfertaAyuda={this.publicarOfertaAyuda}/>
 		      </div>
 		      );
 		}
 		else
 		{
+
 			if(this.state.solicitudes)
 			{
 				return(<div>
@@ -188,7 +193,7 @@ class TableroSolicitudes extends Component {
 		if(this.state.nuevaSolicitudAyuda)
 		{
 			return (
-				<SolicitudA id={this.state.id} nickname={this.state.nickname} correo={this.state.correo} atras={this.atras}/>
+				<SolicitudA id={this.state.id} nickname={this.state.nickname} correo={this.state.correo} atras={this.atras} notify={this.notify}/>
 			);
 		}
 		else if(this.state.nuevaOfertaAyuda)

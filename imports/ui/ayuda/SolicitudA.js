@@ -86,16 +86,20 @@ class SolicitudA extends Component {
       }
       else{
         console.log("Correo publicador ", correo);
-      Meteor.call("solicitudayuda.add", id, nickname, correo, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad,(err,res)=>{if(res==="success"){
-        alert("Solicitud Guaradada");
-        this.atras();
-      }else{
-        console.log(err);
-      }
+      Meteor.call("solicitudayuda.add", id, nickname, correo, nombreSolicitud, descripcion, tipo, remunerada, remunn, fechaLimite, entidad,
+        (err,res)=>{
+
+          
+          if(res==="success")
+          {
+            this.atras();
+            alert("Solicitud publicada exitosamente");
+          }
     });
     }
   }
 }
+
   atras(){
     this.props.atras(true);
   }
@@ -219,6 +223,7 @@ let {
         </form>
         <br/>
         <button type="button" className="btnLis" onClick={this.listo}>Publicar</button>
+        
         <button type="button" className="btnOut" onClick={this.atras}>Atras</button>
       </div>
       <br/>
