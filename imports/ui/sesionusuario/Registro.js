@@ -29,15 +29,7 @@ class Registro extends Component {
     this.handleChangeRClave=this.handleChangeRClave.bind(this);
     this.listo=this.listo.bind(this);
     this.atras=this.atras.bind(this);
-    this.showModal=this.showModal.bind(this);
-    this.hideModal=this.hideModal.bind(this);
-  }
-  showModal(){
-    this.setState({showModal:true});
-  }
-  hideModal(){
-    this.setState({showModal:false});
-  }
+    }
 handleChangeName(event){
   this.setState({nombre: event.target.value},()=>{
     console.log(this.state.nombre)
@@ -133,7 +125,7 @@ loged(correo,nickname, id1){
   datos.id=id1;
   console.log(datos);
   localStorage.setItem("sesion" , JSON.stringify(datos));
-  showModal();
+  
   this.props.loged(true,correo,nickname, id1);
 }
 renderError(error){
