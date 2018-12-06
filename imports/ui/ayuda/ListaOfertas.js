@@ -33,7 +33,7 @@ class ListaOfertas extends Component {
     this.props.verDetalleOferta(id);
   }
   remunChange(event){
-   this.setState({busquedaRemun:event.target.value}); 
+   this.setState({busquedaRemun:event.target.value});
   }
 
   renderList(solicitudes){
@@ -56,7 +56,7 @@ class ListaOfertas extends Component {
         });
         return(<div>
           <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-          
+
           <div role="list">
           {items}
           </div>
@@ -69,7 +69,7 @@ class ListaOfertas extends Component {
         if(busquedaTipo === "Todos")
         {
           items = list.map((solicitud)=>{
-          
+
             let rand = Math.random();
             return(
                 <div  className="listao" key={rand} role="listitem">
@@ -94,7 +94,7 @@ class ListaOfertas extends Component {
           return(
           <div>
             <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-            
+
 
             <div role="list">
           {items}
@@ -117,7 +117,7 @@ class ListaOfertas extends Component {
         {
 
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si){
                 let rand = Math.random();
                 return(
@@ -138,7 +138,7 @@ class ListaOfertas extends Component {
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -151,8 +151,8 @@ class ListaOfertas extends Component {
         else
         {
           let items = list.map((solicitud)=>{
-              
-               
+
+
                 let rand = Math.random();
                 return(
                     <div  className="listao" key={rand} role="listitem">
@@ -164,7 +164,7 @@ class ListaOfertas extends Component {
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -174,7 +174,7 @@ class ListaOfertas extends Component {
               </div>
                );//
         }
-        
+
       }
       else if(busqueda.length>0 && busquedaTipo && !busquedaRemun)
       {
@@ -195,7 +195,7 @@ class ListaOfertas extends Component {
         else
         {
           items = list.map((solicitud)=>{
-          if(solicitud.tipo.includes(busquedaTipo) && 
+          if(solicitud.tipo.includes(busquedaTipo) &&
              solicitud.nombreOferta.toLowerCase().includes(busqueda.toLowerCase()))
           {
             let rand = Math.random();
@@ -204,7 +204,7 @@ class ListaOfertas extends Component {
               <OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/>
               </div>)
           }
-        
+
           });
         }
 
@@ -212,7 +212,7 @@ class ListaOfertas extends Component {
           return(
           <div>
             <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-            
+
 
             <div role="list">
           {items}
@@ -235,7 +235,7 @@ class ListaOfertas extends Component {
         {
 
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si && solicitud.nombreOferta.toLowerCase().includes(busqueda)){
                 let rand = Math.random();
                 return(
@@ -256,7 +256,7 @@ class ListaOfertas extends Component {
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -269,7 +269,7 @@ class ListaOfertas extends Component {
         else
         {
           let items = list.map((solicitud)=>{
-              
+
                if(solicitud.nombreOferta.toLowerCase().includes(busqueda)){
                 let rand = Math.random();
                 return(
@@ -283,7 +283,7 @@ class ListaOfertas extends Component {
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -306,7 +306,7 @@ class ListaOfertas extends Component {
         if(busquedaRemun!=="Todos" && busquedaTipo!=="Todos")
         {
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si && solicitud.tipo.includes(busquedaTipo)){
                 let rand = Math.random();
                 return(
@@ -327,7 +327,7 @@ class ListaOfertas extends Component {
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -340,7 +340,7 @@ class ListaOfertas extends Component {
         else if(busquedaRemun!=="Todos" && busquedaTipo==="Todos")
         {
           let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si){
                 let rand = Math.random();
                 return(
@@ -361,7 +361,7 @@ class ListaOfertas extends Component {
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -374,7 +374,7 @@ class ListaOfertas extends Component {
         else if(busquedaRemun==="Todos" && busquedaTipo!=="Todos")
         {
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.tipo.includes(busquedaTipo)){
                 let rand = Math.random();
                 return(
@@ -382,13 +382,13 @@ class ListaOfertas extends Component {
                     <OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/>
                     </div>)
               }
-                    
+
                 });
 
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-               
+
 
                 <div role="list">
               {items}
@@ -401,19 +401,19 @@ class ListaOfertas extends Component {
         else
         {
           let items = list.map((solicitud)=>{
-              
+
                 let rand = Math.random();
                 return(
                     <div  className="listao" key={rand} role="listitem">
                     <OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/>
                     </div>)
-                  
+
                 });
 
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -436,7 +436,7 @@ class ListaOfertas extends Component {
         if(busquedaRemun!=="Todos" && busquedaTipo!=="Todos")
         {
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si && solicitud.tipo.includes(busquedaTipo) && solicitud.nombreOferta.toLowerCase().includes(busqueda.toLowerCase())){
                 let rand = Math.random();
                 return(
@@ -457,7 +457,7 @@ class ListaOfertas extends Component {
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -470,7 +470,7 @@ class ListaOfertas extends Component {
         else if(busquedaRemun!=="Todos" && busquedaTipo==="Todos")
         {
           let items = list.map((solicitud)=>{
-              
+
                if(solicitud.remunerada === si && solicitud.nombreOferta.toLowerCase().includes(busqueda.toLowerCase())){
                 let rand = Math.random();
                 return(
@@ -491,7 +491,7 @@ class ListaOfertas extends Component {
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -504,7 +504,7 @@ class ListaOfertas extends Component {
         else if(busquedaRemun==="Todos" && busquedaTipo!=="Todos")
         {
             let items = list.map((solicitud)=>{
-              
+
                if(solicitud.tipo.includes(busquedaTipo) && solicitud.nombreOferta.toLowerCase().includes(busqueda.toLowerCase())){
                 let rand = Math.random();
                 return(
@@ -512,13 +512,13 @@ class ListaOfertas extends Component {
                     <OfertaItemLista verDetalleOferta={this.verDetalleOferta} nickname={this.state.nickname} solicitud={solicitud} key={solicitud.id}/>
                     </div>)
               }
-                    
+
                 });
 
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -531,7 +531,7 @@ class ListaOfertas extends Component {
         else
         {
           let items = list.map((solicitud)=>{
-              
+
                if(solicitud.nombreOferta.toLowerCase().includes(busqueda.toLowerCase())){
                 let rand = Math.random();
                 return(
@@ -544,7 +544,7 @@ class ListaOfertas extends Component {
             return(
               <div>
                 <h2 className="hIem">{"Resultado de la busqueda: "}</h2>
-                
+
 
                 <div role="list">
               {items}
@@ -582,16 +582,16 @@ class ListaOfertas extends Component {
       <p></p>
       <br />
 
-        <div class="row" >
-          <div class="col-md-4">
+        <div className="row" >
+          <div className="col-md-4">
 
                 <form role="search">
                   <label htmlFor="search" className="letra">Filtrar por nombre: </label>
                   <input aria-label="Filtrar ofertas por nombre" type="text" className="form-control" placeholder="Nombre solicitud..." id="search" value={busqueda} onChange={this.onChangeBusqueda}/>
                 </form>
-            
+
             </div>
-            <div class="col-md-4">
+            <div className="col-md-4">
 
                <label htmlFor="tipoSolicitudAyuda" className="letra">Filtrar por tipo: </label>
                 <select aria-required="true" className="form-control" id="tipoSolicitudAyuda" onChange={this.tipoChange}>
@@ -610,7 +610,7 @@ class ListaOfertas extends Component {
                 </select>
 
           </div>
-            <div class="col-md-4">
+            <div className="col-md-4">
                 <label htmlFor="remuneracionAyuda" className="letra">Filtrar por remuneración: </label>
                 <select aria-required="true" className="form-control" id="remuneracionAyuda" onChange={this.remunChange}>
                     <option value="Todos">Todos</option>
@@ -623,7 +623,7 @@ class ListaOfertas extends Component {
         </div>
 
       <div style={w}>
-      
+
       {this.renderList(this.props.ofertasAyuda)}
       </div>
       </div>
