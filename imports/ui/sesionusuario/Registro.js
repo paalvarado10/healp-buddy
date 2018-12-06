@@ -10,6 +10,11 @@ var CryptoJS = require("crypto-js");
 let animals =["tigre","leon","cocodrilo","serpiente","aguila","lobo", "buho", "perro", "conejo", "rana", "zorro","gato", "delfin","tiburon","pollo"];
 let numbers =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 let action = ["saltarin","sonriente","comelon","jugueton","dormilon","incognito","sisipeto","boxeador","futbolero","azul","rojo","astuto","aleatorio","feliz","estudioso"];
+
+/* dcagua10: En la seccion de Registro no se realiza la validacion del nombre y apellido puesto que admite numeros */
+/* dcagua10: En caso de ser necesario para registros internos es necesario validarlo */
+/* dcagua10: En caso de que no se use recomiendo quitar el campo dentro del formulario */
+
 class Registro extends Component {
   constructor(props) {
     super(props);

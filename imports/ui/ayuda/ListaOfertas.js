@@ -8,6 +8,9 @@ import PropTypes from "prop-types";
 import PaginationO from '../pagination/PaginationO.js';
 import OfertaItemLista from './OfertaItemLista.js';
 
+/* dcagua10: La lista de las ofertas disponibles podria tener una imagen de referencia con la finalidad de que sea mas atractivo
+para la persona que la busca */
+
 class ListaOfertas extends Component {
   constructor(props) {
     super(props);
