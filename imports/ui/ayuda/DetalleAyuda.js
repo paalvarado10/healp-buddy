@@ -8,6 +8,8 @@ import {CalificacionAyuda} from '../../api/calificacionAyuda.js';
 import {Chat} from "../chat/Chat.js";
 
 /* dcagua10: Cuando califico una ayuda estoy obligado a volver a ver los detalles de esta (Sale a la pagina principal cuando se califica) */
+/* dcagua10: La descripcion de la ayuda en el card se ve cortada */
+
 class DetalleAyuda extends Component {
   constructor(props) {
     super(props);
