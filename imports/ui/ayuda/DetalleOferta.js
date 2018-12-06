@@ -9,6 +9,7 @@ import {OfertasAyuda} from '../../api/ofertasAyuda.js';
 import {CalificacionOferta} from '../../api/calificacionOferta.js';
 import {Chat} from "../chat/Chat.js";
 
+/* dcagua10: Cuando califico una oferta estoy obligado a volver a ver los detalles de esta (Sale a la pagina principal cuando se califica) */
 class DetalleOferta extends Component {
   constructor(props) {
     super(props);
