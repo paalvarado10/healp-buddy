@@ -321,6 +321,25 @@ th, td {
     margin-right: 8px;
     float: left;
 }
+.btnSelec:hover{
+  background-color: #28D160;
+}
+.btnOferta:hover{
+  background-color: #28D160;
+}
+.btnChat{
+  border-radius: 8px;
+  background-color: #28D160;
+  color: white;
+  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    height: 40px;
+    width: 180px;
+    font-family: 'Concert One', cursive;
+    font-size: 22px;
+    margin-right: 8px;
+    float: right;
+}
 .btnReg{
   border-radius: 8px;
   background-color: white;
