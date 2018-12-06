@@ -227,7 +227,7 @@ th, td {
   font-family: 'Concert One', cursive;
   padding: 5px;
   overflow-x: hidden;
-  overflow-y: hidden;  
+  overflow-y: hidden;
   max-height: 50px;
 }
 .carousel .thumb img {
@@ -486,6 +486,7 @@ a{
   top: 0;
   color:#fff;
 }
+
 a:hover {
   text-decoration: none;
   color: #fff;
@@ -494,6 +495,7 @@ h1{
   color: #fff;
 }
 h2{
+  font-family: 'Kalam', cursive;
   color: #fff;
 }
 h3{
@@ -502,4 +504,7 @@ h3{
   font-family: 'Kalam', cursive;
   color: #fff;
   padding: 25px;
+}
+.inicio {
+  color:black;
 }

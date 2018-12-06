@@ -139,6 +139,9 @@ showContent()
     else{
       return(
         <div>
+        <br/>
+        <h2 className="inicio">En Help-Buddy, la prioridad es que puedas pedir cualquier tipo de ayuda. Para lo cual generamos un nombre de usuario aleatorio, en busca de proteger tu identidad y recuerda evitar, en lo posible, dar datos personales a extraños</h2>
+        <h3 className="inicio">Tambien puedes ofrecer distintos tipos de servicios, asi que registrate si no lo has hecho</h3>
           <div className="carrusel">
             <br/>
             <br/>
