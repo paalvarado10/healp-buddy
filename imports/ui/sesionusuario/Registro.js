@@ -1,3 +1,6 @@
+//realizar comentarios explicativos en los componentes de react.
+//algunos componentes son demasiado grandes, se podria modularizar.
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../App.css';
